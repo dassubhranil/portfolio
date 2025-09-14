@@ -160,30 +160,32 @@
         </div>
       </section>
 
-      <!-- Contact -->
+      <!-- CONTACT (ensure present & visible) -->
       <section id="contact" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-extrabold mb-6">Contact</h2>
+        <h2 class="text-2xl font-semibold mb-4">Contact</h2>
 
-        <div class="glass p-6 rounded-xl">
-          <p class="text-gray-300 mb-4">Want to work together? Send me a note —.</p>
+        <div class="glass p-6 rounded-lg">
+          <p class="text-gray-300 mb-4">Want to work together? Send me a quick message and I’ll reply as soon as I can.</p>
 
-          <form id="contactForm" class="space-y-3">
+          <form id="contactForm" class="space-y-3" novalidate>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
               <input id="nameField" name="name" required placeholder="Your name" class="p-3 rounded-md bg-white/5 w-full" />
-              <input id="emailField" name="email" required placeholder="Your email" class="p-3 rounded-md bg-white/5 w-full" />
+              <input id="emailField" name="email" type="email" required placeholder="Your email" class="p-3 rounded-md bg-white/5 w-full" />
             </div>
-            <textarea id="messageField" name="message" required placeholder="Message" class="p-3 rounded-md bg-white/5 w-full"></textarea>
 
-            <div class="flex items-center justify-between gap-4">
-              <button type="submit" id="sendBtn" class="px-6 py-3 rounded-lg btn-primary font-semibold">Send Message</button>
+            <textarea id="messageField" name="message" required placeholder="Message" class="p-3 rounded-md bg-white/5 w-full h-32"></textarea>
+
+            <div class="flex items-center gap-4">
+              <button id="sendBtn" type="submit" class="px-5 py-3 rounded-md btn-primary">Send Message</button>
               <div>
-                <div id="formSuccess" class="form-msg success" role="status" aria-live="polite">Message sent — thank you!</div>
-                <div id="formError" class="form-msg error" role="alert" aria-live="assertive">Failed to send — try again or email directly.</div>
+                <div id="formSuccess" class="form-msg success">Message sent — thank you!</div>
+                <div id="formError" class="form-msg error">Failed to send — try again or email directly at <a class="underline" href="mailto:dassubhranil1998@gmail.com">dassubhranil1998@gmail.com</a></div>
               </div>
             </div>
           </form>
         </div>
       </section>
+
 
     </main>
 
