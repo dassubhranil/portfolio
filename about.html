@@ -73,55 +73,59 @@
 
     <!-- Detailed experience (reveal) -->
     <section id="experience" class="reveal">
-      <div class="card cascade-item">
-        <h2 style="margin:0 0 8px">Experience (detailed)</h2>
-        <div style="color:#cbd5e1;font-size:14px;line-height:1.6">
-          <div style="margin-bottom:12px">
-            <h3 style="margin:0">Data Scientist — School of Public Health, Indiana University</h3>
-            <small style="color:#9ca3af">Jan 2024 — Jul 2025</small>
-            <ul style="margin-top:6px;padding-left:18px">
-              <li>Built ETL pipelines and managed large-scale methylation datasets (20M+ records).</li>
-              <li>Designed generative modeling workflows and validated biological signal preservation.</li>
-            </ul>
-          </div>
+      <h2 class="cascade-item" style="margin:0 0 8px">Experience (detailed)</h2>
 
-          <div style="margin-bottom:12px">
-            <h3 style="margin:0">Data Analyst — Indiana University Dining Services</h3>
-            <small style="color:#9ca3af">Aug 2023 — Jan 2024</small>
-            <ul style="margin-top:6px;padding-left:18px">
-              <li>Implemented forecasting and inventory optimization pipelines.</li>
-            </ul>
-          </div>
+      <!-- Split each experience into its own card block -->
+      <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
+        <h3 style="margin:0 0 6px">Data Scientist — School of Public Health, Indiana University</h3>
+        <small style="color:#9ca3af">Jan 2024 — Jul 2025</small>
+        <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
+          <li>Built ETL pipelines and managed large-scale methylation datasets (20M+ records).</li>
+          <li>Designed generative modeling workflows and validated biological signal preservation.</li>
+          <li>Led model training on HPC and optimized distributed training workflows.</li>
+        </ul>
+      </div>
 
-          <div>
-            <h3 style="margin:0">Data Engineer — eGain Corporation</h3>
-            <small style="color:#9ca3af">Jun 2021 — Jul 2022</small>
-            <ul style="margin-top:6px;padding-left:18px">
-              <li>Developed ETL pipelines, CI/CD, and monitoring on Azure.</li>
-            </ul>
-          </div>
-        </div>
+      <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
+        <h3 style="margin:0 0 6px">Data Analyst — Indiana University Dining Services</h3>
+        <small style="color:#9ca3af">Aug 2023 — Jan 2024</small>
+        <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
+          <li>Implemented demand forecasting and inventory optimization pipelines.</li>
+          <li>Built dashboards and automated reporting to reduce stockouts and improve procurement.</li>
+        </ul>
+      </div>
+
+      <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
+        <h3 style="margin:0 0 6px">Data Engineer — eGain Corporation</h3>
+        <small style="color:#9ca3af">Jun 2021 — Jul 2022</small>
+        <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
+          <li>Developed high-performance ETL pipelines, CI/CD, and monitoring on Azure.</li>
+          <li>Optimized Spark jobs and implemented data quality checks and observability.</li>
+        </ul>
       </div>
     </section>
 
     <div style="height:18px"></div>
 
     <!-- Footer -->
-    <footer class="text-center text-sm text-gray-400 py-6">
-      © <span id="year"></span> Subhranil Das • Built with passion.
-      <div class="mt-2 flex items-center justify-center gap-4">
-        <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
-          LinkedIn
-        </a>
-        <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
-          GitHub
-        </a>
+    <footer class="reveal" style="margin-top:12px">
+      <div class="card cascade-item" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px">
+        <div style="color:#cbd5e1">Contact: <a href="mailto:dassubhranil1998@gmail.com" style="color:#cbd5e1">dassubhranil1998@gmail.com</a></div>
+        <div class="mt-2 flex items-center justify-center gap-4">
+          <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
+            LinkedIn
+          </a>
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
+            GitHub
+          </a>
+        </div>
+        <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
       </div>
     </footer>
-  </div>
 
+  </div>
 
   <script>
     // ===== reveal logic for this page (same behavior as index) =====
