@@ -36,8 +36,6 @@
     .reveal .cascade-item { opacity: 0; transform: translateX(-32px); transition: opacity 520ms ease, transform 520ms ease; }
     .reveal .cascade-item.show { opacity: 1; transform: translateX(0); }
 
-    /* Make sure once shown it stays visible (we unobserve in JS) */
-
     /* Card hover */
     .card { transition: all .35s ease; }
     .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.28); }
@@ -47,6 +45,9 @@
     .form-msg.show { display:block; }
     .form-msg.success { color:#34d399; }
     .form-msg.error { color:#fb7185; }
+
+    /* Footer links */
+    .social-icon { width:20px; height:20px; vertical-align:middle; margin-right:8px }
 
     /* Small responsive tweaks */
     @media (max-width:640px){ .reveal { transform: translateX(-18px); } .reveal .cascade-item { transform: translateX(-12px); } }
@@ -166,72 +167,112 @@
           <h3 class="text-xl font-semibold mb-4">Tools I Use</h3>
           <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
             <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-10 h-10 mb-2"/>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=Py'"/>
               <div>Python</div>
             </div>
             <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="Postgres" class="w-10 h-10 mb-2"/>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="Postgres" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=PG'"/>
               <div>Postgres</div>
             </div>
             <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spark/spark-original.svg" alt="Spark" class="w-10 h-10 mb-2"/>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spark/spark-original.svg" alt="Spark" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=SP'"/>
               <div>Spark</div>
             </div>
             <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" alt="Airflow" class="w-10 h-10 mb-2"/>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" alt="Airflow" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AF'"/>
               <div>Airflow</div>
             </div>
             <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" class="w-10 h-10 mb-2"/>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AZ'"/>
               <div>Azure</div>
             </div>
             <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" class="w-10 h-10 mb-2"/>
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AWS'"/>
               <div>AWS</div>
+            </div>
+
+            <!-- extra tools -->
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/databricks/databricks-original.svg" alt="Databricks" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=DB'"/>
+              <div>Databricks</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=DK'"/>
+              <div>Docker</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=K8s'"/>
+              <div>Kubernetes</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dbt/dbt-original.svg" alt="dbt" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=dbt'"/>
+              <div>dbt</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/snowflake/snowflake-original.svg" alt="Snowflake" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=SF'"/>
+              <div>Snowflake</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=GIT'"/>
+              <div>Git</div>
             </div>
           </div>
         </div>
 
         <div class="cascade-item">
-          <h3 class="text-xl font-semibold mb-4">Core Skills</h3>
+          <h3 class="text-xl font-semibold mb-4">Core Data Skills</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Feature engineering & modeling -->
             <article class="card glass p-6 rounded-xl flex gap-4 items-start">
-              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Product Ownership" class="w-24 h-24 rounded-md object-cover"/>
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Model" alt="Modeling" class="w-24 h-24 rounded-md object-cover"/>
               <div>
-                <h4 class="text-lg font-semibold">Product<br/><span class="text-indigo-300">Ownership</span></h4>
-                <p class="text-gray-300 mt-2">If you are looking for a reliable and experienced Product Manager to help you navigate development through the software lifecycle, look no further. With my expertise in Agile methodologies and end-to-end product management, I can help you deliver the product that your customers deserve.</p>
+                <h4 class="text-lg font-semibold">Feature Engineering<br/><span class="text-indigo-300">& Modeling</span></h4>
+                <p class="text-gray-300 mt-2">Design robust features, build supervised and unsupervised models, perform cross-validation and hyperparameter tuning. Experienced with scikit-learn, XGBoost, LightGBM and deep learning workflows (TensorFlow/PyTorch).</p>
               </div>
             </article>
 
+            <!-- Data pipelines & ETL -->
             <article class="card glass p-6 rounded-xl flex gap-4 items-start">
-              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Strategic Planning" class="w-24 h-24 rounded-md object-cover"/>
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=ETL" alt="ETL" class="w-24 h-24 rounded-md object-cover"/>
               <div>
-                <h4 class="text-lg font-semibold">Strategic<br/><span class="text-indigo-300">Planning</span></h4>
-                <p class="text-gray-300 mt-2">I specialize in creating and executing product roadmaps that drive growth and increase revenue. My process is rooted in data-driven decision making, and I'm dedicated to using iterative development strategies to build products that are adaptable to changing business needs.</p>
+                <h4 class="text-lg font-semibold">Data Pipelines<br/><span class="text-indigo-300">& ETL</span></h4>
+                <p class="text-gray-300 mt-2">Design and productionize ETL/ELT using Airflow, Spark, Azure Data Factory and Databricks. Focused on data quality, idempotency, monitoring, and cost-efficient architectures.</p>
               </div>
             </article>
 
+            <!-- Distributed systems & Spark -->
             <article class="card glass p-6 rounded-xl flex gap-4 items-start">
-              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Customer Voice" class="w-24 h-24 rounded-md object-cover"/>
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Spark" alt="Spark" class="w-24 h-24 rounded-md object-cover"/>
               <div>
-                <h4 class="text-lg font-semibold">Customer<br/><span class="text-indigo-300">Voice</span></h4>
-                <p class="text-gray-300 mt-2">My approach with customers centers on empathizing with their needs and building relationships to better understand opportunities for product growth. By prioritizing gathering direct feedback via user interviews, we can ensure that products are meeting customers' needs.</p>
+                <h4 class="text-lg font-semibold">Distributed Systems<br/><span class="text-indigo-300">& Spark</span></h4>
+                <p class="text-gray-300 mt-2">Experienced tuning Spark jobs, partitioning strategies, and designing distributed ETL that scales to millions of records. I optimize for shuffle reduction, caching, and resource-efficient clusters.</p>
               </div>
             </article>
 
+            <!-- MLOps & Deployment -->
             <article class="card glass p-6 rounded-xl flex gap-4 items-start">
-              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Icon" alt="User Experience" class="w-24 h-24 rounded-md object-cover"/>
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=MLOps" alt="MLOps" class="w-24 h-24 rounded-md object-cover"/>
               <div>
-                <h4 class="text-lg font-semibold">User<br/><span class="text-indigo-300">Experience</span></h4>
-                <p class="text-gray-300 mt-2">I create top-notch user experiences through strategic UX design. Focusing on usability, functionality and accessibility, I create mockups and wireframes to bring products to market quickly. I collaborate closely with designers to ensure that the products are delighting users.</p>
+                <h4 class="text-lg font-semibold">MLOps<br/><span class="text-indigo-300">& Deployment</span></h4>
+                <p class="text-gray-300 mt-2">Deploy models with CI/CD, containerization (Docker), orchestration (Kubernetes), and monitoring. Experienced with model registry, feature store patterns and model drift detection.</p>
               </div>
             </article>
 
+            <!-- Visualization & analysis -->
             <article class="card glass p-6 rounded-xl flex gap-4 items-start">
-              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Data Analysis" class="w-24 h-24 rounded-md object-cover"/>
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Viz" alt="Visualization" class="w-24 h-24 rounded-md object-cover"/>
               <div>
-                <h4 class="text-lg font-semibold">Data<br/><span class="text-indigo-300">Analysis</span></h4>
-                <p class="text-gray-300 mt-2">I highly value using both quantitative and qualitative data analysis methods to drive product decisions. I define and closely track progress for key performance indicators (KPIs) and conduct A/B testing to ensure that product decisions will lead to continued business success.</p>
+                <h4 class="text-lg font-semibold">Visualization<br/><span class="text-indigo-300">& Analysis</span></h4>
+                <p class="text-gray-300 mt-2">Build clear dashboards and diagnostic plots using Tableau, PowerBI, Plotly and matplotlib. I focus on actionable metrics, KPI design and experiment analysis (A/B testing).</p>
+              </div>
+            </article>
+
+            <!-- Data modeling & warehouses -->
+            <article class="card glass p-6 rounded-xl flex gap-4 items-start">
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=DW" alt="Data Warehouse" class="w-24 h-24 rounded-md object-cover"/>
+              <div>
+                <h4 class="text-lg font-semibold">Data Modeling<br/><span class="text-indigo-300">& Warehousing</span></h4>
+                <p class="text-gray-300 mt-2">Design dimensional and normalized schemas, build dbt transformations, and optimize warehouse performance on Snowflake/BigQuery/Synapse.</p>
               </div>
             </article>
 
@@ -261,7 +302,19 @@
 
     </main>
 
-    <footer class="text-center text-sm text-gray-400 py-6">© <span id="year"></span> Subhranil Das • Built with passion.</footer>
+    <footer class="text-center text-sm text-gray-400 py-6">
+      © <span id="year"></span> Subhranil Das • Built with passion.
+      <div class="mt-2 flex items-center justify-center gap-4">
+        <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
+          LinkedIn
+        </a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
+          GitHub
+        </a>
+      </div>
+    </footer>
   </div>
 
   <script>
@@ -302,9 +355,7 @@
       }
 
       // mailto fallback
-      const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '
-
-From: ' + name + ' <' + email + '>')}`;
+      const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' <' + email + '>')}`;
       window.location.href = mailto;
     });
 
