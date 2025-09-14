@@ -354,7 +354,7 @@
           // reveal immediate cascade children with stagger
           const children = section.querySelectorAll('.cascade-item');
           children.forEach((child, idx) => {
-            child.style.transitionDelay = (idx * 80) + 'ms';
+            child.style.transitionDelay = (idx * 150) + 'ms';
             requestAnimationFrame(() => child.classList.add('show'));
           });
 
@@ -370,7 +370,7 @@
     const individualObserver = new IntersectionObserver((entries, obs2) => {
       entries.forEach((entry, idx) => {
         if(entry.isIntersecting){
-          entry.target.style.transitionDelay = (idx * 50) + 'ms';
+          entry.target.style.transitionDelay = (idx * 150) + 'ms';
           entry.target.classList.add('show');
           obs2.unobserve(entry.target);
         }
