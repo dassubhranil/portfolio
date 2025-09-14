@@ -40,9 +40,21 @@
     .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
     .btn-primary { background: linear-gradient(90deg,#6366f1,#ec4899); color: white; }
-    .form-msg { font-size:0.95rem; display:none; }
-    .form-msg.success { color:#34d399; display:block; }
-    .form-msg.error { color:#fb7185; display:block; }
+    /* form message defaults: hidden */
+.form-msg {
+  display: none;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* visible when .show is added by JS */
+.form-msg.show {
+  display: block;
+}
+
+/* color only — don't control display here */
+.form-msg.success { color: #34d399; }
+.form-msg.error   { color: #fb7185; }
   </style>
 </head>
 <body class="antialiased">
