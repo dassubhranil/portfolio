@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — Subhranil Das</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:#050816; color:#e6eef8; padding:36px; }
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(8px);padding:24px;border-radius:12px}
+    a.btn{background:linear-gradient(90deg,#6366f1,#ec4899);color:white;padding:8px 14px;border-radius:8px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="max-w-4xl mx-auto">
+    <header class="mb-6 flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold">About — Subhranil Das</h1>
+        <p class="text-sm text-gray-400 mt-1">Data Scientist & Engineer</p>
+      </div>
+      <div>
+        <a href="index.html" class="btn">Back to portfolio</a>
+      </div>
+    </header>
+
+    <section class="card mb-6">
+      <h2 class="text-xl font-semibold mb-2">Short bio</h2>
+      <p class="text-gray-300">I build and operate production-grade data platforms and ML pipelines. My work focuses on reliable ETL orchestration, performant transformations (dbt, Spark), and deploying ML models with observability. I enjoy working at the intersection of research and engineering to make data actionable.</p>
+    </section>
+
+    <section class="card mb-6">
+      <h2 class="text-xl font-semibold mb-2">Education</h2>
+      <ul class="list-disc pl-5 text-gray-300 space-y-2">
+        <li><strong>MSc / BSc — University Name</strong> — Relevant coursework: Data Structures, Databases, Machine Learning (replace with your details)</li>
+        <li><strong>Certifications</strong> — Azure Data Engineer (placeholder), Databricks Certified, etc.</li>
+      </ul>
+    </section>
+
+    <section class="card mb-6">
+      <h2 class="text-xl font-semibold mb-2">Experience (detailed)</h2>
+      <div class="space-y-4 text-gray-300">
+        <div>
+          <h3 class="font-semibold">Data Scientist — School of Public Health, Indiana University</h3>
+          <p class="text-sm">Jan 2024 — Jul 2025</p>
+          <ul class="list-disc pl-5 mt-2">
+            <li>Built ETL pipelines and managed large-scale methylation datasets (20M+ records).</li>
+            <li>Designed generative modeling workflows and validated biological signal preservation.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold">Data Analyst — Indiana University Dining Services</h3>
+          <p class="text-sm">Aug 2023 — Jan 2024</p>
+          <ul class="list-disc pl-5 mt-2">
+            <li>Implemented forecasting and inventory optimization pipelines.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold">Data Engineer — eGain Corporation</h3>
+          <p class="text-sm">Jun 2021 — Jul 2022</p>
+          <ul class="list-disc pl-5 mt-2">
+            <li>Developed ETL pipelines, CI/CD, and monitoring on Azure.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="text-xl font-semibold mb-2">Contact & links</h2>
+      <p class="text-gray-300 mb-3">Email: <a href="mailto:dassubhranil1998@gmail.com" class="text-indigo-300">dassubhranil1998@gmail.com</a></p>
+      <div class="flex gap-3">
+        <a href="#" class="px-3 py-2 rounded-md border">GitHub</a>
+        <a href="#" class="px-3 py-2 rounded-md border">LinkedIn</a>
+        <a href="#" class="px-3 py-2 rounded-md border">Resume</a>
+      </div>
+    </section>
+
+    <footer class="text-sm text-gray-400 mt-6">© <span id="y"></span> Subhranil Das</footer>
+  </div>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+</body>
+</html>
