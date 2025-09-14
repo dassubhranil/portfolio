@@ -219,54 +219,71 @@
 
     // ---------- EmailJS contact form handling ----------
     // Replace SERVICE_ID and TEMPLATE_ID with your EmailJS values
-    const formEl = document.getElementById('contactForm');
-    const sendBtn = document.getElementById('sendBtn');
-    const successMsg = document.getElementById('formSuccess');
-    const errorMsg = document.getElementById('formError');
+    // Grab DOM elements
+const formEl = document.getElementById('contactForm');
+const sendBtn = document.getElementById('sendBtn');
+const successMsg = document.getElementById('formSuccess');
+const errorMsg = document.getElementById('formError');
 
-    if(formEl){
-      formEl.addEventListener('submit', function(e){
-        e.preventDefault();
+function hideMsgs(){
+  successMsg.classList.remove('show');
+  errorMsg.classList.remove('show');
+}
 
-        // hide messages
-        successMsg.style.display = 'none';
-        errorMsg.style.display = 'none';
+// start hidden (in case CSS/markup state was wrong)
+hideMsgs();
 
-        const name = document.getElementById('nameField').value.trim();
-        const email = document.getElementById('emailField').value.trim();
-        const message = document.getElementById('messageField').value.trim();
+if(formEl){
+  formEl.addEventListener('submit', function(e){
+    e.preventDefault();
+    hideMsgs();
 
-        if(!name || !email || !message){
-          errorMsg.textContent = 'Please fill all fields before sending.';
-          errorMsg.style.display = 'block';
-          return;
-        }
+    const name = document.getElementById('nameField').value.trim();
+    const email = document.getElementById('emailField').value.trim();
+    const message = document.getElementById('messageField').value.trim();
 
-        sendBtn.disabled = true;
-        sendBtn.textContent = 'Sending...';
+    // simple validation
+    if(!name || !email || !message || !/\S+@\S+\.\S+/.test(email)){
+      errorMsg.textContent = 'Please provide a valid name, email and message.';
+      errorMsg.classList.add('show');
+      return;
+    }
 
-        // template parameters - match your EmailJS template variables
-        const templateParams = {
-          from_name: name,
-          from_email: email,
-          message: message
-        };
+    // disable button while sending
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending...';
 
-        emailjs.send('service_1mlayhg', 'template_g2njhw7', templateParams) // <-- REPLACE THESE
+    // If EmailJS available and configured, send; otherwise fallback to mailto
+    if(window.emailjs && typeof emailjs.send === 'function'){
+      const templateParams = { from_name: name, from_email: email, message: message };
+
+      emailjs.send('service_1mlayhg', 'template_g2njhw7', templateParams) // <-- REPLACE THESE
         .then(() => {
-          successMsg.style.display = 'block';
+          successMsg.textContent = 'Message sent — thank you!';
+          successMsg.classList.add('show');
           formEl.reset();
         })
         .catch(err => {
           console.error('EmailJS error', err);
-          errorMsg.style.display = 'block';
+          errorMsg.textContent = 'Failed to send — try again or email directly at dassubhranil1998@gmail.com';
+          errorMsg.classList.add('show');
         })
         .finally(() => {
           sendBtn.disabled = false;
           sendBtn.textContent = 'Send Message';
         });
-      });
+
+    } else {
+      // fallback: open user's mail client
+      const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' <' + email + '>')}`;
+      window.location.href = mailto;
+      // re-enable button (mailto hands off to client)
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send Message';
     }
+  });
+}
+
   </script>
 </body>
 </html>
