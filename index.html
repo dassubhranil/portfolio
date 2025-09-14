@@ -19,48 +19,46 @@
   <script>
     // Initialize EmailJS - replace with your PUBLIC_KEY
     (function(){
-      emailjs.init("3lrGHiYIW44WmcNaU"); // <-- REPLACE THIS
+      emailjs.init("3lrGHiYIW44WmcNaU"); // <-- REPLACE WITH YOUR PUBLIC KEY
     })();
   </script>
 
   <style>
-    :root { --bg: #050816; --card: rgba(255,255,255,0.05); --muted:#94a3b8; }
+    :root { --bg: #050816; --muted:#94a3b8; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.2), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.2), transparent 40%), var(--bg); color: #f1f5f9; }
 
-    .glass { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.08); }
-
-    .section-underline::after { content: ''; display:block; width:80px; height:3px; margin-top:10px; border-radius:999px; background: linear-gradient(90deg,#6366f1,#ec4899); }
+    .glass { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06); }
 
     .card { transition: all .35s ease; }
     .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
 
-    .timeline::before { content:''; position:absolute; left:16px; top:0; bottom:0; width:2px; background:linear-gradient(180deg,#6366f1,#ec4899); }
-
-    .skill-badge { position:relative; display:flex; align-items:center; justify-content:center; gap:0.5rem; background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.1); transition: all .3s; padding:0.75rem; border-radius:9999px; font-size:0.9rem; font-weight:600; cursor:default; }
-    .skill-badge svg, .skill-badge img { transition: color .3s, fill .3s, transform .18s; }
-    .skill-badge:hover { background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(236,72,153,0.15)); transform: translateY(-4px); }
+    .skill-badge { display:inline-flex; align-items:center; gap:0.5rem; background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06); padding:0.6rem 0.9rem; border-radius:12px; font-weight:600; font-size:0.95rem; transition:transform .16s, background .18s; cursor:default; }
+    .skill-badge:hover { transform: translateY(-4px); background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(236,72,153,0.06)); }
+    .icon { width:18px; height:18px; display:inline-block; vertical-align:middle; }
 
     .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
-    .icon { width:18px; height:18px; }
     .btn-primary { background: linear-gradient(90deg,#6366f1,#ec4899); color: white; }
+    .form-msg { font-size:0.95rem; display:none; }
+    .form-msg.success { color:#34d399; display:block; }
+    .form-msg.error { color:#fb7185; display:block; }
   </style>
 </head>
 <body class="antialiased">
   <div id="app" class="min-h-screen flex flex-col">
 
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
+    <header class="sticky top-0 z-50 bg-[#050816]/85 backdrop-blur-md border-b border-white/5">
       <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
         <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
         <nav class="hidden md:flex gap-6 text-sm text-gray-300">
-          <a href="#about" class="nav-link hover:text-white" data-target="about">About</a>
-          <a href="#experience" class="nav-link hover:text-white" data-target="experience">Experience</a>
-          <a href="#projects" class="nav-link hover:text-white" data-target="projects">Projects</a>
-          <a href="#skills" class="nav-link hover:text-white" data-target="skills">Skills</a>
-          <a href="#contact" class="nav-link hover:text-white" data-target="contact">Contact</a>
-          <a href="#" class="px-4 py-2 rounded-md btn-primary text-white font-medium">Resume</a>
+          <a href="#about" class="nav-link" data-target="about">About</a>
+          <a href="#experience" class="nav-link" data-target="experience">Experience</a>
+          <a href="#projects" class="nav-link" data-target="projects">Projects</a>
+          <a href="#skills" class="nav-link" data-target="skills">Skills</a>
+          <a href="#contact" class="nav-link" data-target="contact">Contact</a>
+          <a href="about.html" class="px-4 py-2 rounded-md btn-primary text-white font-medium">About page</a>
         </nav>
       </div>
     </header>
@@ -68,9 +66,9 @@
     <main class="flex-1">
       <!-- Hero -->
       <section id="hero" class="relative py-20 px-6 text-center max-w-5xl mx-auto">
-        <img src="https://placehold.co/200x200/2c3a4f/e5e7eb?text=Profile" alt="Profile" class="w-40 h-40 mx-auto rounded-full border-4 border-indigo-500 shadow-2xl mb-6 animate-bounce" />
+        <img src="https://placehold.co/200x200/2c3a4f/e5e7eb?text=Profile" alt="Profile" class="w-40 h-40 mx-auto rounded-full border-4 border-indigo-500 shadow-2xl mb-6" />
         <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Hi, I'm <span class="gradient-text">Subhranil Das</span></h1>
-        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Data Scientist & Data Engineer with 3+ years building scalable ETL pipelines, cloud architectures (Azure, AWS, GCP), and ML models. I turn messy data into meaningful insights.</p>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Data Scientist & Data Engineer with 3+ years building scalable ETL pipelines, cloud architectures and ML models.</p>
         <div class="mt-6 flex justify-center gap-4 flex-wrap">
           <a href="mailto:dassubhranil1998@gmail.com" class="px-6 py-3 rounded-lg btn-primary font-semibold">Contact</a>
           <a href="#projects" class="px-6 py-3 rounded-lg border border-indigo-500 text-indigo-300 hover:bg-indigo-500/10">View Projects</a>
@@ -79,10 +77,13 @@
 
       <!-- About -->
       <section id="about" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-extrabold mb-8">About Me</h2>
+        <h2 class="text-3xl font-extrabold mb-6">About Me</h2>
         <div class="glass p-6 rounded-xl">
-          <p class="text-gray-300 mb-4">I am passionate about designing and building scalable data platforms, with expertise spanning ETL pipelines, cloud data engineering, and machine learning. I enjoy working on complex problems at the intersection of data and decision-making.</p>
-          <a href="about.html" class="inline-block mt-4 px-6 py-3 rounded-lg btn-primary font-medium">Read More</a>
+          <p class="text-gray-300 mb-4">I design and build production-grade ETL systems, robust data pipelines and ML deployments. I bridge research and engineering to deliver actionable analytics.</p>
+          <div class="mt-4 flex gap-3">
+            <a href="about.html" class="inline-block px-6 py-3 rounded-lg btn-primary font-medium">Read full bio</a>
+            <a href="#projects" class="inline-block px-6 py-3 rounded-lg border border-white/6">See projects</a>
+          </div>
         </div>
       </section>
 
@@ -97,27 +98,22 @@
             <ul class="mt-3 list-disc list-inside text-gray-300 space-y-1">
               <li>Engineered ETL pipelines on AWS + Airflow for 20M+ records (99% reliability).</li>
               <li>Built generative modeling pipelines for DNA data while preserving biological signal.</li>
-              <li>Reduced model training runtime by 40% using distributed HPC training.</li>
             </ul>
           </div>
-
           <div class="relative card glass p-6 rounded-xl">
             <span class="absolute -left-4 top-4 w-3 h-3 bg-indigo-500 rounded-full"></span>
             <h3 class="text-xl font-semibold gradient-text">Data Analyst — IU Dining Services</h3>
             <p class="text-sm text-gray-400">Aug 2023 – Jan 2024</p>
             <ul class="mt-3 list-disc list-inside text-gray-300 space-y-1">
               <li>Forecasting pipelines (ARIMA, Prophet) improved accuracy by 20%.</li>
-              <li>Automated dashboards & reporting for faster decision making.</li>
             </ul>
           </div>
-
           <div class="relative card glass p-6 rounded-xl">
             <span class="absolute -left-4 top-4 w-3 h-3 bg-indigo-500 rounded-full"></span>
             <h3 class="text-xl font-semibold gradient-text">Data Engineer — eGain Corporation</h3>
             <p class="text-sm text-gray-400">Jun 2021 – Jul 2022</p>
             <ul class="mt-3 list-disc list-inside text-gray-300 space-y-1">
               <li>Developed high-performance ETL pipelines in Azure Data Factory & Databricks.</li>
-              <li>Implemented CI/CD-enabled workflows with Azure DevOps.</li>
             </ul>
           </div>
         </div>
@@ -125,20 +121,20 @@
 
       <!-- Skills -->
       <section id="skills" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-extrabold mb-8">Skills</h2>
+        <h2 class="text-3xl font-extrabold mb-6">Skills</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-          <span class="skill-badge" title="Python — Pandas, NumPy, scikit-learn"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="icon" alt="Python" /> Python</span>
-          <span class="skill-badge" title="SQL — Postgres, Snowflake"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="icon" alt="SQL" /> SQL</span>
-          <span class="skill-badge" title="PySpark — distributed ETL & Spark tuning"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spark/spark-original.svg" class="icon" alt="Spark" /> PySpark</span>
-          <span class="skill-badge" title="Airflow — DAG design & scheduling"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" class="icon" alt="Airflow" /> Airflow</span>
-          <span class="skill-badge" title="dbt — modular transformations & CI"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dbt/dbt-original.svg" class="icon" alt="dbt" /> dbt</span>
-          <span class="skill-badge" title="Azure — ADF, Databricks"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="icon" alt="Azure" /> Azure</span>
-          <span class="skill-badge" title="AWS — S3, Glue, Lambda"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" class="icon" alt="AWS" /> AWS</span>
-          <span class="skill-badge" title="GCP — BigQuery, GCS"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="icon" alt="GCP" /> GCP</span>
-          <span class="skill-badge" title="Docker — container images"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="icon" alt="Docker" /> Docker</span>
-          <span class="skill-badge" title="Kubernetes — orchestration"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="icon" alt="K8s" /> Kubernetes</span>
-          <span class="skill-badge" title="Tableau — dashboards & viz"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg" class="icon" alt="Tableau" /> Tableau</span>
-          <span class="skill-badge" title="Power BI — reports & KPIs"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powerbi/powerbi-original.svg" class="icon" alt="PowerBI" /> Power BI</span>
+          <span class="skill-badge" title="Python — Pandas, NumPy, scikit-learn"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="icon" alt="Python"/> Python</span>
+          <span class="skill-badge" title="SQL — Postgres, Snowflake"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="icon" alt="SQL"/> SQL</span>
+          <span class="skill-badge" title="PySpark — distributed ETL & Spark tuning"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spark/spark-original.svg" class="icon" alt="Spark"/> PySpark</span>
+          <span class="skill-badge" title="Airflow — DAG design & scheduling"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" class="icon" alt="Airflow"/> Airflow</span>
+          <span class="skill-badge" title="dbt — modular transformations & CI"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dbt/dbt-original.svg" class="icon" alt="dbt"/> dbt</span>
+          <span class="skill-badge" title="Azure — ADF, Databricks"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="icon" alt="Azure"/> Azure</span>
+          <span class="skill-badge" title="AWS — S3, Glue, Lambda"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" class="icon" alt="AWS"/> AWS</span>
+          <span class="skill-badge" title="GCP — BigQuery, GCS"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="icon" alt="GCP"/> GCP</span>
+          <span class="skill-badge" title="Docker — container images"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="icon" alt="Docker"/> Docker</span>
+          <span class="skill-badge" title="Kubernetes — orchestration"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="icon" alt="K8s"/> Kubernetes</span>
+          <span class="skill-badge" title="Tableau — dashboards & viz"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg" class="icon" alt="Tableau"/> Tableau</span>
+          <span class="skill-badge" title="Power BI — reports & KPIs"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powerbi/powerbi-original.svg" class="icon" alt="PowerBI"/> Power BI</span>
         </div>
       </section>
 
@@ -151,10 +147,6 @@
             <div class="p-6">
               <h3 class="font-semibold gradient-text">Generative AI for Pathology</h3>
               <p class="text-gray-300 mt-2">Used GANs to synthesize pathology datasets, boosting YOLOv8 accuracy by 40%.</p>
-              <div class="mt-4 flex gap-3 text-sm">
-                <a href="#" class="px-3 py-1 rounded-md border">Repo</a>
-                <a href="#" class="px-3 py-1 rounded-md border">Case Study</a>
-              </div>
             </div>
           </article>
 
@@ -162,35 +154,34 @@
             <img src="https://placehold.co/600x300/111827/e5e7eb?text=Project+2" alt="Project 2" class="w-full h-40 object-cover"/>
             <div class="p-6">
               <h3 class="font-semibold gradient-text">Dynamic Commentary Analytics</h3>
-              <p class="text-gray-300 mt-2">Analyzed tonal shifts in esports commentary using ChatGPT + NLTK, improved sentiment analysis by 20%.</p>
-              <div class="mt-4 flex gap-3 text-sm">
-                <a href="#" class="px-3 py-1 rounded-md border">Repo</a>
-                <a href="#" class="px-3 py-1 rounded-md border">Demo</a>
-              </div>
+              <p class="text-gray-300 mt-2">Analyzed tonal shifts in esports commentary using ChatGPT + NLTK.</p>
             </div>
           </article>
+        </div>
+      </section>
 
-          <article class="card glass rounded-xl overflow-hidden">
-            <img src="https://placehold.co/600x300/111827/e5e7eb?text=Project+3" alt="Project 3" class="w-full h-40 object-cover"/>
-            <div class="p-6">
-              <h3 class="font-semibold gradient-text">Demand Forecasting</h3>
-              <p class="text-gray-300 mt-2">Time-series pipelines (ARIMA, Prophet) improved forecasts by 20% and reduced stockouts.</p>
-              <div class="mt-4 flex gap-3 text-sm">
-                <a href="#" class="px-3 py-1 rounded-md border">Repo</a>
-              </div>
-            </div>
-          </article>
+      <!-- Contact -->
+      <section id="contact" class="max-w-5xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-extrabold mb-6">Contact</h2>
 
-          <article class="card glass rounded-xl overflow-hidden">
-            <img src="https://placehold.co/600x300/111827/e5e7eb?text=Project+4" alt="Project 4" class="w-full h-40 object-cover"/>
-            <div class="p-6">
-              <h3 class="font-semibold gradient-text">ETL & Monitoring Platform</h3>
-              <p class="text-gray-300 mt-2">Azure Data Factory + Airflow pipelines with monitoring/alerts, improving reliability 30%.</p>
-              <div class="mt-4 flex gap-3 text-sm">
-                <a href="#" class="px-3 py-1 rounded-md border">Repo</a>
+        <div class="glass p-6 rounded-xl">
+          <p class="text-gray-300 mb-4">Want to work together? Send me a note — I typically reply within a few days.</p>
+
+          <form id="contactForm" class="space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <input id="nameField" name="name" required placeholder="Your name" class="p-3 rounded-md bg-white/5 w-full" />
+              <input id="emailField" name="email" required placeholder="Your email" class="p-3 rounded-md bg-white/5 w-full" />
+            </div>
+            <textarea id="messageField" name="message" required placeholder="Message" class="p-3 rounded-md bg-white/5 w-full"></textarea>
+
+            <div class="flex items-center justify-between gap-4">
+              <button type="submit" id="sendBtn" class="px-6 py-3 rounded-lg btn-primary font-semibold">Send Message</button>
+              <div>
+                <div id="formSuccess" class="form-msg success" role="status" aria-live="polite">Message sent — thank you!</div>
+                <div id="formError" class="form-msg error" role="alert" aria-live="assertive">Failed to send — try again or email directly.</div>
               </div>
             </div>
-          </article>
+          </form>
         </div>
       </section>
 
@@ -206,14 +197,18 @@
     // Smooth scrolling for header nav (accounts for sticky header)
     const header = document.querySelector('header');
     function smoothScrollTo(id){
-      const el = document.getElementById(id); if(!el) return;
+      const el = document.getElementById(id);
+      if(!el) return;
       const offset = header ? header.offsetHeight + 12 : 80;
       const top = el.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
     document.querySelectorAll('a[data-target], .nav-link').forEach(a => {
       a.addEventListener('click', function(e){
-        const dt = a.getAttribute('data-target') || (a.getAttribute('href') || '').replace('#','');
+        // If link is to a file (contains .html) allow normal navigation
+        const href = a.getAttribute('href') || '';
+        if(href.includes('.html')) return; // allow navigation to about.html
+        const dt = a.getAttribute('data-target') || href.replace('#','');
         if(!dt) return;
         e.preventDefault();
         smoothScrollTo(dt);
@@ -222,23 +217,33 @@
 
     // ---------- EmailJS contact form handling ----------
     // Replace SERVICE_ID and TEMPLATE_ID with your EmailJS values
-    const contactForm = document.createElement('form'); // placeholder to avoid errors if not present
-    // Attach handler to document form if present
     const formEl = document.getElementById('contactForm');
+    const sendBtn = document.getElementById('sendBtn');
+    const successMsg = document.getElementById('formSuccess');
+    const errorMsg = document.getElementById('formError');
+
     if(formEl){
       formEl.addEventListener('submit', function(e){
         e.preventDefault();
 
-        // read values
-        const name = this.name.value.trim();
-        const email = this.email.value.trim();
-        const message = this.message.value.trim();
+        // hide messages
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+
+        const name = document.getElementById('nameField').value.trim();
+        const email = document.getElementById('emailField').value.trim();
+        const message = document.getElementById('messageField').value.trim();
 
         if(!name || !email || !message){
-          alert('Please fill all fields before sending.');
+          errorMsg.textContent = 'Please fill all fields before sending.';
+          errorMsg.style.display = 'block';
           return;
         }
 
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Sending...';
+
+        // template parameters - match your EmailJS template variables
         const templateParams = {
           from_name: name,
           from_email: email,
@@ -247,12 +252,16 @@
 
         emailjs.send('service_1mlayhg', 'template_g2njhw7', templateParams) // <-- REPLACE THESE
         .then(() => {
-          alert('Message sent — thank you!'); 
+          successMsg.style.display = 'block';
           formEl.reset();
         })
         .catch(err => {
           console.error('EmailJS error', err);
-          alert('Failed to send message. Please try again later or email directly to dassubhranil1998@gmail.com');
+          errorMsg.style.display = 'block';
+        })
+        .finally(() => {
+          sendBtn.disabled = false;
+          sendBtn.textContent = 'Send Message';
         });
       });
     }
