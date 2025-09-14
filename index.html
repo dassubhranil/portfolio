@@ -13,191 +13,251 @@
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    // Initialize EmailJS - replace with your PUBLIC_KEY
     (function(){
-      emailjs.init("3lrGHiYIW44WmcNaU"); // <-- REPLACE WITH YOUR PUBLIC KEY
+      // emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key when ready
     })();
   </script>
 
   <style>
-    :root { --bg: #050816; --muted:#94a3b8; }
-    html { scroll-behavior: smooth; }
+    :root { --bg: #050816; --card: rgba(255,255,255,0.05); --muted:#94a3b8; }
     body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.2), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.2), transparent 40%), var(--bg); color: #f1f5f9; }
 
-    .glass { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06); }
-
-    .card { transition: all .35s ease; }
-    .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-
-    .skill-badge { display:inline-flex; align-items:center; gap:0.5rem; background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06); padding:0.6rem 0.9rem; border-radius:12px; font-weight:600; font-size:0.95rem; transition:transform .16s, background .18s; cursor:default; }
-    .skill-badge:hover { transform: translateY(-4px); background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(236,72,153,0.06)); }
-    .icon { width:18px; height:18px; display:inline-block; vertical-align:middle; }
+    .glass { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.08); }
 
     .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
-    .btn-primary { background: linear-gradient(90deg,#6366f1,#ec4899); color: white; }
-    /* form message defaults: hidden */
-.form-msg {
-  display: none;
-  font-size: 0.95rem;
-  margin: 0;
-}
+    /* Reveal animation: section slides in from left and fades in */
+    .reveal { opacity: 0; transform: translateX(-48px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); will-change: opacity, transform; }
+    .reveal.show { opacity: 1; transform: translateX(0); }
 
-/* visible when .show is added by JS */
-.form-msg.show {
-  display: block;
-}
+    /* For internal cascade of children inside a revealed section */
+    .reveal .cascade-item { opacity: 0; transform: translateX(-32px); transition: opacity 520ms ease, transform 520ms ease; }
+    .reveal .cascade-item.show { opacity: 1; transform: translateX(0); }
 
-/* color only — don't control display here */
-.form-msg.success { color: #34d399; }
-.form-msg.error   { color: #fb7185; }
+    /* Make sure once shown it stays visible (we unobserve in JS) */
+
+    /* Card hover */
+    .card { transition: all .35s ease; }
+    .card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 20px 40px rgba(0,0,0,0.28); }
+
+    /* Contact messages */
+    .form-msg { display:none; font-size:0.95rem; }
+    .form-msg.show { display:block; }
+    .form-msg.success { color:#34d399; }
+    .form-msg.error { color:#fb7185; }
+
+    /* Small responsive tweaks */
+    @media (max-width:640px){ .reveal { transform: translateX(-18px); } .reveal .cascade-item { transform: translateX(-12px); } }
   </style>
 </head>
 <body class="antialiased">
   <div id="app" class="min-h-screen flex flex-col">
 
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-[#050816]/85 backdrop-blur-md border-b border-white/5">
+    <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
       <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
         <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
         <nav class="hidden md:flex gap-6 text-sm text-gray-300">
-          <a href="#about" class="nav-link" data-target="about">About</a>
-          <a href="#experience" class="nav-link" data-target="experience">Experience</a>
-          <a href="#projects" class="nav-link" data-target="projects">Projects</a>
-          <a href="#skills" class="nav-link" data-target="skills">Skills</a>
-          <a href="#contact" class="nav-link" data-target="contact">Contact</a>
-          <a href="about.html" class="px-4 py-2 rounded-md btn-primary text-white font-medium">About page</a>
+          <a href="#about" class="nav-link hover:text-white">About</a>
+          <a href="#experience" class="nav-link hover:text-white">Experience</a>
+          <a href="#projects" class="nav-link hover:text-white">Projects</a>
+          <a href="#skills" class="nav-link hover:text-white">Skills</a>
+          <a href="#contact" class="nav-link hover:text-white">Contact</a>
+          <a href="about.html" class="px-4 py-2 rounded-md bg-gradient-to-r from-indigo-600 to-pink-500 text-white font-medium">Resume</a>
         </nav>
       </div>
     </header>
 
     <main class="flex-1">
-      <!-- Hero -->
+      <!-- Hero (we won't animate hero to avoid jank) -->
       <section id="hero" class="relative py-20 px-6 text-center max-w-5xl mx-auto">
         <img src="https://placehold.co/200x200/2c3a4f/e5e7eb?text=Profile" alt="Profile" class="w-40 h-40 mx-auto rounded-full border-4 border-indigo-500 shadow-2xl mb-6" />
         <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Hi, I'm <span class="gradient-text">Subhranil Das</span></h1>
-        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Data Scientist & Data Engineer with 3+ years building scalable ETL pipelines, cloud architectures and ML models.</p>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">Data Scientist & Data Engineer with 3+ years building scalable ETL pipelines, cloud architectures (Azure, AWS, GCP), and ML models. I turn messy data into meaningful insights.</p>
         <div class="mt-6 flex justify-center gap-4 flex-wrap">
-          <a href="mailto:dassubhranil1998@gmail.com" class="px-6 py-3 rounded-lg btn-primary font-semibold">Contact</a>
+          <a href="mailto:dassubhranil1998@gmail.com" class="px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500 font-semibold">Contact</a>
           <a href="#projects" class="px-6 py-3 rounded-lg border border-indigo-500 text-indigo-300 hover:bg-indigo-500/10">View Projects</a>
         </div>
       </section>
 
-      <!-- About -->
-      <section id="about" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-extrabold mb-6">About Me</h2>
-        <div class="glass p-6 rounded-xl">
-          <p class="text-gray-300 mb-4">I design and build production-grade ETL systems, robust data pipelines and ML deployments. I bridge research and engineering to deliver actionable analytics.</p>
-          <div class="mt-4 flex gap-3">
-            <a href="about.html" class="inline-block px-6 py-3 rounded-lg btn-primary font-medium">Read full bio</a>
-            <a href="#projects" class="inline-block px-6 py-3 rounded-lg border border-white/6">See projects</a>
-          </div>
+      <!-- About (reveal) -->
+      <section id="about" class="reveal max-w-5xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-extrabold mb-8 cascade-item">About Me</h2>
+        <div class="glass p-6 rounded-xl cascade-item">
+          <p class="text-gray-300 mb-4">I am passionate about designing and building scalable data platforms, with expertise spanning ETL pipelines, cloud data engineering, and machine learning. I enjoy working on complex problems at the intersection of data and decision-making.</p>
+          <a href="about.html" class="inline-block mt-4 px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500 text-white font-medium">Read More</a>
         </div>
       </section>
 
-      <!-- Experience -->
-      <section id="experience" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-extrabold mb-8">Experience</h2>
+      <!-- Experience (reveal) -->
+      <section id="experience" class="reveal max-w-5xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-extrabold mb-8 cascade-item">Experience</h2>
         <div class="relative timeline pl-8 space-y-10">
-          <div class="relative card glass p-6 rounded-xl">
+          <div class="relative card glass p-6 rounded-xl cascade-item">
             <span class="absolute -left-4 top-4 w-3 h-3 bg-pink-500 rounded-full"></span>
             <h3 class="text-xl font-semibold gradient-text">Data Scientist — Indiana University</h3>
             <p class="text-sm text-gray-400">Jan 2024 – Jul 2025</p>
             <ul class="mt-3 list-disc list-inside text-gray-300 space-y-1">
               <li>Engineered ETL pipelines on AWS + Airflow for 20M+ records (99% reliability).</li>
               <li>Built generative modeling pipelines for DNA data while preserving biological signal.</li>
+              <li>Reduced model training runtime by 40% using distributed HPC training.</li>
             </ul>
           </div>
-          <div class="relative card glass p-6 rounded-xl">
+
+          <div class="relative card glass p-6 rounded-xl cascade-item">
             <span class="absolute -left-4 top-4 w-3 h-3 bg-indigo-500 rounded-full"></span>
             <h3 class="text-xl font-semibold gradient-text">Data Analyst — IU Dining Services</h3>
             <p class="text-sm text-gray-400">Aug 2023 – Jan 2024</p>
             <ul class="mt-3 list-disc list-inside text-gray-300 space-y-1">
               <li>Forecasting pipelines (ARIMA, Prophet) improved accuracy by 20%.</li>
+              <li>Automated dashboards & reporting for faster decision making.</li>
             </ul>
           </div>
-          <div class="relative card glass p-6 rounded-xl">
+
+          <div class="relative card glass p-6 rounded-xl cascade-item">
             <span class="absolute -left-4 top-4 w-3 h-3 bg-indigo-500 rounded-full"></span>
             <h3 class="text-xl font-semibold gradient-text">Data Engineer — eGain Corporation</h3>
             <p class="text-sm text-gray-400">Jun 2021 – Jul 2022</p>
             <ul class="mt-3 list-disc list-inside text-gray-300 space-y-1">
               <li>Developed high-performance ETL pipelines in Azure Data Factory & Databricks.</li>
+              <li>Implemented CI/CD-enabled workflows with Azure DevOps.</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- Skills -->
-      <section id="skills" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-extrabold mb-6">Skills</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-          <span class="skill-badge" title="Python — Pandas, NumPy, scikit-learn"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="icon" alt="Python"/> Python</span>
-          <span class="skill-badge" title="SQL — Postgres, Snowflake"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="icon" alt="SQL"/> SQL</span>
-          <span class="skill-badge" title="PySpark — distributed ETL & Spark tuning"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spark/spark-original.svg" class="icon" alt="Spark"/> PySpark</span>
-          <span class="skill-badge" title="Airflow — DAG design & scheduling"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" class="icon" alt="Airflow"/> Airflow</span>
-          <span class="skill-badge" title="dbt — modular transformations & CI"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dbt/dbt-original.svg" class="icon" alt="dbt"/> dbt</span>
-          <span class="skill-badge" title="Azure — ADF, Databricks"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" class="icon" alt="Azure"/> Azure</span>
-          <span class="skill-badge" title="AWS — S3, Glue, Lambda"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" class="icon" alt="AWS"/> AWS</span>
-          <span class="skill-badge" title="GCP — BigQuery, GCS"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" class="icon" alt="GCP"/> GCP</span>
-          <span class="skill-badge" title="Docker — container images"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="icon" alt="Docker"/> Docker</span>
-          <span class="skill-badge" title="Kubernetes — orchestration"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="icon" alt="K8s"/> Kubernetes</span>
-          <span class="skill-badge" title="Tableau — dashboards & viz"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg" class="icon" alt="Tableau"/> Tableau</span>
-          <span class="skill-badge" title="Power BI — reports & KPIs"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powerbi/powerbi-original.svg" class="icon" alt="PowerBI"/> Power BI</span>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-extrabold mb-8">Projects</h2>
+      <!-- Projects (reveal) -->
+      <section id="projects" class="reveal max-w-5xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-extrabold mb-8 cascade-item">Projects</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <article class="card glass rounded-xl overflow-hidden">
-            <img src="https://placehold.co/600x300/111827/e5e7eb?text=Project+1" alt="Project 1" class="w-full h-40 object-cover"/>
+          <article class="card glass rounded-xl overflow-hidden cascade-item">
+            <img src="https://placehold.co/600x300/111827/e5e7eb?text=Project+1" alt="Generative AI Project" class="w-full h-40 object-cover">
             <div class="p-6">
               <h3 class="font-semibold gradient-text">Generative AI for Pathology</h3>
               <p class="text-gray-300 mt-2">Used GANs to synthesize pathology datasets, boosting YOLOv8 accuracy by 40%.</p>
+              <div class="mt-4 flex gap-3 text-sm">
+                <a href="#" class="px-3 py-1 rounded-md border">Repo</a>
+                <a href="#" class="px-3 py-1 rounded-md border">Case Study</a>
+              </div>
             </div>
           </article>
 
-          <article class="card glass rounded-xl overflow-hidden">
-            <img src="https://placehold.co/600x300/111827/e5e7eb?text=Project+2" alt="Project 2" class="w-full h-40 object-cover"/>
+          <article class="card glass rounded-xl overflow-hidden cascade-item">
+            <img src="https://placehold.co/600x300/111827/e5e7eb?text=Project+2" alt="Dynamic Commentary" class="w-full h-40 object-cover">
             <div class="p-6">
               <h3 class="font-semibold gradient-text">Dynamic Commentary Analytics</h3>
-              <p class="text-gray-300 mt-2">Analyzed tonal shifts in esports commentary using ChatGPT + NLTK.</p>
+              <p class="text-gray-300 mt-2">Analyzed tonal shifts in esports commentary using ChatGPT + NLTK, improved sentiment analysis by 20%.</p>
+              <div class="mt-4 flex gap-3 text-sm">
+                <a href="#" class="px-3 py-1 rounded-md border">Repo</a>
+                <a href="#" class="px-3 py-1 rounded-md border">Demo</a>
+              </div>
             </div>
           </article>
         </div>
       </section>
 
-      <!-- CONTACT (ensure present & visible) -->
-      <section id="contact" class="max-w-5xl mx-auto px-6 py-16">
-        <h2 class="text-2xl font-semibold mb-4">Contact</h2>
+      <!-- Skills (reveal) -->
+      <section id="skills" class="reveal max-w-5xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-extrabold mb-6 cascade-item">Tools & Skills</h2>
 
-        <div class="glass p-6 rounded-lg">
-          <p class="text-gray-300 mb-4">Want to work together? Send me a quick message and I’ll reply as soon as I can.</p>
-
-          <form id="contactForm" class="space-y-3" novalidate>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input id="nameField" name="name" required placeholder="Your name" class="p-3 rounded-md bg-white/5 w-full" />
-              <input id="emailField" name="email" type="email" required placeholder="Your email" class="p-3 rounded-md bg-white/5 w-full" />
+        <div class="mb-10 cascade-item">
+          <h3 class="text-xl font-semibold mb-4">Tools I Use</h3>
+          <div class="grid grid-cols-3 sm:grid-cols-6 gap-4">
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-10 h-10 mb-2"/>
+              <div>Python</div>
             </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="Postgres" class="w-10 h-10 mb-2"/>
+              <div>Postgres</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spark/spark-original.svg" alt="Spark" class="w-10 h-10 mb-2"/>
+              <div>Spark</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" alt="Airflow" class="w-10 h-10 mb-2"/>
+              <div>Airflow</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" class="w-10 h-10 mb-2"/>
+              <div>Azure</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" class="w-10 h-10 mb-2"/>
+              <div>AWS</div>
+            </div>
+          </div>
+        </div>
 
-            <textarea id="messageField" name="message" required placeholder="Message" class="p-3 rounded-md bg-white/5 w-full h-32"></textarea>
-
-            <div class="flex items-center gap-4">
-              <button id="sendBtn" type="submit" class="px-5 py-3 rounded-md btn-primary">Send Message</button>
+        <div class="cascade-item">
+          <h3 class="text-xl font-semibold mb-4">Core Skills</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <article class="card glass p-6 rounded-xl flex gap-4 items-start">
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Product Ownership" class="w-24 h-24 rounded-md object-cover"/>
               <div>
-                <div id="formSuccess" class="form-msg success">Message sent — thank you!</div>
-                <div id="formError" class="form-msg error">Failed to send — try again or email directly at <a class="underline" href="mailto:dassubhranil1998@gmail.com">dassubhranil1998@gmail.com</a></div>
+                <h4 class="text-lg font-semibold">Product<br/><span class="text-indigo-300">Ownership</span></h4>
+                <p class="text-gray-300 mt-2">If you are looking for a reliable and experienced Product Manager to help you navigate development through the software lifecycle, look no further. With my expertise in Agile methodologies and end-to-end product management, I can help you deliver the product that your customers deserve.</p>
+              </div>
+            </article>
+
+            <article class="card glass p-6 rounded-xl flex gap-4 items-start">
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Strategic Planning" class="w-24 h-24 rounded-md object-cover"/>
+              <div>
+                <h4 class="text-lg font-semibold">Strategic<br/><span class="text-indigo-300">Planning</span></h4>
+                <p class="text-gray-300 mt-2">I specialize in creating and executing product roadmaps that drive growth and increase revenue. My process is rooted in data-driven decision making, and I'm dedicated to using iterative development strategies to build products that are adaptable to changing business needs.</p>
+              </div>
+            </article>
+
+            <article class="card glass p-6 rounded-xl flex gap-4 items-start">
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Customer Voice" class="w-24 h-24 rounded-md object-cover"/>
+              <div>
+                <h4 class="text-lg font-semibold">Customer<br/><span class="text-indigo-300">Voice</span></h4>
+                <p class="text-gray-300 mt-2">My approach with customers centers on empathizing with their needs and building relationships to better understand opportunities for product growth. By prioritizing gathering direct feedback via user interviews, we can ensure that products are meeting customers' needs.</p>
+              </div>
+            </article>
+
+            <article class="card glass p-6 rounded-xl flex gap-4 items-start">
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Icon" alt="User Experience" class="w-24 h-24 rounded-md object-cover"/>
+              <div>
+                <h4 class="text-lg font-semibold">User<br/><span class="text-indigo-300">Experience</span></h4>
+                <p class="text-gray-300 mt-2">I create top-notch user experiences through strategic UX design. Focusing on usability, functionality and accessibility, I create mockups and wireframes to bring products to market quickly. I collaborate closely with designers to ensure that the products are delighting users.</p>
+              </div>
+            </article>
+
+            <article class="card glass p-6 rounded-xl flex gap-4 items-start">
+              <img src="https://placehold.co/96x96/1f2937/e5e7eb?text=Image" alt="Data Analysis" class="w-24 h-24 rounded-md object-cover"/>
+              <div>
+                <h4 class="text-lg font-semibold">Data<br/><span class="text-indigo-300">Analysis</span></h4>
+                <p class="text-gray-300 mt-2">I highly value using both quantitative and qualitative data analysis methods to drive product decisions. I define and closely track progress for key performance indicators (KPIs) and conduct A/B testing to ensure that product decisions will lead to continued business success.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact (reveal) -->
+      <section id="contact" class="reveal max-w-5xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-extrabold mb-8 cascade-item">Contact</h2>
+        <div class="glass p-6 rounded-xl cascade-item">
+          <p class="text-gray-300">Want to work together? Send me a note — I typically reply within a few days.</p>
+          <form id="contactForm" class="mt-4 space-y-3">
+            <input id="nameField" required name="name" placeholder="Your name" class="p-3 rounded-md bg-white/5 w-full" />
+            <input id="emailField" required name="email" placeholder="Email" class="p-3 rounded-md bg-white/5 w-full" />
+            <textarea id="messageField" required name="message" placeholder="Message" class="p-3 rounded-md bg-white/5 w-full"></textarea>
+            <div class="flex items-center gap-4">
+              <button id="sendBtn" type="submit" class="w-full px-4 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500 font-semibold">Send Message</button>
+              <div>
+                <div id="formSuccess" class="form-msg success" role="status" aria-live="polite">Message sent — thank you!</div>
+                <div id="formError" class="form-msg error" role="alert" aria-live="assertive">Failed to send — try again or email directly at <a class="underline" href="mailto:dassubhranil1998@gmail.com">dassubhranil1998@gmail.com</a></div>
               </div>
             </div>
           </form>
         </div>
       </section>
-
 
     </main>
 
@@ -205,97 +265,101 @@
   </div>
 
   <script>
-    // set year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Smooth scrolling for header nav (accounts for sticky header)
+    // handle EmailJS send (keeps fallback mailto if EmailJS not configured)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('nameField').value.trim();
+      const email = document.getElementById('emailField').value.trim();
+      const message = document.getElementById('messageField').value.trim();
+
+      if(!name || !email || !message){
+        document.getElementById('formError').textContent = 'Please fill all fields before sending.';
+        document.getElementById('formError').classList.add('show');
+        return;
+      }
+
+      // If EmailJS configured (public key + service/template) send; else fallback to mailto
+      if(window.emailjs && typeof emailjs.send === 'function'){
+        document.getElementById('sendBtn').disabled = true;
+        document.getElementById('sendBtn').textContent = 'Sending...';
+        const params = { from_name: name, from_email: email, message: message };
+        emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID', params)
+          .then(() => {
+            document.getElementById('formSuccess').classList.add('show');
+            document.getElementById('contactForm').reset();
+          })
+          .catch(err => {
+            console.error(err);
+            document.getElementById('formError').classList.add('show');
+          })
+          .finally(()=>{
+            document.getElementById('sendBtn').disabled = false;
+            document.getElementById('sendBtn').textContent = 'Send Message';
+          });
+        return;
+      }
+
+      // mailto fallback
+      const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '
+
+From: ' + name + ' <' + email + '>')}`;
+      window.location.href = mailto;
+    });
+
+    // ===== Scroll reveal behavior =====
+    // Select all sections with the 'reveal' class
+    const revealSections = document.querySelectorAll('section.reveal');
+
+    // Create an intersection observer
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const section = entry.target;
+
+          // Add 'show' to section to trigger CSS transition
+          section.classList.add('show');
+
+          // Cascade children with a small stagger
+          const children = section.querySelectorAll('.cascade-item');
+          children.forEach((child, idx) => {
+            // set incremental delay
+            child.style.transitionDelay = (idx * 100) + 'ms';
+            // trigger child animation on next frame so transitionDelay applies
+            requestAnimationFrame(() => child.classList.add('show'));
+          });
+
+          // Unobserve so it doesn't hide again and stays loaded
+          obs.unobserve(section);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    // Observe each reveal section
+    revealSections.forEach((sec, i) => {
+      // Slightly stagger the section-level entrance as well
+      sec.style.transitionDelay = (i * 90) + 'ms';
+      revealObserver.observe(sec);
+    });
+
+    // Make nav links smooth-scroll accounting for sticky header
     const header = document.querySelector('header');
     function smoothScrollTo(id){
-      const el = document.getElementById(id);
-      if(!el) return;
+      const el = document.getElementById(id); if(!el) return;
       const offset = header ? header.offsetHeight + 12 : 80;
       const top = el.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
-    document.querySelectorAll('a[data-target], .nav-link').forEach(a => {
-      a.addEventListener('click', function(e){
-        // If link is to a file (contains .html) allow normal navigation
+    document.querySelectorAll('a.nav-link').forEach(a=>{
+      a.addEventListener('click', (e)=>{
         const href = a.getAttribute('href') || '';
-        if(href.includes('.html')) return; // allow navigation to about.html
-        const dt = a.getAttribute('data-target') || href.replace('#','');
-        if(!dt) return;
-        e.preventDefault();
-        smoothScrollTo(dt);
+        if(href.startsWith('#')){
+          e.preventDefault();
+          smoothScrollTo(href.slice(1));
+        }
       });
     });
-
-    // ---------- EmailJS contact form handling ----------
-    // Replace SERVICE_ID and TEMPLATE_ID with your EmailJS values
-    // Grab DOM elements
-const formEl = document.getElementById('contactForm');
-const sendBtn = document.getElementById('sendBtn');
-const successMsg = document.getElementById('formSuccess');
-const errorMsg = document.getElementById('formError');
-
-function hideMsgs(){
-  successMsg.classList.remove('show');
-  errorMsg.classList.remove('show');
-}
-
-// start hidden (in case CSS/markup state was wrong)
-hideMsgs();
-
-if(formEl){
-  formEl.addEventListener('submit', function(e){
-    e.preventDefault();
-    hideMsgs();
-
-    const name = document.getElementById('nameField').value.trim();
-    const email = document.getElementById('emailField').value.trim();
-    const message = document.getElementById('messageField').value.trim();
-
-    // simple validation
-    if(!name || !email || !message || !/\S+@\S+\.\S+/.test(email)){
-      errorMsg.textContent = 'Please provide a valid name, email and message.';
-      errorMsg.classList.add('show');
-      return;
-    }
-
-    // disable button while sending
-    sendBtn.disabled = true;
-    sendBtn.textContent = 'Sending...';
-
-    // If EmailJS available and configured, send; otherwise fallback to mailto
-    if(window.emailjs && typeof emailjs.send === 'function'){
-      const templateParams = { from_name: name, from_email: email, message: message };
-
-      emailjs.send('service_1mlayhg', 'template_g2njhw7', templateParams) // <-- REPLACE THESE
-        .then(() => {
-          successMsg.textContent = 'Message sent — thank you!';
-          successMsg.classList.add('show');
-          formEl.reset();
-        })
-        .catch(err => {
-          console.error('EmailJS error', err);
-          errorMsg.textContent = 'Failed to send — try again or email directly at dassubhranil1998@gmail.com';
-          errorMsg.classList.add('show');
-        })
-        .finally(() => {
-          sendBtn.disabled = false;
-          sendBtn.textContent = 'Send Message';
-        });
-
-    } else {
-      // fallback: open user's mail client
-      const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' <' + email + '>')}`;
-      window.location.href = mailto;
-      // re-enable button (mailto hands off to client)
-      sendBtn.disabled = false;
-      sendBtn.textContent = 'Send Message';
-    }
-  });
-}
-
   </script>
 </body>
 </html>
