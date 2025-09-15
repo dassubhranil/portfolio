@@ -1,0 +1,306 @@
+ <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Heart Disease Prediction App — Subhranil Das</title>
+  <meta name="description" content="Interactive Streamlit app using XGBoost + SHAP to predict and explain heart disease risk." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .btn { background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px }
+    :root { --bg:#050816; --muted:#9ca3af; --card: rgba(255,255,255,0.03); }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin:0; background:
+      radial-gradient(circle at 20% 20%, rgba(99,102,241,0.06), transparent 30%),
+      radial-gradient(circle at 80% 80%, rgba(236,72,153,0.04), transparent 30%),
+      var(--bg); color:#eef2ff; min-height:100vh; }
+    .glass { background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); backdrop-filter: blur(8px); border-radius:12px; }
+    .muted { color: var(--muted); }
+    .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; color:transparent; font-weight:700; }
+    pre.code { background: rgba(0,0,0,0.2); padding:12px; border-radius:8px; overflow:auto; color:#e6eef8; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; }
+    header .nav-link { position:relative; display:inline-block; padding:6px 10px; color:#cbd5e1; text-decoration:none; border-radius:8px; }
+    header .nav-link::after { content:''; position:absolute; left:0; bottom:-6px; width:0; height:2px; background:linear-gradient(90deg,#6366f1,#ec4899); transition:width .28s; }
+    header .nav-link:hover::after{ width:100%; }
+    .container { max-width:1100px; margin:0 auto; padding-left:20px; padding-right:20px; }
+    @media (max-width:640px) { .container { padding-left:14px; padding-right:14px; } }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
+    <div class="container flex items-center justify-between py-4">
+        <a href="index.html#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="index.html#about">About</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+                </div>
+            </div>
+            <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
+            <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
+            <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
+            <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
+            
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="#">Social</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
+                    <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#050816]/90 backdrop-blur-md transform -translate-x-full transition-transform duration-300 z-50 p-6 md:hidden">
+    <div class="flex justify-end">
+        <button id="close-menu-btn" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <nav class="flex flex-col gap-4 text-xl mt-8">
+        <div class="relative">
+            <a class="nav-link text-white" href="index.html#about" onclick="toggleMobileMenu()">About</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="about.html" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Learn more about me</a>
+            </div>
+        </div>
+        <a class="nav-link text-white" href="index.html#projects" onclick="toggleMobileMenu()">Projects</a>
+        <a class="nav-link text-white" href="index.html#skills" onclick="toggleMobileMenu()">Skills</a>
+        <a class="nav-link text-white" href="index.html#tools" onclick="toggleMobileMenu()">Tools</a>
+        <a class="nav-link text-white" href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
+        
+        <div class="relative">
+            <a class="nav-link text-white" href="#" onclick="toggleMobileMenu()">Social</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">LinkedIn</a>
+                <a href="https://github.com/dassubhranil" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">GitHub</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+  <!-- Main -->
+  <main id="top" class="container py-10">
+    <!-- Hero -->
+    <section class="glass p-6 mb-6">
+      <div class="md:flex md:items-center gap-6">
+        <div class="flex-1">
+          <h1 class="text-3xl md:text-4xl font-extrabold gradient-text">Heart Disease Prediction App</h1>
+          <p class="muted mt-3 max-w-2xl">An interactive Streamlit web app that predicts heart disease risk using a pre-trained XGBoost model and provides transparent explanations with SHAP.</p>
+
+          <div class="mt-4 flex flex-wrap gap-3 items-center">
+            <a href="https://heart-disease-app-subhranildas.streamlit.app/" class="btn" target="_blank">Live Demo</a>
+                <a href="https://github.com/dassubhranil/Heart-Disease-App/" class="btn" target="_blank">Repo</a>
+            <span class="muted text-sm">• Built with Streamlit • XGBoost • SHAP</span>
+          </div>
+        </div>
+
+        <div class="mt-4 md:mt-0 w-full md:w-80">
+          <img src="https://placehold.co/700x420/0b1220/ffffff?text=App+Screenshot+Placeholder" alt="App screenshot" class="rounded-md shadow-md w-full" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview -->
+    <section id="overview" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Project Overview</h2>
+        <p class="muted mt-2">Early detection of heart disease can save lives. This application provides a quick risk assessment using clinical features and explains predictions using SHAP so that clinicians and users can understand which factors drive the model's decision.</p>
+
+        <div class="mt-4 grid md:grid-cols-3 gap-4">
+          <div class="p-4 card glass rounded-lg">
+            <div class="muted text-sm">Model</div>
+            <div class="font-semibold mt-1">XGBoost (XGBClassifier)</div>
+            <div class="muted text-xs mt-2">Trained on Cleveland heart dataset (303 rows, 13 features)</div>
+          </div>
+          <div class="p-4 card glass rounded-lg">
+            <div class="muted text-sm">Explainability</div>
+            <div class="font-semibold mt-1">SHAP (TreeExplainer)</div>
+            <div class="muted text-xs mt-2">Per-prediction SHAP waterfall and feature importances</div>
+          </div>
+          <div class="p-4 card glass rounded-lg">
+            <div class="muted text-sm">Interface</div>
+            <div class="font-semibold mt-1">Streamlit</div>
+            <div class="muted text-xs mt-2">Interactive sliders, selects, instant prediction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Features</h2>
+        <ul class="list-disc list-inside mt-3 space-y-2 muted text-sm">
+          <li>Interactive patient input: 13 clinical features (age, sex, chest pain type, blood pressure, cholesterol, etc.)</li>
+          <li>Real-time risk classification & probability ("Low Risk" / "High Risk")</li>
+          <li>SHAP waterfall & summary plots to explain each prediction</li>
+          <li>Personalized recommendations based on top SHAP drivers</li>
+          <li>Responsive layout for mobile and desktop</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Quick example -->
+    <section id="example" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Quick Example (prediction flow)</h2>
+        <pre class="code">
+# pseudo-code (simplified)
+import streamlit as st
+import joblib
+import shap
+import pandas as pd
+
+model = joblib.load("heart_disease_model.joblib")
+input_df = pd.DataFrame([user_input_dict])
+proba = model.predict_proba(input_df)[0][1]
+shap_values = shap.TreeExplainer(model).shap_values(input_df)
+# render SHAP waterfall and probability in Streamlit
+        </pre>
+        <p class="muted text-sm mt-2">The real app handles validation, edge-cases, and caching for fast responses.</p>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section id="install" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Installation & Setup</h2>
+        <p class="muted mt-2">Run locally with Python 3.9+. It's recommended to use a virtual environment.</p>
+
+        <div class="mt-3 grid md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="font-semibold">Clone & prepare</h4>
+            <pre class="code">git clone https://github.com/dassubhranil/heart-disease-app.git
+cd heart-disease-app
+python -m venv venv
+# mac / linux:
+source venv/bin/activate
+# windows:
+# .\venv\Scripts\activate</pre>
+          </div>
+          <div>
+            <h4 class="font-semibold">Install dependencies</h4>
+            <pre class="code">pip install -r requirements.txt
+
+# requirements.txt (example)
+streamlit
+pandas
+scikit-learn
+xgboost
+shap
+matplotlib
+joblib
+</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Run -->
+    <section id="usage" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Run the App</h2>
+        <p class="muted mt-2">Launch Streamlit:</p>
+        <pre class="code">streamlit run app.py</pre>
+        <p class="muted mt-2 text-sm">By default Streamlit opens at <code>http://localhost:8501</code>. Ensure the model file <code>heart_disease_model.joblib</code> is present in the project root.</p>
+      </div>
+    </section>
+
+    <!-- Project structure -->
+    <section id="structure" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Project Structure</h2>
+        <pre class="code">
+.
+├── .streamlit/
+│   └── config.toml
+├── app.py
+├── heart_disease_model.joblib
+├── requirements.txt
+└── README.md
+        </pre>
+      </div>
+    </section>
+
+    <!-- FAQ & Recommendations -->
+    <section id="faq" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">FAQ & Notes</h2>
+        <details class="mt-3">
+          <summary class="font-semibold">What does SHAP tell me?</summary>
+          <p class="muted mt-2 text-sm">SHAP assigns an additive contribution to each feature showing how it increases or decreases risk for the prediction. The waterfall plot breaks down the base rate to the final model output.</p>
+        </details>
+        <details class="mt-2">
+          <summary class="font-semibold">Is this a medical device?</summary>
+          <p class="muted mt-2 text-sm">No — this is a research/demo tool. It is not a replacement for clinical judgement. Always consult a qualified healthcare professional for medical decisions.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="reveal py-8">
+      <div class="container">
+        <div class="card cascade-item p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
+              LinkedIn
+            </a>
+            <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
+              GitHub
+            </a>
+          </div>
+          <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile menu toggle
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    function toggleMobileMenu() {
+      if (!mobileMenu) return;
+      const hidden = mobileMenu.classList.toggle('-translate-x-full');
+      // aria
+      const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', String(!expanded));
+      // swap icons
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+      // scroll lock
+      if (!hidden) document.body.classList.add('overflow-hidden'); else document.body.classList.remove('overflow-hidden');
+    }
+
+    if (mobileToggle) mobileToggle.addEventListener('click', toggleMobileMenu);
+    if (mobileClose) mobileClose.addEventListener('click', toggleMobileMenu);
+
+    // close when clicking links inside mobile menu
+    mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', toggleMobileMenu));
+  </script>
+</body>
+</html>
