@@ -12,6 +12,26 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
+    header .nav-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+header .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  transition: width 0.6s ease-in-out;
+}
+
+header .nav-link:hover::after {
+  width: 100%;
+}
     :root{--bg:#050816}
     body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%),radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%),var(--bg);color:#eef2ff;margin:0}
     
@@ -59,17 +79,22 @@
   <div class="container max-w-screen-lg mx-auto">
     <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
   <div class="container flex items-center justify-center py-4">
-    <nav class="hidden md:flex gap-6 text-sm text-gray-300">
-      <a class="nav-link" href="index.html#about">About</a>
-      <a class="nav-link" href="index.html#projects">Projects</a>
+    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+      <div class="relative group py-2">
+        <a class="nav-link px-3" href="#about">About</a>
+        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+          <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+        </div>
+      </div>
+      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
     </nav>
 
     <a href="#hero" class="text-xl font-extrabold gradient-text mx-8">Subhranil Das</a>
 
-    <nav class="hidden md:flex gap-6 text-sm text-gray-300">
-      <a class="nav-link" href="index.html#skills">Skills</a>
-      <a class="nav-link" href="index.html#tools">Tools</a>
-      <a class="nav-link" href="index.html#contact">Contact</a>
+    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
+      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
+      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
     </nav>
   </div>
 </header>
