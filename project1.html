@@ -309,31 +309,37 @@ python train_stylegan3.py --config=configs/tiles.yaml --gpus=1
         </main>
 
 <!-- ===== Add this small JS near the end of <body> (once) ===== -->
+<!-- ===== Add this JS once (near end of <body>) ===== -->
 <script>
-  // mobile menu toggle
-  (function(){
-    const btn = document.getElementById('mobileMenuBtn');
-    const menu = document.getElementById('mobileMenu');
-    const hamburger = document.getElementById('hamburgerIcon');
-    const closeI = document.getElementById('closeIcon');
+  (function () {
+    const openBtn = document.getElementById('mobileOpenBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    const closeIcon = document.getElementById('closeIcon');
 
-    if(!btn || !menu) return;
-    btn.addEventListener('click', () => {
-      const open = menu.classList.toggle('hidden') === false;
-      // aria
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      // swap icons
-      hamburger.classList.toggle('hidden', open);
-      closeI.classList.toggle('hidden', !open);
+    if (!openBtn || !mobileMenu) return;
+
+    openBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      // toggle icons (hamburger vs close)
+      hamburger.classList.toggle('hidden', !isHidden); // show hamburger when hidden==true
+      closeIcon.classList.toggle('hidden', isHidden);
+      // update aria
+      const expanded = openBtn.getAttribute('aria-expanded') === 'true';
+      openBtn.setAttribute('aria-expanded', (!expanded).toString());
     });
 
-    // Close mobile menu when clicking a link (optional, improves UX)
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      menu.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
-      hamburger.classList.remove('hidden');
-      closeI.classList.add('hidden');
-    }));
+    // close mobile menu when clicking any link inside it
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          hamburger.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          openBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
   })();
 </script>
     <script>
