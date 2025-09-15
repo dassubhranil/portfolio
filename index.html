@@ -81,6 +81,8 @@ header .nav-link:hover::after {
   <div id="app">
     <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
   <div class="container flex items-center justify-center py-4">
+    
+    <!-- Left nav -->
     <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
       <div class="relative group py-2">
         <a class="nav-link px-3" href="#about">About</a>
@@ -91,15 +93,27 @@ header .nav-link:hover::after {
       <a class="nav-link px-3 py-2" href="#projects">Projects</a>
     </nav>
 
+    <!-- Centered brand -->
     <a href="#hero" class="text-xl font-extrabold gradient-text mx-8">Subhranil Das</a>
 
+    <!-- Right nav -->
     <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
       <a class="nav-link px-3 py-2" href="#skills">Skills</a>
       <a class="nav-link px-3 py-2" href="#tools">Tools</a>
       <a class="nav-link px-3 py-2" href="#contact">Contact</a>
+      
+      <!-- New Social dropdown -->
+      <div class="relative group py-2">
+        <a class="nav-link px-3" href="#">Social</a>
+        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
+          <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
+
 
     <main class="container px-4 max-w-screen-lg mx-auto">
       <section id="hero" class="py-16 text-center">
