@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -60,74 +60,68 @@ section,
     </style>
 </head>
 <body class="antialiased">
-<!-- ===== Replace your existing header with this block ===== -->
 <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
-  <div class="container flex items-center justify-center py-3 relative">
-    <!-- Desktop left nav (hidden on mobile) -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute left-4">
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#about">About</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
-        </div>
-      </div>
-      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
-      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
-    </nav>
+    <div class="container flex items-center justify-between py-4">
+        <a href="index.html#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
 
-    <!-- MOBILE: left hamburger button -->
-    <button id="mobileOpenBtn" class="md:hidden absolute left-4 p-2 rounded-md text-gray-300" aria-label="Open menu" aria-expanded="false">
-      <!-- hamburger -->
-      <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-      </svg>
-      <!-- close icon hidden by default -->
-      <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
 
-    <!-- Centered brand -->
-    <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
-
-    <!-- Desktop right nav (hidden on mobile) -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute right-4">
-      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
-
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#">Social</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
-          <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- MOBILE: right action button (optional) -->
-    <div class="md:hidden absolute right-4">
-      <a href="#contact" class="px-3 py-2 rounded-md nav-link text-gray-300">Contact</a>
+        <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="index.html#about">About</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+                </div>
+            </div>
+            <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
+            <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
+            <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
+            <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
+            
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="#">Social</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
+                    <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
+                </div>
+            </div>
+        </nav>
     </div>
-  </div>
-
-  <!-- Mobile menu (collapsible) -->
-  <div id="mobileMenu" class="md:hidden bg-[#050816]/95 border-t border-white/5 hidden">
-    <div class="container py-4 flex flex-col gap-2">
-      <!-- mobile nav links -->
-      <a class="nav-link px-3 py-2" href="#about">About</a>
-      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
-      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
-      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
-
-      <div class="border-t border-white/5 mt-2 pt-2">
-        <div class="text-sm text-gray-300 px-3 pb-2">Social</div>
-        <a class="nav-link block px-3 py-2" href="https://www.linkedin.com/in/subhranil-das" target="_blank">LinkedIn</a>
-        <a class="nav-link block px-3 py-2" href="https://github.com/dassubhranil" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </div>
 </header>
+
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#050816]/90 backdrop-blur-md transform -translate-x-full transition-transform duration-300 z-50 p-6 md:hidden">
+    <div class="flex justify-end">
+        <button id="close-menu-btn" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <nav class="flex flex-col gap-4 text-xl mt-8">
+        <div class="relative">
+            <a class="nav-link text-white" href="index.html#about" onclick="toggleMobileMenu()">About</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="about.html" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Learn more about me</a>
+            </div>
+        </div>
+        <a class="nav-link text-white" href="index.html#projects" onclick="toggleMobileMenu()">Projects</a>
+        <a class="nav-link text-white" href="index.html#skills" onclick="toggleMobileMenu()">Skills</a>
+        <a class="nav-link text-white" href="index.html#tools" onclick="toggleMobileMenu()">Tools</a>
+        <a class="nav-link text-white" href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
+        
+        <div class="relative">
+            <a class="nav-link text-white" href="#" onclick="toggleMobileMenu()">Social</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">LinkedIn</a>
+                <a href="https://github.com/dassubhranil" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">GitHub</a>
+            </div>
+        </div>
+    </nav>
+</div>
 
 
     <main class="container pt-28">
@@ -150,6 +144,9 @@ section,
                             <div class="muted">Impact</div>
                             <div class="kpi">Model +40% • Accuracy 85%</div>
                         </div>
+                        <div class="flex gap-3 justify-center items-center mb-6 cascade-item">
+                <a href="https://github.com/dassubhranil/Generative-AI-for-Pathology-Datasets" class="btn" target="_blank">Repo</a>
+            </div>
                     </div>
 
                     <p class="cascade-item">This page documents the problem, approach, experiments, and results. It is intended for technical readers who want reproducible details and for hiring managers who want an accessible summary.</p>
@@ -377,6 +374,12 @@ python train_stylegan3.py --config=configs/tiles.yaml --gpus=1
   window.addEventListener('resize', updateHeaderOffset);
   // run once in case DOM already loaded
   updateHeaderOffset();
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('-translate-x-full');
+    }
+}
 </script>
 </body>
 </html>
