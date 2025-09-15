@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic-Commentary — Project</title>
+  <meta name="description" content="Dynamic-Commentary — tonal shifts & narrative analysis of esports commentary." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+        :root { --header-offset: 72px; }
+
+        /* ensure sections and titles leave room for fixed header when scrolled to */
+        section,
+        .section-title {
+          scroll-margin-top: var(--header-offset);
+        }
+
+        /* smaller offset on small screens (optional) */
+        @media (max-width: 640px) {
+          :root { --header-offset: 56px; }
+        }
+        html { scroll-behavior: smooth; } /* Enable smooth scrolling */
+        :root { --bg: #050816; --muted: #9ca3af; --glass-border: rgba(255,255,255,0.04); }
+        html,body { height:100%; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
+
+        header .nav-link { position: relative; display: inline-block; text-decoration: none; }
+        header .nav-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366f1, #ec4899); transition: width 0.35s ease-in-out; }
+        header .nav-link:hover::after { width: 100%; }
+
+        .glass { backdrop-filter: blur(10px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid var(--glass-border); }
+        .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .btn { background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px }
+        .container { max-width:1100px; margin:0 auto; padding:36px }
+        img { max-width:100%; display:block; border-radius:12px; }
+        .kpi { font-weight:700; font-size:1.15rem; }
+        .muted { color:var(--muted); }
+
+        /* Reveal & cascade */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); }
+        .reveal.show { opacity: 1; transform: translateY(0); }
+        .cascade-item { opacity: 0; transform: translateY(8px); transition: opacity 480ms ease, transform 480ms ease; }
+        .cascade-item.show { opacity: 1; transform: translateY(0); }
+
+        /* Responsive section title smaller on mobile */
+        .section-title { font-size:48px; margin:28px 0 16px; font-weight:800; line-height:1.05; }
+        @media (max-width:640px){ .section-title{ font-size:28px; margin:18px 0 12px } .container{ padding:20px } }
+
+        /* Card */
+        .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass-border); padding:18px; border-radius:12px }
+
+        /* subtle code block */
+        pre.code { background: rgba(0,0,0,0.25); padding:12px; border-radius:8px; overflow:auto; }
+
+    </style>
+</head>
+<body>
+
+  <!-- Header -->
+ <!-- Header (desktop + mobile button) -->
+    <body class="antialiased">
+    <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
+        <div class="container flex items-center justify-between py-4">
+            <a href="index.html#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
+    
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+    
+            <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+                <div class="relative group py-2">
+                    <a class="nav-link px-3" href="index.html#about">About</a>
+                    <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                        <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+                    </div>
+                </div>
+                <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
+                <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
+                <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
+                <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
+                
+                <div class="relative group py-2">
+                    <a class="nav-link px-3" href="#">Social</a>
+                    <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                        <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
+                        <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+<!-- Mobile full-screen menu (hidden by default with -translate-x-full) -->
+ <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#050816]/90 backdrop-blur-md transform -translate-x-full transition-transform duration-300 z-50 p-6 md:hidden">
+        <div class="flex justify-end">
+            <button id="close-menu-btn" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-4 text-xl mt-8">
+            <div class="relative">
+                <a class="nav-link text-white" href="index.html#about" onclick="toggleMobileMenu()">About</a>
+                <div class="flex flex-col gap-2 pl-4 mt-2">
+                    <a href="about.html" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Learn more about me</a>
+                </div>
+            </div>
+            <a class="nav-link text-white" href="index.html#projects" onclick="toggleMobileMenu()">Projects</a>
+            <a class="nav-link text-white" href="index.html#skills" onclick="toggleMobileMenu()">Skills</a>
+            <a class="nav-link text-white" href="index.html#tools" onclick="toggleMobileMenu()">Tools</a>
+            <a class="nav-link text-white" href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
+            
+            <div class="relative">
+                <a class="nav-link text-white" href="#" onclick="toggleMobileMenu()">Social</a>
+                <div class="flex flex-col gap-2 pl-4 mt-2">
+                    <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">LinkedIn</a>
+                    <a href="https://github.com/dassubhranil" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">GitHub</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+<!-- Toggle script (your exact function with small accessibility + scroll-lock additions) -->
+<script>
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const toggleBtn = document.getElementById('mobile-menu-btn');
+
+    if (!mobileMenu) return;
+
+    // toggle translate class (your requested approach)
+    mobileMenu.classList.toggle('-translate-x-full');
+
+    // manage aria-hidden on menu
+    const isHidden = mobileMenu.classList.contains('-translate-x-full');
+    mobileMenu.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+
+    // update aria-expanded on the toggle button if present
+    if (toggleBtn) {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!expanded));
+    }
+
+    // optional: lock page scroll when menu is open
+    if (!isHidden) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }
+
+  // close menu on Escape key for accessibility
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu && !mobileMenu.classList.contains('-translate-x-full')) {
+        toggleMobileMenu();
+      }
+    }
+  });
+
+  // Ensure mobile-menu initial state matches the CSS (hidden)
+  (function initMobileAria() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const toggleBtn = document.getElementById('mobile-menu-btn');
+    if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+  })();
+</script>
+
+  <main class="max-w-6xl mx-auto px-4 py-8" id="top">
+
+    <!-- Hero -->
+    <section class="glass p-6 mb-6">
+  <div class="md:flex md:items-center gap-6">
+    <div class="flex-1">
+      <h1 class="text-3xl md:text-4xl font-extrabold gradient-text">Dynamic-Commentary</h1>
+      <p class="muted mt-2">Tonal shifts & narrative strategy analysis of esports commentators (example focus: League of Legends). Understand how commentators craft storylines and how tone correlates with in-game events and audience reaction.</p>
+      
+      <div class="mt-4 flex flex-wrap gap-3">
+        <span class="glass px-3 py-2 rounded-md muted">YouTube API • Pydub • ChatGPT API</span>
+        <span class="glass px-3 py-2 rounded-md muted">NLTK • VADER • Matplotlib / Plotly</span>
+        <span class="glass px-3 py-2 rounded-md muted">Sentiment + Narrative Detection</span>
+      </div>
+      <div class="flex gap-3 justify-start items-center mt-6">
+        <a href="https://github.com/dassubhranil/Dynamic-Commentary" class="btn" target="_blank">Repo</a>
+      </div>
+    </div>
+
+    <div class="mt-4 md:mt-0 w-full md:w-72">
+      <img src="https://t4.ftcdn.net/jpg/02/89/78/17/360_F_289781730_0OJWSY2pS9Q69KT4g2pr5liE8dmW9CL0.jpg" alt="waveform" class="rounded-md shadow-md" />
+    </div>
+  </div>
+</section>
+
+    <!-- Overview -->
+    <section id="overview" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Overview</h2>
+        <p class="muted mt-2">Dynamic-Commentary investigates how esports commentators adapt tone, narrative and pacing during live broadcasts. By combining audio processing, AI transcription, NLP sentiment analysis and visualization we identify story arcs and tonal shifts across matches and highlight signature moments.</p>
+
+        <h3 class="mt-4 font-semibold">Why it matters</h3>
+        <ul class="list-disc list-inside mt-2 space-y-1 muted text-sm">
+          <li>Improves understanding of viewer engagement drivers and dramatic pacing.</li>
+          <li>Helps broadcasters train commentators by revealing effective storytelling patterns.</li>
+          <li>Enables sentiment-aware highlight detection for clips and marketing.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Background -->
+    <section id="background" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Background</h2>
+        <p class="muted mt-2">Esports commentary blends play-by-play description with narrative framing. Commentators craft stories (e.g., "David vs Goliath", comeback arcs) to make matches compelling. This project uses data to test whether specific rhetorical and tonal patterns are consistently employed and correlate with in-game events or chat reactions.</p>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Features</h2>
+        <div class="grid md:grid-cols-2 gap-4 mt-4">
+          <div>
+            <h4 class="font-semibold">Tonal Analysis</h4>
+            <p class="muted text-sm mt-1">Measure tone (valence/energy) over time; identify peaks and drops tied to key plays.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold">Narrative Detection</h4>
+            <p class="muted text-sm mt-1">Detect analogies and recurrent storyline templates used by commentators.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold">Interactive Dashboards</h4>
+            <p class="muted text-sm mt-1">Explore synchronized timeline views: game events, commentary transcript, audience chat sentiment.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold">Case Studies</h4>
+            <p class="muted text-sm mt-1">Deep dives of selected matches showing annotated moments and narrative breakdowns.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Process</h2>
+
+        <ol class="list-decimal list-inside mt-3 space-y-3 text-sm">
+          <li>
+            <strong>Select a match:</strong> pick a high-quality broadcast (e.g., League of Legends pro match) with available VoD on YouTube.
+          </li>
+
+          <li>
+            <strong>Use YouTube APIs:</strong> fetch video metadata, captions (if present), and download the VoD or audio stream using the YouTube Data API or yt-dlp.
+            <pre class="code"># example (pseudo)
+yt-dlp -f bestaudio --output "match.mp4" "<video-url>"</pre>
+          </li>
+
+          <li>
+            <strong>Audio processing (Pydub):</strong> convert to WAV, normalize, split into 60s chunks for reliable transcription.
+            <pre class="code">from pydub import AudioSegment
+audio = AudioSegment.from_file("match.mp4")
+audio = audio.set_frame_rate(16000).set_channels(1)
+chunks = split_on_silence(audio, min_silence_len=500, silence_thresh=-40)</pre>
+          </li>
+
+          <li>
+            <strong>Transcription (ChatGPT API / ASR):</strong> send each 60s chunk to the chosen transcription endpoint (or leverage OpenAI speech APIs) and receive cleaned text segments.
+            <pre class="code">// pseudo - send chunk and receive transcript
+transcript = transcribe_audio_chunk(chunk)</pre>
+          </li>
+
+          <li>
+            <strong>Text cleanup:</strong> fix punctuation, merge partial sentences across chunk boundaries and normalize commentator names/abbreviations.
+          </li>
+
+          <li>
+            <strong>Sentiment analysis (NLTK VADER):</strong> tokenize text by team/player mentions and compute sentiment per chunk and per entity; also analyze live chat (if available).
+            <pre class="code">from nltk.sentiment.vader import SentimentIntensityAnalyzer
+sid = SentimentIntensityAnalyzer()
+scores = sid.polarity_scores(transcript)</pre>
+          </li>
+
+          <li>
+            <strong>Aggregate & map:</strong> roll-up sentiment into timelines (per 60s window), compute per-player and per-team compound scores, and align with in-game events (kills, objectives).
+          </li>
+
+          <li>
+            <strong>Visualization & dashboards:</strong> produce interactive plots with Plotly or Streamlit—timeline with sentiment banding, event markers, and narrative labels.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Visualization -->
+    <section id="visualization" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Visualization</h2>
+        <p class="muted mt-2">Primary visualization is a synchronized timeline: top row = game events, middle = commentator sentiment scores (line + smoothing), bottom = audience chat sentiment / volume. Mark notable narrative moments (e.g., "clutch play", "underdog comeback") with annotations.</p>
+
+        <div class="mt-4 grid md:grid-cols-2 gap-4">
+          <div class="rounded-md overflow-hidden bg-[#081126] p-4">
+            <img src="output.png" alt="sentiment" class="w-full rounded-md" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example code snippet -->
+    <section id="example" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Example: sentiment per 60s chunk (Python)</h2>
+        <pre class="code">
+from pydub import AudioSegment
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+# load & chunk
+audio = AudioSegment.from_wav("match_audio.wav")
+chunks = [audio[i:i+60*1000] for i in range(0, len(audio), 60*1000)]
+
+sid = SentimentIntensityAnalyzer()
+results = []
+for idx, c in enumerate(chunks):
+    text = transcribe_chunk(c)          # your transcription function
+    score = sid.polarity_scores(text)
+    results.append({"window": idx, "text": text, "compound": score["compound"]})
+        </pre>
+        <p class="muted mt-2 text-sm">(This is a simplified snippet — production code should handle errors, rate limits, chunk overlaps and speaker diarization if needed.)</p>
+      </div>
+    </section>
+
+
+    <!-- Getting started & resources -->
+    <section id="getting-started" class="mb-6">
+      <div class="glass p-6">
+        <h2 class="text-2xl font-semibold">Getting started</h2>
+        <ol class="list-decimal list-inside mt-3 space-y-2 text-sm">
+          <li>Clone the repository and install dependencies (requirements.txt includes pydub, nltk, requests, plotly, etc.).</li>
+          <li>Obtain YouTube API credentials (or use yt-dlp for downloads).</li>
+          <li>Set up OpenAI / ChatGPT credentials if using the API for transcription/augmentation.</li>
+        </ol>
+
+        <h3 class="mt-4 font-semibold">Relevant resources</h3>
+        <ul class="list-disc list-inside mt-2 space-y-1 text-sm muted">
+          <li><a class="text-indigo-300 hover:underline" href="https://pypi.org/project/pydub/" target="_blank">Pydub</a></li>
+          <li><a class="text-indigo-300 hover:underline" href="https://www.nltk.org/" target="_blank">NLTK & VADER</a></li>
+          <li><a class="text-indigo-300 hover:underline" href="https://platform.openai.com/" target="_blank">OpenAI / ChatGPT API</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center mt-8 mb-8">
+      <div class="muted text-sm">© <span id="year"></span> Subhranil Das — Dynamic-Commentary</div>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+    // adjust CSS variable for header height (so scroll-margin works)
+    function updateHeaderVar(){
+      const header = document.querySelector('header');
+      if(!header) return;
+      const h = Math.ceil(header.getBoundingClientRect().height);
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+    window.addEventListener('load', updateHeaderVar);
+    window.addEventListener('resize', updateHeaderVar);
+    updateHeaderVar();
+  </script>
+</body>
+</html>
