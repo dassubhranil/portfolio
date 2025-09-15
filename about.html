@@ -13,29 +13,29 @@
 
   <style>
     header .nav-link {
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-}
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+    }
 
-header .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #6366f1, #ec4899);
-  transition: width 0.6s ease-in-out;
-}
+    header .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #6366f1, #ec4899);
+      transition: width 0.6s ease-in-out;
+    }
 
-header .nav-link:hover::after {
-  width: 100%;
-}
+    header .nav-link:hover::after {
+      width: 100%;
+    }
+    
     :root{--bg:#050816}
     body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%),radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%),var(--bg);color:#eef2ff;margin:0}
     
-    /* Change: Added max-width and margin to container class */
     .container{max-width:900px;margin:0 auto;padding:28px}
     
     .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(8px);padding:20px;border-radius:12px}
@@ -51,7 +51,6 @@ header .nav-link:hover::after {
     .tool{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
     .tool img{width:40px;height:40px;object-fit:contain}
 
-    /* Change: Removed inline styles, added Tailwind classes */
     footer { padding:20px; text-align:center; color:#cbd5e1; }
     .social{display:inline-flex;gap:12px;align-items:center}
     .social a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;padding:6px 8px;border-radius:8px}
@@ -59,6 +58,8 @@ header .nav-link:hover::after {
     @media (max-width:640px){ .social-icon{width:16px;height:16px} }
 
     @media (max-width:640px){.container{padding:18px}}
+
+    .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
   </style>
 </head>
   <svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true" focusable="false">
@@ -73,132 +74,104 @@ header .nav-link:hover::after {
   /* gradient helpers for SVGs */
   .gradient-stroke { stroke: url(#pinkgrad); fill: none; }
   .gradient-fill { fill: url(#pinkgrad); }
-  .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
 </style>
 <body>
-  <div class="container max-w-screen-lg mx-auto">
-    <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
-  <div class="container flex items-center justify-center py-4">
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#about">About</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="index.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Main Page</a>
+  <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
+    <div class="container flex items-center justify-center py-4">
+      <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+        <div class="relative group py-2">
+          <a class="nav-link px-3" href="#bio">About</a>
+          <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+            <a href="index.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Main Page</a>
+          </div>
         </div>
-      </div>
-      <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
-    </nav>
+        <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
+      </nav>
 
-    <a href="index.html#hero" class="text-xl font-extrabold gradient-text mx-8">Subhranil Das</a>
+      <a href="index.html#hero" class="text-xl font-extrabold gradient-text mx-8">Subhranil Das</a>
 
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
-      <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
-      <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+      <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+        <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
+        <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
+        <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Short bio (reveal) -->
+  <main class="container max-w-screen-lg mx-auto">
     <section id="bio" class="reveal">
-         <h1 class="cascade-item" style="margin:40px 0 20px; font-size:48px; font-weight:bold; line-height:1.2;"><strong class="gradient-text">Know more about me </strong></h1>
-  <div class="card cascade-item">
-    <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">My name is Subhranil, and I believe every great business story is hidden in the data, just waiting for the right person to tell it. Some people see complex, chaotic data as an obstacle; I see it as a <strong class="gradient-text">thrilling puzzle</strong>. I’m a <strong class="gradient-text">digital detective</strong>, tirelessly sifting through the noise and connecting the dots no one else can find. My approach is simple: I never give up on a data challenge.</p>
-    <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">I've learned that the most valuable insights often lie just beyond the most difficult roadblocks. I'm the one who rolls up my sleeves to wrestle with messy data until it’s clean, automates a workflow that used to be a manual nightmare, and refines a model until it's more than just accurate—it's <strong class="gradient-text">brilliant</strong>. My work ethic is fueled by the satisfaction of turning a "mission impossible" into an <strong class="gradient-text">elegant, impactful solution</strong>.</p>
-    <p style="color:#cbd5e1;line-height:1.5">Ultimately, my goal is to deliver that <strong class="gradient-text">'Aha!' moment</strong>. I love creating <strong class="gradient-text">streamlined experiences</strong> and <strong class="gradient-text">clear visualizations</strong> that make sense of it all and empower teams to see the future more clearly. Let’s unearth the next great chapter of your business, one piece of data at a time.</p>
-  </div>
-</section>
+      <h1 class="cascade-item" style="margin:40px 0 20px; font-size:48px; font-weight:bold; line-height:1.2;">
+        <strong class="gradient-text">Know more about me </strong></h1>
+      <div class="card cascade-item">
+        <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">My name is Subhranil, and I believe every great business story is hidden in the data, just waiting for the right person to tell it. Some people see complex, chaotic data as an obstacle; I see it as a <strong class="gradient-text">thrilling puzzle</strong>. I’m a <strong class="gradient-text">digital detective</strong>, tirelessly sifting through the noise and connecting the dots no one else can find. My approach is simple: I never give up on a data challenge.</p>
+        <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">I've learned that the most valuable insights often lie just beyond the most difficult roadblocks. I'm the one who rolls up my sleeves to wrestle with messy data until it’s clean, automates a workflow that used to be a manual nightmare, and refines a model until it's more than just accurate—it's <strong class="gradient-text">brilliant</strong>. My work ethic is fueled by the satisfaction of turning a "mission impossible" into an <strong class="gradient-text">elegant, impactful solution</strong>.</p>
+        <p style="color:#cbd5e1;line-height:1.5">Ultimately, my goal is to deliver that <strong class="gradient-text">'Aha!' moment</strong>. I love creating <strong class="gradient-text">streamlined experiences</strong> and <strong class="gradient-text">clear visualizations</strong> that make sense of it all and empower teams to see the future more clearly. Let’s unearth the next great chapter of your business, one piece of data at a time.</p>
+      </div>
+    </section>
 
     <div style="height:18px"></div>
-    <!-- Detailed experience (reveal) -->
-<section id="experience" class="reveal">
-  <h1 class="cascade-item" style="margin:40px 0 20px; font-size:48px; font-weight:bold; line-height:1.2;">
-<strong class="gradient-text">Experience</strong></h1>
+    <section id="experience" class="reveal">
+      <h1 class="cascade-item" style="margin:40px 0 20px; font-size:48px; font-weight:bold; line-height:1.2;">
+        <strong class="gradient-text">Experience</strong></h1>
 
-  <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
-    <h3 style="margin:0 0 6px">Data Scientist</h3>
-    <h4 style="margin:0 0 6px"> School of Public Health, Indiana University</h4>
-    <h5 style="margin:0 0 6px"><strong class="gradient-text">Jan 2024 — Jul 2025</strong></h5>
-    <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">At the School of Public Health, I focused on building scalable data architectures and machine learning workflows to support groundbreaking research. My work centered on leveraging generative modeling and optimizing large-scale data processing to handle complex biological datasets, all while ensuring data quality and compliance.</p>
-    <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
-      <li style="margin-bottom:12px">- Engineered end-to-end ETL pipelines on AWS with Airflow, serverless functions, and Glue Crawlers, enabling scalable processing of over <strong class="gradient-text">20 million methylation records</strong> with a <strong class="gradient-text">99% pipeline reliability</strong>.</li>
-      <li style="margin-bottom:12px">- Developed <strong class="gradient-text">generative modeling pipelines</strong> to synthesize DNA data that retained <strong class="gradient-text">95% of critical biological signal</strong>, effectively reducing privacy risks in research collaborations.</li>
-      <li style="margin-bottom:12px">- Achieved a <strong class="gradient-text">12-18% accuracy improvement</strong> on methylation prediction models by training and benchmarking on synthetic data.</li>
-      <li style="margin-bottom:12px">- Optimized large-scale model training on HPC clusters, using distributed computing to cut runtimes by <strong class="gradient-text">40%</strong>, turning multi-day experiments into under 12 hours.</li>
-      <li>- Implemented CI/CD-enabled workflows with validation and schema checks, which reduced downstream data-related errors by <strong class="gradient-text">15%</strong>.</li>
-    </ul>
-  </div>
-
-  <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
-    <h3 style="margin:0 0 6px">Data Analyst</h3>
-    <h4 style="margin:0 0 6px"> Indiana University Dining Services</h4>
-    <h5 style="margin:0 0 6px"><strong class="gradient-text">Aug 2023 — Jan 2024</strong></h5>
-    <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">In this role, I focused on transforming operational data into actionable insights to improve efficiency and reduce costs for the university's dining services. My work involved building predictive models and creating data-driven tools to optimize inventory, pricing, and procurement.</p>
-    <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
-      <li style="margin-bottom:12px">- Built demand forecasting pipelines using time-series models like <strong class="gradient-text">ARIMA</strong> and <strong class="gradient-text">Prophet</strong>, which improved forecast accuracy by <strong class="gradient-text">20%</strong> and reduced stockouts by <strong class="gradient-text">15%</strong>.</li>
-      <li style="margin-bottom:12px">- Devised an inventory and pricing optimization framework in Python (<strong class="gradient-text">SciPy</strong>) that cut holding costs by <strong class="gradient-text">12%</strong> while sustaining a <strong class="gradient-text">98% service level</strong>.</li>
-      <li>- Automated reporting pipelines with SQL and Python, detecting supply chain bottlenecks and pricing inefficiencies, which improved on-time delivery by <strong class="gradient-text">10%</strong> and recovered <strong class="gradient-text">$10,000 in potential losses</strong>.</li>
-    </ul>
-  </div>
-
-  <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
-    <h3 style="margin:0 0 6px">Data Engineer</h3>
-    <h4 style="margin:0 0 6px"> eGain Corporation</h4>
-    <h5 style="margin:0 0 6px"><strong class="gradient-text">Jun 2021 — Jul 2022</strong></h5>
-    <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">As a Data Engineer at eGain, my primary responsibility was to design and maintain robust data pipelines and scalable architectures. I focused on improving data flow reliability, optimizing performance, and automating workflows to deliver timely and accurate insights for enterprise-level clients.</p>
-    <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
-      <li style="margin-bottom:12px">- Engineered high-performance <strong class="gradient-text">SQL and Python ETL pipelines</strong> using Azure Data Factory and Azure SQL Database, improving data flow reliability by <strong class="gradient-text">30%</strong> across large-scale datasets.</li>
-      <li style="margin-bottom:12px">- Optimized end-to-end data pipelines by tuning <strong class="gradient-text">Spark jobs</strong> in Azure Databricks, achieving a <strong class="gradient-text">15% improvement in query performance</strong> and dashboard responsiveness.</li>
-      <li style="margin-bottom:12px">- Implemented monitoring and alerting with Azure Monitor and custom SQL triggers, which reduced critical incident resolution times by over <strong class="gradient-text">25%</strong>.</li>
-      <li>- Devised CI/CD-enabled data pipelines using <strong class="gradient-text">Azure DevOps</strong>, automating deployment, validation, and testing of ETL workflows to accelerate delivery speed.</li>
-    </ul>
-  </div>
-</section>
-
-        <div style="height:18px"></div>
-
-
-    <!-- Education (reveal) -->
-   <section id="education" class="reveal py-12">
-  <h1 class="text-3xl font-extrabold mb-6 cascade-item" style="margin:40px 0 20px; font-size:48px; font-weight:bold; line-height:1.2;"><strong class="gradient-text">My Education</strong></h1>
-  <div class="flex flex-col gap-8">
-    <div class="card glass p-6 rounded-xl cascade-item individual">
-      <h3 class="text-xl font-semibold gradient-text mb-2">Master of Science in Data Science</h3>
-      <p class="text-gray-300 mb-1">Indiana University Bloomington | 2022 - 2024</p>
-      <p class="text-gray-300 mb-4">GPA: 3.50 / 4</p>
-      <ul class="text-gray-300 list-disc list-inside space-y-1">
-        <li><strong>Key Courses:</strong> Machine Learning in Bioinformatics, Data Visualization, Applied Algorithms, Deep Learning Systems, Applied Machine Learning, Advanced Database Concepts.</li>
-      </ul>
-    </div>
-    <div class="card glass p-6 rounded-xl cascade-item individual">
-      <h3 class="text-xl font-semibold gradient-text mb-2">Bachelor of Technology in Applied Electronics and Instrumentation Engineering</h3>
-      <p class="text-gray-300">Maulana Abul Kalam Azad University of Technology | 2017 - 2021</p>
-            <p class="text-gray-300 mb-4">GPA: 8.38 / 10</p>
-
-    </div>
-  </div>
-</section>
-
-    
-
-    <!-- Footer -->
-    <footer class="reveal" style="margin-top:12px">
-      <div class="card cascade-item" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px">
-        <div class="mt-2 flex items-center justify-center gap-4">
-          <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
-            LinkedIn
-          </a>
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
-            GitHub
-          </a>
-        </div>
-        <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
+      <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
+        <h3 style="margin:0 0 6px">Data Scientist — School of Public Health, Indiana University</h3>
+        <small style="color:#9ca3af">Jan 2024 — Jul 2025</small>
+        <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">At the School of Public Health, I focused on building scalable data architectures and machine learning workflows to support groundbreaking research. My work centered on leveraging generative modeling and optimizing large-scale data processing to handle complex biological datasets, all while ensuring data quality and compliance.</p>
+        <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
+          <li style="margin-bottom:12px">Engineered end-to-end ETL pipelines on AWS with Airflow, serverless functions, and Glue Crawlers, enabling scalable processing of over <strong class="gradient-text">20 million methylation records</strong> with a <strong class="gradient-text">99% pipeline reliability</strong>.</li>
+          <li style="margin-bottom:12px">Developed <strong class="gradient-text">generative modeling pipelines</strong> to synthesize DNA data that retained <strong class="gradient-text">95% of critical biological signal</strong>, effectively reducing privacy risks in research collaborations.</li>
+          <li style="margin-bottom:12px">Built and benchmarked methylation prediction models, achieving a <strong class="gradient-text">12-18% accuracy improvement</strong> on synthetic data.</li>
+          <li style="margin-bottom:12px">Optimized large-scale model training on HPC clusters, using distributed computing to cut runtimes by <strong class="gradient-text">40%</strong>, turning multi-day experiments into under 12 hours.</li>
+          <li>Implemented CI/CD-enabled workflows with validation and schema checks, which reduced downstream data-related errors by <strong class="gradient-text">15%</strong>.</li>
+        </ul>
       </div>
-    </footer>
 
-  </div>
+      <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
+        <h3 style="margin:0 0 6px">Data Analyst — Indiana University Dining Services</h3>
+        <small style="color:#9ca3af">Aug 2023 — Jan 2024</small>
+        <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">In this role, I focused on transforming operational data into actionable insights to improve efficiency and reduce costs for the university's dining services. My work involved building predictive models and creating data-driven tools to optimize inventory, pricing, and procurement.</p>
+        <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
+          <li style="margin-bottom:12px">Built demand forecasting pipelines using time-series models like <strong class="gradient-text">ARIMA</strong> and <strong class="gradient-text">Prophet</strong>, which improved forecast accuracy by <strong class="gradient-text">20%</strong> and reduced stockouts by <strong class="gradient-text">15%</strong>.</li>
+          <li style="margin-bottom:12px">Devised an inventory and pricing optimization framework in Python (<strong class="gradient-text">SciPy</strong>) that cut holding costs by <strong class="gradient-text">12%</strong> while sustaining a <strong class="gradient-text">98% service level</strong>.</li>
+          <li>Automated reporting pipelines with SQL and Python, detecting supply chain bottlenecks and pricing inefficiencies, which improved on-time delivery by <strong class="gradient-text">10%</strong> and recovered <strong class="gradient-text">$10,000 in potential losses</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="card cascade-item" style="margin-top:12px; padding:16px; border-radius:12px; background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04)">
+        <h3 style="margin:0 0 6px">Data Engineer — eGain Corporation</h3>
+        <h4 style="margin:0 0 6px"> eGain Corporation</h4>
+        <h5 style="margin:0 0 6px"><strong class="gradient-text">Jun 2021 — Jul 2022</strong></h5>
+        <p style="color:#cbd5e1;line-height:1.5;margin-bottom:12px">As a Data Engineer at eGain, my primary responsibility was to design and maintain robust data pipelines and scalable architectures. I focused on improving data flow reliability, optimizing performance, and automating workflows to deliver timely and accurate insights for enterprise-level clients.</p>
+        <ul style="margin-top:8px;padding-left:18px;color:#cbd5e1;line-height:1.6">
+          <li style="margin-bottom:12px">Engineered high-performance <strong class="gradient-text">SQL and Python ETL pipelines</strong> using Azure Data Factory and Azure SQL Database, improving data flow reliability by <strong class="gradient-text">30%</strong> across large-scale datasets.</li>
+          <li style="margin-bottom:12px">Optimized end-to-end data pipelines by tuning <strong class="gradient-text">Spark jobs</strong> in Azure Databricks, achieving a <strong class="gradient-text">15% improvement in query performance</strong> and dashboard responsiveness.</li>
+          <li style="margin-bottom:12px">Implemented monitoring and alerting with Azure Monitor and custom SQL triggers, which reduced critical incident resolution times by over <strong class="gradient-text">25%</strong>.</li>
+          <li>Devised CI/CD-enabled data pipelines using <strong class="gradient-text">Azure DevOps</strong>, automating deployment, validation, and testing of ETL workflows to accelerate delivery speed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="education" class="reveal py-12">
+      <h1 class="text-3xl font-extrabold mb-6 cascade-item" style="margin:40px 0 20px; font-size:48px; font-weight:bold; line-height:1.2;">
+        <strong class="gradient-text">My Education</strong></h1>
+      <div class="flex flex-col gap-8">
+        <div class="card glass p-6 rounded-xl cascade-item individual">
+          <h3 class="text-xl font-semibold gradient-text mb-2">Master of Science in Data Science</h3>
+          <p class="text-gray-300 mb-1">Indiana University Bloomington | 2022 - 2024</p>
+          <p class="text-gray-300 mb-4">GPA: 3.50 / 4</p>
+          <ul class="text-gray-300 list-disc list-inside space-y-1">
+            <li><strong>Key Courses:</strong> Machine Learning in Bioinformatics, Data Visualization, Applied Algorithms, Deep Learning Systems, Applied Machine Learning, Advanced Database Concepts.</li>
+          </ul>
+        </div>
+        <div class="card glass p-6 rounded-xl cascade-item individual">
+          <h3 class="text-xl font-semibold gradient-text mb-2">Bachelor of Technology in Applied Electronics and Instrumentation Engineering</h3>
+          <p class="text-gray-300">Maulana Abul Kalam Azad University of Technology | 2017 - 2021</p>
+          <p class="text-gray-300 mb-4">GPA: 8.38 / 10</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script>
     // ===== reveal logic for this page (same behavior as index) =====
