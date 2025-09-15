@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Subhranil Das — Data Scientist & Engineer</title>
-  <meta name="description" content="Portfolio of Subhranil Das — Data Engineer & Data Scientist. ETL, Airflow, Databricks, Azure, AWS, ML." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Subhranil Das — Data Scientist & Engineer</title>
+<meta name="description" content="Portfolio of Subhranil Das — Data Engineer & Data Scientist. ETL, Airflow, Databricks, Azure, AWS, ML." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    header .nav-link {
+<style>
+header .nav-link {
   position: relative;
   display: inline-block;
   text-decoration: none;
@@ -33,808 +33,425 @@ header .nav-link::after {
 header .nav-link:hover::after {
   width: 100%;
 }
-    :root { --bg: #050816; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
+:root { --bg: #050816; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
 
-    .glass { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.04); }
-    .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.glass { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.04); }
+.gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
-    /* Reveal & cascade */
-    .reveal { opacity: 0; transform: translateX(-48px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); will-change: opacity, transform; }
-    .reveal.show { opacity: 1; transform: translateX(0); }
-    .cascade-item { opacity: 0; transform: translateX(-24px); transition: opacity 480ms ease, transform 480ms ease; }
-    .cascade-item.show { opacity: 1; transform: translateX(0); }
+/* Reveal & cascade */
+.reveal { opacity: 0; transform: translateX(-48px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); will-change: opacity, transform; }
+.reveal.show { opacity: 1; transform: translateX(0); }
+.cascade-item { opacity: 0; transform: translateX(-24px); transition: opacity 480ms ease, transform 480ms ease; }
+.cascade-item.show { opacity: 1; transform: translateX(0); }
 
-    .card { transition: all .32s ease; }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.28); }
+.card { transition: all .32s ease; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.28); }
 
-    .form-msg { display:none; font-size:0.95rem }
-    .form-msg.show { display:block }
-    .form-msg.success { color:#34d399 }
-    .form-msg.error { color:#fb7185 }
+.form-msg { display:none; font-size:0.95rem }
+.form-msg.show { display:block }
+.form-msg.success { color:#34d399 }
+.form-msg.error { color:#fb7185 }
 
-    footer .social-icon { width:20px; height:20px; object-fit:contain; display:inline-block; border-radius:6px; margin-right:8px }
-    @media (max-width:640px){ footer .social-icon{width:16px;height:16px} }
+footer .social-icon { width:20px; height:20px; object-fit:contain; display:inline-block; border-radius:6px; margin-right:8px }
+@media (max-width:640px){ footer .social-icon{width:16px;height:16px} }
 
-    .container { max-width:1100px; margin:0 auto; padding:28px; }
-    header .nav-link { cursor:pointer }
+.container { max-width:1100px; margin:0 auto; padding:28px; }
+header .nav-link { cursor:pointer }
 
-    /* small helper so images never overflow */
-    img { max-width:100%; display:block; }
-  </style>
-</head>
-  <svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true" focusable="false">
-  <defs>
-    <linearGradient id="pinkgrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#ec4899" />
-    </linearGradient>
-  </defs>
-</svg>
-  <style>
-  /* gradient helpers for SVGs */
-  .gradient-stroke { stroke: url(#pinkgrad); fill: none; }
-  .gradient-fill { fill: url(#pinkgrad); }
+/* small helper so images never overflow */
+img { max-width:100%; display:block; }
+/* Change: Unified gradient helpers into one style block */
+.gradient-stroke { stroke: url(#pinkgrad); fill: none; }
+.gradient-fill { fill: url(#pinkgrad); }
 </style>
-<body class="antialiased">
-  <div id="app">
-    <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
-  <div class="container flex items-center justify-center py-3 relative">
-    <!-- Desktop left nav (hidden on mobile) -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute left-4">
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#about">About</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
-        </div>
-      </div>
-      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
-      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
-    </nav>
-
-    <!-- MOBILE: left hamburger button -->
-    <button id="mobileOpenBtn" class="md:hidden absolute left-4 p-2 rounded-md text-gray-300" aria-label="Open menu" aria-expanded="false">
-      <!-- hamburger -->
-      <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-      </svg>
-      <!-- close icon hidden by default -->
-      <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <!-- Centered brand -->
-    <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
-
-    <!-- Desktop right nav (hidden on mobile) -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute right-4">
-      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
-
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#">Social</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
-          <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- MOBILE: right action button (optional) -->
-    <div class="md:hidden absolute right-4">
-      <a href="#contact" class="px-3 py-2 rounded-md nav-link text-gray-300">Contact</a>
-    </div>
-  </div>
-
-  <!-- Mobile menu (collapsible) -->
-  <div id="mobileMenu" class="md:hidden bg-[#050816]/95 border-t border-white/5 hidden">
-    <div class="container py-4 flex flex-col gap-2">
-      <!-- mobile nav links -->
-      <a class="nav-link px-3 py-2" href="#about">About</a>
-      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
-      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
-      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
-
-      <div class="border-t border-white/5 mt-2 pt-2">
-        <div class="text-sm text-gray-300 px-3 pb-2">Social</div>
-        <a class="nav-link block px-3 py-2" href="https://www.linkedin.com/in/subhranil-das" target="_blank">LinkedIn</a>
-        <a class="nav-link block px-3 py-2" href="https://github.com/dassubhranil" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </div>
-</header>
-
-
-    <main class="container px-4 max-w-screen-lg mx-auto">
-      <section id="hero" class="py-16 text-center">
-        <img src="https://placehold.co/200x200/2c3a4f/e5e7eb?text=Profile" alt="Profile" class="w-40 h-40 mx-auto rounded-full border-4 border-indigo-500 shadow-2xl mb-6" />
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Hi, I'm <span class="gradient-text">Subhranil Das</span></h1>
-        <p class="text-gray-300 max-w-2xl mx-auto">Data Scientist & Engineer with 3+ years building scalable ETL pipelines, cloud architectures (Azure, AWS, GCP), and ML models.</p>
-      </section>
-
-      <section id="about" class="reveal py-12">
-        <h2 class="text-3xl font-extrabold mb-4 cascade-item text-center">About Me</h2>
-        <div class="glass p-6 rounded-xl">
-          <h3 class="text-xl font-semibold mb-2 cascade-item">The Data Storyteller 📊</h3>
-          <p class="text-gray-300 mb-4 cascade-item">My path as a <strong class="gradient-text">data scientist</strong> has been a quest to turn chaotic data into clear, actionable stories. I love building <strong class="gradient-text">production-grade data platforms and ML pipelines</strong> that don't just work—they empower. I thrive on transforming messy, unstructured data into <strong class="gradient-text">reliable, user-friendly products</strong> that help teams make better, more informed decisions. It's a journey of discovery, and I love every step of it.</p>
-          <p class="text-gray-300 mb-4 cascade-item">I believe a great model is like a great narrative—it has a clear beginning (clean data), a solid middle (robust feature engineering), and a powerful conclusion (actionable insights). I'm an <strong class="gradient-text">Architect of Digital Narratives</strong>, taking raw, unstructured data and molding it into a compelling product storyline. Just as I dive deep into every data point, I meticulously craft solutions for <strong class="gradient-text">user engagement</strong> and <strong class="gradient-text">feature optimization</strong>.</p>
-          <p class="text-gray-300 cascade-item">I am obsessed with creating seamless, impactful experiences that keep users hooked. I am always ready to <strong class="gradient-text">analyze data</strong>, <strong class="gradient-text">gather feedback</strong>, and <strong class="gradient-text">iterate</strong> to ensure every product is a blockbuster hit. 🎬</p>
-          <div class="mt-4 flex justify-center cascade-item">
-            <a href="about.html" class="inline-block px-4 py-2 rounded-md" style="background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff">Learn more about me</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="reveal py-12">
-        <h2 class="text-3xl font-extrabold mb-6 cascade-item">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <article class="card glass rounded-xl overflow-hidden individual">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Cancer_cells_%281%29.jpg" alt="Generative AI" class="w-full h-40 object-cover cascade-item"/>
-            <div class="p-6">
-              <h3 class="font-semibold gradient-text cascade-item">Generative AI for Pathology</h3>
-              <p class="text-gray-300 mt-2 cascade-item">Used GANs to synthesize pathology datasets, boosting YOLOv8 accuracy by 40%.</p>
-              <div class="mt-4 flex gap-3 text-sm cascade-item">
-                <a href="https://github.com/dassubhranil/Generative-AI-for-Pathology-Datasets" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
-                <a href="project1.html" class="px-3 py-1 rounded-md border">Learn More</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="card glass rounded-xl overflow-hidden individual">
-            <img src="https://t4.ftcdn.net/jpg/02/89/78/17/360_F_289781730_0OJWSY2pS9Q69KT4g2pr5liE8dmW9CL0.jpg" alt="Dynamic Commentary" class="w-full h-40 object-cover cascade-item"/>
-            <div class="p-6">
-              <h3 class="font-semibold gradient-text cascade-item">Dynamic Commentary Analytics</h3>
-              <p class="text-gray-300 mt-2 cascade-item">Analyzed tonal shifts in esports commentary using ChatGPT + NLTK, improved sentiment analysis by 20%.</p>
-              <div class="mt-4 flex gap-3 text-sm cascade-item">
-                <a href="https://github.com/dassubhranil/Dynamic-Commentary" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
-                <a href="#" class="px-3 py-1 rounded-md border">Learn More</a>
-              </div>
-            </div>
-          </article>
-          <article class="card glass rounded-xl overflow-hidden individual">
-  <img src="https://images.stockcake.com/public/b/7/4/b749e057-db41-42f2-8fec-ffcd6c95b6ea_large/illuminated-human-heart-stockcake.jpg" alt="Heart Disease Prediction" class="w-full h-40 object-cover cascade-item"/>
-  <div class="p-6">
-    <h3 class="font-semibold gradient-text cascade-item">Heart Disease Prediction App</h3>
-    <p class="text-gray-300 mt-2 cascade-item">An interactive web app using a pre-trained XGBoost model with SHAP for transparent and interpretable risk prediction.</p>
-    <div class="mt-4 flex gap-3 text-sm cascade-item">
-      <a href="https://github.com/dassubhranil/Heart-Disease-App" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
-      <a href="https://heart-disease-app-subhranildas.streamlit.app/" class="px-3 py-1 rounded-md border" target="_blank">Live Demo</a>
-      <a href="#" class="px-3 py-1 rounded-md border">Learn More</a>
-    </div>
-  </div>
-</article>
-          <article class="card glass rounded-xl overflow-hidden individual">
-  <img src="https://media.istockphoto.com/id/1429456277/photo/online-shopping-with-credit-car-or-cash-money.jpg?s=612x612&w=0&k=20&c=l2uK4zXLwopGjxP3L5Fxn0GFQ129U_qvVLqXvqlcwwM=" alt="E-Commerce Data Pipeline" class="w-full h-40 object-cover cascade-item"/>
-  <div class="p-6">
-    <h3 class="font-semibold gradient-text cascade-item">Turbocharging-Retail-Insights</h3>
-    <p class="text-gray-300 mt-2 cascade-item">A robust data pipeline for online retail using Apache Airflow, dbt, and GCP for automated data flow and insights.</p>
-    <div class="mt-4 flex gap-3 text-sm cascade-item">
-      <a href="https://github.com/dassubhranil/Turbocharging-Retail-Insights" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
-      <a href="#" class="px-3 py-1 rounded-md border">Learn More</a>
-    </div>
-  </div>
-</article>
-        </div>
-      </section>
-
-      <section id="skills" class="reveal py-12">
-  <h2 class="text-3xl font-extrabold mb-6 cascade-item text-center">Skills</h2>
-  <h3 class="text-xl font-semibold mb-4 cascade-item">Core Data Skills</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <article class="card glass p-6 rounded-xl cascade-item individual">
-      <svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="6" cy="12" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
-        <circle cx="12" cy="6" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
-        <circle cx="18" cy="12" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
-        <path d="M7.4 11.3L11 8.9" class="gradient-stroke" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M13 8.9L16.6 11.3" class="gradient-stroke" stroke-width="1.2" stroke-linecap="round"/>
-      </svg>
-      <div>
-        <h4 class="text-lg font-semibold">Feature Engineering<br/><span class="text-indigo-300">&amp; Modeling</span></h4>
-        <p class="text-gray-300 mt-2">Design robust features, build supervised and unsupervised models, perform cross-validation and hyperparameter tuning. Experienced with scikit-learn, XGBoost, LightGBM and deep learning (TensorFlow/PyTorch).</p>
-      </div>
-    </article>
-
-    <article class="card glass p-6 rounded-xl cascade-item individual">
-  <svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="2.5" y="3.5" width="6" height="5" rx="1" class="gradient-stroke" stroke-width="1.2"/>
-    <rect x="15.5" y="3.5" width="6" height="5" rx="1" class="gradient-stroke" stroke-width="1.2"/>
-    <rect x="9" y="15.5" width="6" height="5" rx="1" class="gradient-stroke" stroke-width="1.2"/>
-    <path d="M8 6.5h8" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
-    <path d="M12 8.5v6.5" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
-  </svg>
-  <div>
-    <h4 class="text-lg font-semibold">Data Pipelines<br/><span class="text-indigo-300">&amp; ETL</span></h4>
-    <p class="text-gray-300 mt-2">Productionize ETL/ELT using Airflow, Spark, Azure Data Factory and Databricks. Focus on data quality, monitoring and idempotency.</p>
-  </div>
-</article>
-    
-    <article class="card glass p-6 rounded-xl cascade-item individual">
-      <svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="6" cy="6" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
-        <circle cx="18" cy="6" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
-        <circle cx="12" cy="13" r="2" class="gradient-stroke" stroke-width="1.4"/>
-        <path d="M7.4 7.8L11 11" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M13 11L16.6 7.8" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M12 15v3" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
-      </svg>
-      <div>
-        <h4 class="text-lg font-semibold">Distributed Systems<br/><span class="text-indigo-300">&amp; Spark</span></h4>
-        <p class="text-gray-300 mt-2">Tune Spark jobs, partitioning strategies and design distributed ETL at scale.</p>
-      </div>
-    </article>
-    <article class="card glass p-6 rounded-xl cascade-item individual">
-      <svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M12 8a4 4 0 100 8 4 4 0 000-8z" class="gradient-stroke" stroke-width="1.3" fill="none"/>
-        <path d="M3.6 12a8.4 8.4 0 00.6 2.8l1.6-.5.2 1.9-1.6.6A8.4 8.4 0 008 20.4l.6-1.6 1.9.2.5 1.6A8.4 8.4 0 0015.2 20l-.5-1.6 1.9-.2.6 1.6A8.4 8.4 0 0020.4 16l-1.6-.6.2-1.9 1.6.5A8.4 8.4 0 0020.4 8l-1.6.6-.2-1.9 1.6-.5A8.4 8.4 0 0015.2 4l-.6 1.6-1.9-.2-.5-1.6A8.4 8.4 0 008 3.6l.6 1.6L6.7 5.4 6.2 3.8A8.4 8.4 0 003.6 8z" class="gradient-stroke" stroke-width="0.9"/>
-      </svg>
-      <div>
-        <h4 class="text-lg font-semibold">MLOps<br/><span class="text-indigo-300">&amp; Deployment</span></h4>
-        <p class="text-gray-300 mt-2">Deploy models with CI/CD, containers, orchestration and monitoring. Focus on reproducibility and drift detection.</p>
-      </div>
-    </article>
-    <article class="card glass p-6 rounded-xl cascade-item individual">
-      <svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="3" y="13" width="3" height="6" class="gradient-fill" opacity="0.75"/>
-        <rect x="8.5" y="9" width="3" height="10" class="gradient-fill" opacity="0.75"/>
-        <rect x="14" y="5" width="3" height="14" class="gradient-fill" opacity="0.75"/>
-        <path d="M3 14.5l5-5 3 2 6-6" class="gradient-stroke" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div>
-        <h4 class="text-lg font-semibold">Visualization<br/><span class="text-indigo-300">&amp; Analysis</span></h4>
-        <p class="text-gray-300 mt-2">Build clear dashboards and diagnostic plots using Tableau, PowerBI, Plotly and matplotlib. I focus on actionable metrics, KPI design and experiment analysis (A/B testing).</p>
-      </div>
-    </article>
-    <article class="card glass p-6 rounded-xl cascade-item individual">
-      <svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M3 7l9-4 9 4v6l-9 4-9-4V7z" class="gradient-stroke" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M12 3v10" class="gradient-stroke" stroke-width="1.15" stroke-linecap="round"/>
-        <path d="M7 10h10" class="gradient-stroke" stroke-width="1.0" stroke-linecap="round"/>
-      </svg>
-      <div>
-        <h4 class="text-lg font-semibold">Data Modeling<br/><span class="text-indigo-300">&amp; Warehousing</span></h4>
-        <p class="text-gray-300 mt-2">Design dimensional and normalized schemas, build dbt transformations, and optimize warehouse performance on Snowflake/BigQuery/Synapse.</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-       <section id="tools" class="reveal py-12">
-  <h2 class="text-3xl font-extrabold mb-6 cascade-item text-center">Tools</h2>
-  <div class="grid grid-cols-3 sm:grid-cols-6 gap-4 mb-8">
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=Py'"/>
-      <div>Python</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="Postgres" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=PG'"/>
-      <div>Postgres</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" alt="Spark" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=SP'"/>
-      <div>Spark</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" alt="Airflow" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AF'"/>
-      <div>Airflow</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AWS'"/>
-      <div>AWS</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AZ'"/>
-      <div>Azure</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="data:image/svg+xml,%3Csvg fill='%23863696' viewBox='0 0 32 32' id='icon' xmlns='http://www.w3.org/2000/svg' stroke='%23863696'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%20%3Cdefs%3E%20%3Cstyle%3E%20.cls-1%20%7B%20fill:%20none;%20%7D%20%3C/style%3E%20%3C/defs%3E%20%3Cpath d='M27,24a2.9609,2.9609,0,0,0-1.2854.3008L21.4141,20H18v2h2.5859l3.7146,3.7148A2.9665,2.9665,0,0,0,24,27a3,3,0,1,0,3-3Zm0,4a1,1,0,1,1,1-1A1.0009,1.0009,0,0,1,27,28Z'%3E%3C/path%3E%20%3Cpath d='M27,13a2.9948,2.9948,0,0,0-2.8157,2H18v2h6.1843A2.9947,2.9947,0,1,0,27,13Zm0,4a1,1,0,1,1,1-1A1.0009,1.0009,0,0,1,27,17Z'%3E%3C/path%3E%20%3Cpath d='M27,2a3.0033,3.0033,0,0,0-3,3,2.9657,2.9657,0,0,0,.3481,1.373L20.5957,10H18v2h3.4043l4.3989-4.2524A2.9987,2.9987,0,1,0,27,2Zm0,4a1,1,0,1,1,1-1A1.0009,1.0009,0,0,1,27,6Z'%3E%3C/path%3E%20%3Cpath d='M18,6h2V4H18a3.9756,3.9756,0,0,0-3,1.3823A3.9756,3.9756,0,0,0,12,4H11a9.01,9.01,0,0,0-9,9v6a9.01,9.01,0,0,0,9,9h1a3.9756,3.9756,0,0,0,3-1.3823A3.9756,3.9756,0,0,0,18,28h2V26H18a2.0023,2.0023,0,0,1-2-2V8A2.0023,2.0023,0,0,1,18,6ZM12,26H11a7.0047,7.0047,0,0,1-6.92-6H6V18H4V14H7a3.0033,3.0033,0,0,0,3-3V9H8v2a1.0009,1.0009,0,0,1-1,1H4.08A7.0047,7.0047,0,0,1,11,6h1a2.0023,2.0023,0,0,1,2,2v4H12v2h2v4H12a3.0033,3.0033,0,0,0-3,3v2h2V21a1.0009,1.0009,0,0,1,1-1h2v4A2.0023,2.0023,0,0,1,12,26Z'%3E%3C/path%3E%20%3Crect id='_Transparent_Rectangle_' data-name='&lt;Transparent Rectangle&gt;' class='cls-1' width='32' height='32'%3E%3C/rect%3E%20%3C/g%3E%3C/svg%3E" alt="Databricks" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=DB'"/>
-      <div>Databricks</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=DK'"/>
-      <div>Docker</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=K8s'"/>
-      <div>Kubernetes</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://logo.svgcdn.com/l/dbt-icon.png" alt="dbt" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=dbt'"/>
-      <div>dbt</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://www.vectorlogo.zone/logos/snowflake/snowflake-icon.svg" alt="Snowflake" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=SF'"/>
-      <div>Snowflake</div>
-    </div>
-    <div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=GIT'"/>
-      <div>Git</div>
-    </div>
-  </div>
-</section>
-
-      <section id="contact" class="reveal py-12">
-        <h2 class="text-3xl font-extrabold mb-4 cascade-item">Contact</h2>
-        <div class="glass p-6 rounded-xl cascade-item">
-          <p class="text-gray-300">Interested in hiring me? I am actively seeking new opportunities and would love to hear from you.</p>
-          <form id="contactForm" class="mt-4 space-y-3">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <input id="nameField" name="name" required placeholder="Your name" class="p-3 rounded-md bg-white/5 w-full" />
-              <input id="emailField" name="email" type="email" required placeholder="Your email" class="p-3 rounded-md bg-white/5 w-full" />
-            </div>
-            <textarea id="messageField" name="message" required placeholder="Message" class="p-3 rounded-md bg-white/5 w-full h-32"></textarea>
-            <div class="flex items-center gap-4">
-              <button id="sendBtn" type="submit" class="px-5 py-3 rounded-md" style="background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff">Send Message</button>
-              <div>
-                <div id="formSuccess" class="form-msg success" role="status" aria-live="polite">Message sent — thank you!</div>
-                <div id="formError" class="form-msg error" role="alert" aria-live="assertive">Failed to send — try again or email directly at <a class="underline" href="mailto:dassubhranil1998@gmail.com">dassubhranil1998@gmail.com</a></div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <div style="height:40px"></div>
-
-      <footer class="reveal py-6">
-        <div class="card cascade-item p-6 rounded-xl flex flex-col items-center gap-8">
-          <div class="mt-2 flex items-center justify-center gap-4">
-            <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
-              LinkedIn
-            </a>
-            <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
-              GitHub
-            </a>
-          </div>
-          <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
-        </div>
-      </footer>
-
-    </main>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Smooth scroll for nav links (account for sticky header)
-    const header = document.querySelector('header');
-    function smoothScrollTo(id){
-      const el = document.getElementById(id); if(!el) return; const offset = header ? header.offsetHeight + 12 : 80; const top = el.getBoundingClientRect().top + window.scrollY - offset; window.scrollTo({top, behavior: 'smooth'});
-    }
-    document.querySelectorAll('.nav-link').forEach(a=>{ a.addEventListener('click', e=>{ e.preventDefault(); const href=a.getAttribute('href')||''; if(href.startsWith('#')) smoothScrollTo(href.slice(1)); }); });
-
-    // Contact form handling (EmailJS or mailto fallback)
-    const form = document.getElementById('contactForm');
-    const sendBtn = document.getElementById('sendBtn');
-    const successMsg = document.getElementById('formSuccess');
-    const errorMsg = document.getElementById('formError');
-    function hideMsgs(){ successMsg.classList.remove('show'); errorMsg.classList.remove('show'); }
-    hideMsgs();
-    function isEmail(s){ return /\S+@\S+\.\S+/.test(s); }
-    if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); hideMsgs(); const name=document.getElementById('nameField').value.trim(); const email=document.getElementById('emailField').value.trim(); const message=document.getElementById('messageField').value.trim(); if(!name||!email||!message||!isEmail(email)){ errorMsg.textContent='Please provide a valid name, email and message.'; errorMsg.classList.add('show'); return; } if(window.emailjs && typeof emailjs.send==='function'){ sendBtn.disabled=true; sendBtn.textContent='Sending...'; const params={from_name:name, from_email:email, message:message}; emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',params).then(()=>{ successMsg.classList.add('show'); form.reset(); }).catch(err=>{ console.error(err); errorMsg.classList.add('show'); }).finally(()=>{ sendBtn.disabled=false; sendBtn.textContent='Send Message'; }); } else { const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '\\n\\nFrom: ' + name + ' <' + email + '>')}`; window.location.href = mailto; } }); }
-
-    // ===== Reveal behavior for sections and cascade items =====
-    // Change: Now targets both sections and the footer
-    const revealSections = document.querySelectorAll('section.reveal,footer.reveal');
-    const revealObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const section = entry.target;
-          section.classList.add('show');
-
-          // reveal immediate cascade children with stagger
-          const children = section.querySelectorAll('.cascade-item');
-          children.forEach((child, idx) => {
-            child.style.transitionDelay = (idx * 150) + 'ms';
-            requestAnimationFrame(() => child.classList.add('show'));
-          });
-
-          // stop observing section so it stays visible
-          obs.unobserve(section);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealSections.forEach((sec, i) => { sec.style.transitionDelay = (i * 80) + 'ms'; revealObserver.observe(sec); });
-
-    // Individual items inside sections (skills/projects/cards) reveal independently
-    const individualItems = document.querySelectorAll('.cascade-item.individual');
-    const individualObserver = new IntersectionObserver((entries, obs2) => {
-      entries.forEach((entry, idx) => {
-        if(entry.isIntersecting){
-          entry.target.style.transitionDelay = (idx * 150) + 'ms';
-          entry.target.classList.add('show');
-          obs2.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    individualItems.forEach(it => individualObserver.observe(it));
-  </script>
-  <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Generative AI for Pathology Datasets — Subhranil Das</title>
-    <meta name="description" content="A research project exploring GANs in medical imaging, focusing on synthesizing pathology datasets for nuclei detection and model training." />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        :root { --header-offset: 72px; }
-
-/* ensure sections and titles leave room for fixed header when scrolled to */
-section,
-.section-title {
-  scroll-margin-top: var(--header-offset);
-}
-
-/* smaller offset on small screens (optional) */
-@media (max-width: 640px) {
-  :root { --header-offset: 56px; }
-}
-        html { scroll-behavior: smooth; } /* Enable smooth scrolling */
-        :root { --bg: #050816; --muted: #9ca3af; --glass-border: rgba(255,255,255,0.04); }
-        html,body { height:100%; }
-        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
-
-        header .nav-link { position: relative; display: inline-block; text-decoration: none; }
-        header .nav-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366f1, #ec4899); transition: width 0.35s ease-in-out; }
-        header .nav-link:hover::after { width: 100%; }
-
-        .glass { backdrop-filter: blur(10px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid var(--glass-border); }
-        .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
-        .btn { background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px }
-        .container { max-width:1100px; margin:0 auto; padding:36px }
-        img { max-width:100%; display:block; border-radius:12px; }
-        .kpi { font-weight:700; font-size:1.15rem; }
-        .muted { color:var(--muted); }
-
-        /* Reveal & cascade */
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); }
-        .reveal.show { opacity: 1; transform: translateY(0); }
-        .cascade-item { opacity: 0; transform: translateY(8px); transition: opacity 480ms ease, transform 480ms ease; }
-        .cascade-item.show { opacity: 1; transform: translateY(0); }
-
-        /* Responsive section title smaller on mobile */
-        .section-title { font-size:48px; margin:28px 0 16px; font-weight:800; line-height:1.05; }
-        @media (max-width:640px){ .section-title{ font-size:28px; margin:18px 0 12px } .container{ padding:20px } }
-
-        /* Card */
-        .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass-border); padding:18px; border-radius:12px }
-
-        /* subtle code block */
-        pre.code { background: rgba(0,0,0,0.25); padding:12px; border-radius:8px; overflow:auto; }
-
-    </style>
 </head>
+<svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="pinkgrad" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#6366f1" />
+<stop offset="100%" stop-color="#ec4899" />
+</linearGradient>
+</defs>
+</svg>
 <body class="antialiased">
-<!-- ===== Replace your existing header with this block ===== -->
+<div id="app">
 <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
-  <div class="container flex items-center justify-center py-3 relative">
-    <!-- Desktop left nav (hidden on mobile) -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute left-4">
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#about">About</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
-        </div>
-      </div>
-      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
-      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
-    </nav>
+    <div class="container flex items-center justify-between py-4">
+        <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
 
-    <!-- MOBILE: left hamburger button -->
-    <button id="mobileOpenBtn" class="md:hidden absolute left-4 p-2 rounded-md text-gray-300" aria-label="Open menu" aria-expanded="false">
-      <!-- hamburger -->
-      <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
-      </svg>
-      <!-- close icon hidden by default -->
-      <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
 
-    <!-- Centered brand -->
-    <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
-
-    <!-- Desktop right nav (hidden on mobile) -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute right-4">
-      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
-
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#">Social</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
-          <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- MOBILE: right action button (optional) -->
-    <div class="md:hidden absolute right-4">
-      <a href="#contact" class="px-3 py-2 rounded-md nav-link text-gray-300">Contact</a>
+        <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="#about">About</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+                </div>
+            </div>
+            <a class="nav-link px-3 py-2" href="#projects">Projects</a>
+            <a class="nav-link px-3 py-2" href="#skills">Skills</a>
+            <a class="nav-link px-3 py-2" href="#tools">Tools</a>
+            <a class="nav-link px-3 py-2" href="#contact">Contact</a>
+            
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="#">Social</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
+                    <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
+                </div>
+            </div>
+        </nav>
     </div>
-  </div>
-
-  <!-- Mobile menu (collapsible) -->
-  <div id="mobileMenu" class="md:hidden bg-[#050816]/95 border-t border-white/5 hidden">
-    <div class="container py-4 flex flex-col gap-2">
-      <!-- mobile nav links -->
-      <a class="nav-link px-3 py-2" href="#about">About</a>
-      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
-      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
-      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
-
-      <div class="border-t border-white/5 mt-2 pt-2">
-        <div class="text-sm text-gray-300 px-3 pb-2">Social</div>
-        <a class="nav-link block px-3 py-2" href="https://www.linkedin.com/in/subhranil-das" target="_blank">LinkedIn</a>
-        <a class="nav-link block px-3 py-2" href="https://github.com/dassubhranil" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </div>
 </header>
 
-
-    <main class="container pt-28">
-        <section id="hero" class="reveal glass p-8 rounded-xl">
-            <div class="flex flex-col md:flex-row md:items-center gap-8">
-                <div class="flex-1">
-                    <h1 class="section-title gradient-text cascade-item">Generative AI for Pathology Datasets</h1>
-                    <p class="muted mb-4 cascade-item">Research project exploring the use of generative models to synthesize pathology image data and improve nuclei detection models while preserving patient privacy.</p>
-
-                    <div class="flex gap-3 items-center mb-6 cascade-item">
-                        <div class="card p-4">
-                            <div class="muted">Project type</div>
-                            <div class="kpi">Research • Medical Imaging</div>
-                        </div>
-                        <div class="card p-4">
-                            <div class="muted">Technologies</div>
-                            <div class="kpi">GANs • StyleGAN3 • YOLOv8 • PyTorch</div>
-                        </div>
-                        <div class="card p-4">
-                            <div class="muted">Impact</div>
-                            <div class="kpi">Model +40% • Accuracy 85%</div>
-                        </div>
-                    </div>
-
-                    <p class="cascade-item">This page documents the problem, approach, experiments, and results. It is intended for technical readers who want reproducible details and for hiring managers who want an accessible summary.</p>
-                </div>
-
-                <div class="w-full md:w-5/12 cascade-item">
-                    <img src="Real.png" alt="Pathology sample" class="rounded-xl shadow-lg">
-                </div>
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#050816]/90 backdrop-blur-md transform -translate-x-full transition-transform duration-300 z-50 p-6 md:hidden">
+    <div class="flex justify-end">
+        <button id="close-menu-btn" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <nav class="flex flex-col gap-4 text-xl mt-8">
+        <div class="relative">
+            <a class="nav-link text-white" href="#about" onclick="toggleMobileMenu()">About</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="about.html" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Learn more about me</a>
             </div>
-        </section>
-
-        <section id="overview" class="py-8">
-            <div class="glass p-6 rounded-xl reveal">
-                <h2 class="text-2xl font-semibold mb-3">Project Overview</h2>
-                <p class="text-gray-300 mb-3">Medical imaging datasets—especially histopathology slides—are sensitive and hard to share. This project investigates whether state-of-the-art generative models can produce synthetic datasets that retain biological signal and are useful for downstream tasks like nuclei detection.</p>
-
-                <h3 class="mt-4 text-lg font-semibold">Goals</h3>
-                <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
-                    <li>Create high-fidelity synthetic pathology images that preserve key biological features.</li>
-                    <li>Train detection models on synthetic data and measure transfer performance to real data.</li>
-                    <li>Open-source tooling and reproducible pipelines for research and clinical collaboration.</li>
-                </ul>
-
-                <h3 class="mt-4 text-lg font-semibold">Challenges</h3>
-                <ul class="list-disc list-inside text-gray-300 space-y-2">
-                    <li>Balancing realism with privacy—avoid leaking patient-identifiable artifacts.</li>
-                    <li>Mode collapse and training instability common in GANs.</li>
-                    <li>Quantitatively evaluating synthetic data quality for biological tasks.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="methods" class="py-8">
-            <div class="glass p-6 rounded-xl reveal">
-                <h2 class="text-2xl font-semibold mb-4">Methods</h2>
-
-                <h3 class="text-lg font-semibold mb-2">Data Preparation</h3>
-                <p class="text-gray-300 mb-3">Clinical samples were preprocessed to standardize staining and tile sizes. Annotation masks for nuclei were created using a combination of semi-automated segmentation and expert correction. Data augmentation included color normalization, rotation, and elastic transforms to improve robustness.</p>
-
-                <h3 class="text-lg font-semibold mb-2">Generative Models</h3>
-                <p class="text-gray-300 mb-3">We experimented with multiple generative families:</p>
-                <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
-                    <li><strong>DCGAN</strong> — baseline generative model for image synthesis.</li>
-                    <li><strong>Variational Autoencoders (VAE)</strong> — for controllable latent-space sampling.</li>
-                    <li><strong>StyleGAN3</strong> — produced the highest-fidelity patches; enabled style mixing for staining variations.</li>
-                </ul>
-
-                <h3 class="text-lg font-semibold mb-2">Downstream Model</h3>
-                <p class="text-gray-300 mb-3">We trained a <strong class="gradient-text">YOLOv8</strong>-based nuclei detector on synthetic datasets and evaluated it on held-out real-world test sets. Training leveraged mixed precision and staged curriculum learning (from small to larger tiles).</p>
-
-                <h3 class="text-lg font-semibold mb-2">Evaluation Metrics</h3>
-                <p class="text-gray-300 mb-2">We used multiple quantitative and qualitative measures:</p>
-                <ul class="list-disc list-inside text-gray-300 space-y-2">
-                    <li><strong>Detection mAP</strong> on real test sets (primary metric).</li>
-                    <li><strong>Fréchet Inception Distance (FID)</strong> to assess visual fidelity of synthetic images.</li>
-                    <li><strong>Biological feature agreement</strong> — distribution of nucleus sizes, intensities, and texture features compared between real and synthetic sets.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="results" class="py-8">
-            <div class="glass p-6 rounded-xl reveal">
-                <h2 class="text-2xl font-semibold mb-4">Results</h2>
-
-                <div class="grid md:grid-cols-3 gap-4 mb-6">
-                  <div class="card">
-                    <div class="muted">Model improvement</div>
-                    <div class="kpi">+40% (relative)</div>
-                    <div class="text-sm muted mt-2">Measured as relative increase in mAP when training with synthetic+real vs real-only (controlled experiment).</div>
-                  </div>
-                  <div class="card">
-                    <div class="muted">Detection accuracy</div>
-                    <div class="kpi">85% (YOLOv8 on real test set)</div>
-                    <div class="text-sm muted mt-2">Best model trained on synthetic data then fine-tuned on a small real set.</div>
-                  </div>
-                  <div class="card">
-                    <div class="muted">FID (StyleGAN3)</div>
-                    <div class="kpi">~18 (lower is better)</div>
-                    <div class="text-sm muted mt-2">Indicative of high visual fidelity for microscopy patches.</div>
-                  </div>
-                </div>
-
-                <h3 class="text-lg font-semibold mb-2">Visual Examples</h3>
-                <div class="grid md:grid-cols-2 gap-4 mb-4">
-                    <img src="Real.png" alt="Real sample 1">
-                    <img src="Synthetic.png" alt="Synthetic sample 1">
-                </div>
-
-                <h3 class="text-lg font-semibold mb-2">Ablation & Sensitivity</h3>
-                <p class="text-gray-300 mb-3">We ablated components such as: style augmentation, GAN loss variants, and progressive training schedule. Removing style mixing reduced downstream mAP by ~9% in our experiments.</p>
-
-                <h3 class="text-lg font-semibold mb-2">Privacy Considerations</h3>
-                <p class="text-gray-300 mb-3">We applied privacy checks to ensure the generator does not memorize or reproduce real patient patches. Techniques included nearest-neighbor tests in feature space and manual inspection by domain experts.</p>
-            </div>
-        </section>
-
-        <section id="repro" class="py-8">
-            <div class="glass p-6 rounded-xl reveal">
-                <h2 class="text-2xl font-semibold mb-4">Reproducibility & Code</h2>
-                <p class="text-gray-300 mb-3">All code, data-processing notebooks, and model checkpoints are available in the public repository. Below are quick pointers to reproduce core experiments locally or on a GPU cloud instance.</p>
-
-                <h3 class="text-lg font-semibold mb-2">Quick start (local)</h3>
-                <pre class="code"># clone repo
-git clone https://github.com/dassubhranil/pathology-gan-project.git
-cd pathology-gan-project
-# create environment
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-# run training (example)
-python train_stylegan3.py --config=configs/tiles.yaml --gpus=1
-                </pre>
-
-                <h3 class="text-lg font-semibold mb-2">Notebooks & checkpoints</h3>
-                <ul class="list-disc list-inside text-gray-300 space-y-2">
-                    <li>Notebooks for preprocessing, augmentation, and evaluation.</li>
-                    <li>Pretrained checkpoints (StyleGAN3) for quick sampling and evaluation.</li>
-                </ul>
-
-                <h3 class="text-lg font-semibold mb-2">Environment & Hardware</h3>
-                <p class="text-gray-300 mb-3">Recommended: NVIDIA GPUs (A100/3090/2080Ti), 16–64GB VRAM depending on tile size. We used mixed precision training & distributed sampling for larger models.</p>
-            </div>
-        </section>
-
-        <section id="contrib" class="py-8">
-            <div class="glass p-6 rounded-xl reveal">
-                <h2 class="text-2xl font-semibold mb-4">Project Contributors</h2>
-                <ul class="text-gray-300 list-disc list-inside space-y-1 mb-4">
-                    <li><strong>Aravind Dendukuri</strong> — data preprocessing & annotation pipeline</li>
-                    <li><strong>Atharva Shah</strong> — GAN model experiments & infrastructure</li>
-                    <li><strong>Maharshi Gor</strong> — evaluation, biological feature analysis</li>
-                    <li><strong>Subhranil Das</strong> — project lead, model integration, and reporting</li>
-                </ul>
-
-                <h3 class="text-lg font-semibold mb-2">Acknowledgements</h3>
-                <p class="text-gray-300">Thanks to domain experts for manual validation and to open-source libraries used across the project.</p>
-            </div>
-        </section>
-
-    
-    <footer class="reveal py-8">
-      <div class="container">
-        <div class="card cascade-item p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="flex items-center gap-4">
-            <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
-              LinkedIn
-            </a>
-            <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
-              GitHub
-            </a>
-          </div>
-          <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
         </div>
-      </div>
-    </footer>
-        </main>
+        <a class="nav-link text-white" href="#projects" onclick="toggleMobileMenu()">Projects</a>
+        <a class="nav-link text-white" href="#skills" onclick="toggleMobileMenu()">Skills</a>
+        <a class="nav-link text-white" href="#tools" onclick="toggleMobileMenu()">Tools</a>
+        <a class="nav-link text-white" href="#contact" onclick="toggleMobileMenu()">Contact</a>
+        
+        <div class="relative">
+            <a class="nav-link text-white" href="#" onclick="toggleMobileMenu()">Social</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">LinkedIn</a>
+                <a href="https://github.com/dassubhranil" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">GitHub</a>
+            </div>
+        </div>
+    </nav>
+</div>
 
-<!-- ===== Add this small JS near the end of <body> (once) ===== -->
-<!-- ===== Add this JS once (near end of <body>) ===== -->
+
+<main class="container px-4 max-w-screen-lg mx-auto">
+<section id="hero" class="py-16 text-center">
+<img src="https://placehold.co/200x200/2c3a4f/e5e7eb?text=Profile" alt="Profile" class="w-40 h-40 mx-auto rounded-full border-4 border-indigo-500 shadow-2xl mb-6" />
+<h1 class="text-4xl md:text-5xl font-extrabold mb-3">Hi, I'm <span class="gradient-text">Subhranil Das</span></h1>
+<p class="text-gray-300 max-w-2xl mx-auto">Data Scientist & Engineer with 3+ years building scalable ETL pipelines, cloud architectures (Azure, AWS, GCP), and ML models.</p>
+</section>
+
+<section id="about" class="reveal py-12">
+<h2 class="text-3xl font-extrabold mb-4 cascade-item text-center">About Me</h2>
+<div class="glass p-6 rounded-xl">
+<h3 class="text-xl font-semibold mb-2 cascade-item">The Data Storyteller 📊</h3>
+<p class="text-gray-300 mb-4 cascade-item">My path as a <strong class="gradient-text">data scientist</strong> has been a quest to turn chaotic data into clear, actionable stories. I love building <strong class="gradient-text">production-grade data platforms and ML pipelines</strong> that don't just work—they empower. I thrive on transforming messy, unstructured data into <strong class="gradient-text">reliable, user-friendly products</strong> that help teams make better, more informed decisions. It's a journey of discovery, and I love every step of it.</p>
+<p class="text-gray-300 mb-4 cascade-item">I believe a great model is like a great narrative—it has a clear beginning (clean data), a solid middle (robust feature engineering), and a powerful conclusion (actionable insights). I'm an <strong class="gradient-text">Architect of Digital Narratives</strong>, taking raw, unstructured data and molding it into a compelling product storyline. Just as I dive deep into every data point, I meticulously craft solutions for <strong class="gradient-text">user engagement</strong> and <strong class="gradient-text">feature optimization</strong>.</p>
+<p class="text-gray-300 cascade-item">I am obsessed with creating seamless, impactful experiences that keep users hooked. I am always ready to <strong class="gradient-text">analyze data</strong>, <strong class="gradient-text">gather feedback</strong>, and <strong class="gradient-text">iterate</strong> to ensure every product is a blockbuster hit. 🎬</p>
+<div class="mt-4 flex justify-center cascade-item">
+<a href="about.html" class="inline-block px-4 py-2 rounded-md" style="background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff">Learn more about me</a>
+</div>
+</div>
+</section>
+
+<section id="projects" class="reveal py-12">
+<h2 class="text-3xl font-extrabold mb-6 cascade-item">Projects</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<article class="card glass rounded-xl overflow-hidden individual">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Cancer_cells_%281%29.jpg" alt="Generative AI" class="w-full h-40 object-cover cascade-item"/>
+<div class="p-6">
+<h3 class="font-semibold gradient-text cascade-item">Generative AI for Pathology</h3>
+<p class="text-gray-300 mt-2 cascade-item">Used GANs to synthesize pathology datasets, boosting YOLOv8 accuracy by 40%.</p>
+<div class="mt-4 flex gap-3 text-sm cascade-item">
+<a href="https://github.com/dassubhranil/Generative-AI-for-Pathology-Datasets" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
+<a href="project1.html" class="px-3 py-1 rounded-md border">Learn More</a>
+</div>
+</div>
+</article>
+
+<article class="card glass rounded-xl overflow-hidden individual">
+<img src="https://t4.ftcdn.net/jpg/02/89/78/17/360_F_289781730_0OJWSY2pS9Q69KT4g2pr5liE8dmW9CL0.jpg" alt="Dynamic Commentary" class="w-full h-40 object-cover cascade-item"/>
+<div class="p-6">
+<h3 class="font-semibold gradient-text cascade-item">Dynamic Commentary Analytics</h3>
+<p class="text-gray-300 mt-2 cascade-item">Analyzed tonal shifts in esports commentary using ChatGPT + NLTK, improved sentiment analysis by 20%.</p>
+<div class="mt-4 flex gap-3 text-sm cascade-item">
+<a href="https://github.com/dassubhranil/Dynamic-Commentary" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
+<a href="project3.html" class="px-3 py-1 rounded-md border">Learn More</a>
+</div>
+</div>
+</article>
+<article class="card glass rounded-xl overflow-hidden individual">
+<img src="https://images.stockcake.com/public/b/7/4/b749e057-db41-42f2-8fec-ffcd6c95b6ea_large/illuminated-human-heart-stockcake.jpg" alt="Heart Disease Prediction" class="w-full h-40 object-cover cascade-item"/>
+<div class="p-6">
+<h3 class="font-semibold gradient-text cascade-item">Heart Disease Prediction App</h3>
+<p class="text-gray-300 mt-2 cascade-item">An interactive web app using a pre-trained XGBoost model with SHAP for transparent and interpretable risk prediction.</p>
+<div class="mt-4 flex gap-3 text-sm cascade-item">
+<a href="https://github.com/dassubhranil/Heart-Disease-App" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
+<a href="https://heart-disease-app-subhranildas.streamlit.app/" class="px-3 py-1 rounded-md border" target="_blank">Live Demo</a>
+<a href="project4.html" class="px-3 py-1 rounded-md border">Learn More</a>
+</div>
+</div>
+</article>
+<article class="card glass rounded-xl overflow-hidden individual">
+<img src="https://media.istockphoto.com/id/1429456277/photo/online-shopping-with-credit-car-or-cash-money.jpg?s=612x612&w=0&k=20&c=l2uK4zXLwopGjxP3L5Fxn0GFQ129U_qvVLqXvqlcwwM=" alt="E-Commerce Data Pipeline" class="w-full h-40 object-cover cascade-item"/>
+<div class="p-6">
+<h3 class="font-semibold gradient-text cascade-item">Turbocharging-Retail-Insights</h3>
+<p class="text-gray-300 mt-2 cascade-item">A robust data pipeline for online retail using Apache Airflow, dbt, and GCP for automated data flow and insights.</p>
+<div class="mt-4 flex gap-3 text-sm cascade-item">
+<a href="https://github.com/dassubhranil/Turbocharging-Retail-Insights" class="px-3 py-1 rounded-md border" target="_blank">Repo</a>
+<a href="project2.html" class="px-3 py-1 rounded-md border">Learn More</a>
+</div>
+</div>
+</article>
+</div>
+</section>
+
+<section id="skills" class="reveal py-12">
+<h2 class="text-3xl font-extrabold mb-6 cascade-item text-center">Skills</h2>
+<h3 class="text-xl font-semibold mb-4 cascade-item">Core Data Skills</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<article class="card glass p-6 rounded-xl cascade-item individual">
+<svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<circle cx="6" cy="12" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
+<circle cx="12" cy="6" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
+<circle cx="18" cy="12" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
+<path d="M7.4 11.3L11 8.9" class="gradient-stroke" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M13 8.9L16.6 11.3" class="gradient-stroke" stroke-width="1.2" stroke-linecap="round"/>
+</svg>
+<div>
+<h4 class="text-lg font-semibold">Feature Engineering<br/><span class="text-indigo-300">&amp; Modeling</span></h4>
+<p class="text-gray-300 mt-2">Design robust features, build supervised and unsupervised models, perform cross-validation and hyperparameter tuning. Experienced with scikit-learn, XGBoost, LightGBM and deep learning (TensorFlow/PyTorch).</p>
+</div>
+</article>
+
+<article class="card glass p-6 rounded-xl cascade-item individual">
+<svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<rect x="2.5" y="3.5" width="6" height="5" rx="1" class="gradient-stroke" stroke-width="1.2"/>
+<rect x="15.5" y="3.5" width="6" height="5" rx="1" class="gradient-stroke" stroke-width="1.2"/>
+<rect x="9" y="15.5" width="6" height="5" rx="1" class="gradient-stroke" stroke-width="1.2"/>
+<path d="M8 6.5h8" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
+<path d="M12 8.5v6.5" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
+</svg>
+<div>
+<h4 class="text-lg font-semibold">Data Pipelines<br/><span class="text-indigo-300">&amp; ETL</span></h4>
+<p class="text-gray-300 mt-2">Productionize ETL/ELT using Airflow, Spark, Azure Data Factory and Databricks. Focus on data quality, monitoring and idempotency.</p>
+</div>
+</article>
+
+<article class="card glass p-6 rounded-xl cascade-item individual">
+<svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<circle cx="6" cy="6" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
+<circle cx="18" cy="6" r="1.8" class="gradient-stroke" stroke-width="1.4"/>
+<circle cx="12" cy="13" r="2" class="gradient-stroke" stroke-width="1.4"/>
+<path d="M7.4 7.8L11 11" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
+<path d="M13 11L16.6 7.8" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
+<path d="M12 15v3" class="gradient-stroke" stroke-width="1.1" stroke-linecap="round"/>
+</svg>
+<div>
+<h4 class="text-lg font-semibold">Distributed Systems<br/><span class="text-indigo-300">&amp; Spark</span></h4>
+<p class="text-gray-300 mt-2">Tune Spark jobs, partitioning strategies and design distributed ETL at scale.</p>
+</div>
+</article>
+<article class="card glass p-6 rounded-xl cascade-item individual">
+<svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M12 8a4 4 0 100 8 4 4 0 000-8z" class="gradient-stroke" stroke-width="1.3" fill="none"/>
+<path d="M3.6 12a8.4 8.4 0 00.6 2.8l1.6-.5.2 1.9-1.6.6A8.4 8.4 0 008 20.4l.6-1.6 1.9.2.5 1.6A8.4 8.4 0 0015.2 20l-.5-1.6 1.9-.2.6 1.6A8.4 8.4 0 0020.4 16l-1.6-.6.2-1.9 1.6.5A8.4 8.4 0 0020.4 8l-1.6.6-.2-1.9 1.6-.5A8.4 8.4 0 0015.2 4l-.6 1.6-1.9-.2-.5-1.6A8.4 8.4 0 008 3.6l.6 1.6L6.7 5.4 6.2 3.8A8.4 8.4 0 003.6 8z" class="gradient-stroke" stroke-width="0.9"/>
+</svg>
+<div>
+<h4 class="text-lg font-semibold">MLOps<br/><span class="text-indigo-300">&amp; Deployment</span></h4>
+<p class="text-gray-300 mt-2">Deploy models with CI/CD, containers, orchestration and monitoring. Focus on reproducibility and drift detection.</p>
+</div>
+</article>
+<article class="card glass p-6 rounded-xl cascade-item individual">
+<svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<rect x="3" y="13" width="3" height="6" class="gradient-fill" opacity="0.75"/>
+<rect x="8.5" y="9" width="3" height="10" class="gradient-fill" opacity="0.75"/>
+<rect x="14" y="5" width="3" height="14" class="gradient-fill" opacity="0.75"/>
+<path d="M3 14.5l5-5 3 2 6-6" class="gradient-stroke" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<div>
+<h4 class="text-lg font-semibold">Visualization<br/><span class="text-indigo-300">&amp; Analysis</span></h4>
+<p class="text-gray-300 mt-2">Build clear dashboards and diagnostic plots using Tableau, PowerBI, Plotly and matplotlib. I focus on actionable metrics, KPI design and experiment analysis (A/B testing).</p>
+</div>
+</article>
+<article class="card glass p-6 rounded-xl cascade-item individual">
+<svg class="w-24 h-24 rounded-md object-cover" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M3 7l9-4 9 4v6l-9 4-9-4V7z" class="gradient-stroke" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 3v10" class="gradient-stroke" stroke-width="1.15" stroke-linecap="round"/>
+<path d="M7 10h10" class="gradient-stroke" stroke-width="1.0" stroke-linecap="round"/>
+</svg>
+<div>
+<h4 class="text-lg font-semibold">Data Modeling<br/><span class="text-indigo-300">&amp; Warehousing</span></h4>
+<p class="text-gray-300 mt-2">Design dimensional and normalized schemas, build dbt transformations, and optimize warehouse performance on Snowflake/BigQuery/Synapse.</p>
+</div>
+</article>
+</div>
+</section>
+
+<section id="tools" class="reveal py-12">
+<h2 class="text-3xl font-extrabold mb-6 cascade-item text-center">Tools</h2>
+<div class="grid grid-cols-3 sm:grid-cols-6 gap-4 mb-8">
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=Py'"/>
+<div>Python</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="Postgres" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=PG'"/>
+<div>Postgres</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://www.vectorlogo.zone/logos/apache_spark/apache_spark-icon.svg" alt="Spark" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=SP'"/>
+<div>Spark</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheairflow/apacheairflow-original.svg" alt="Airflow" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AF'"/>
+<div>Airflow</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AWS'"/>
+<div>AWS</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=AZ'"/>
+<div>Azure</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="data:image/svg+xml,%3Csvg fill='%23863696' viewBox='0 0 32 32' id='icon' xmlns='http://www.w3.org/2000/svg' stroke='%23863696'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%20%3Cdefs%3E%20%3Cstyle%3E%20.cls-1%20%7B%20fill:%20none;%20%7D%20%3C/style%3E%20%3C/defs%3E%20%3Cpath d='M27,24a2.9609,2.9609,0,0,0-1.2854.3008L21.4141,20H18v2h2.5859l3.7146,3.7148A2.9665,2.9665,0,0,0,24,27a3,3,0,1,0,3-3Zm0,4a1,1,0,1,1,1-1A1.0009,1.0009,0,0,1,27,28Z'%3E%3C/path%3E%20%3Cpath d='M27,13a2.9948,2.9948,0,0,0-2.8157,2H18v2h6.1843A2.9947,2.9947,0,1,0,27,13Zm0,4a1,1,0,1,1,1-1A1.0009,1.0009,0,0,1,27,17Z'%3E%3C/path%3E%20%3Cpath d='M27,2a3.0033,3.0033,0,0,0-3,3,2.9657,2.9657,0,0,0,.3481,1.373L20.5957,10H18v2h3.4043l4.3989-4.2524A2.9987,2.9987,0,1,0,27,2Zm0,4a1,1,0,1,1,1-1A1.0009,1.0009,0,0,1,27,6Z'%3E%3C/path%3E%20%3Cpath d='M18,6h2V4H18a3.9756,3.9756,0,0,0-3,1.3823A3.9756,3.9756,0,0,0,12,4H11a9.01,9.01,0,0,0-9,9v6a9.01,9.01,0,0,0,9,9h1a3.9756,3.9756,0,0,0,3-1.3823A3.9756,3.9756,0,0,0,18,28h2V26H18a2.0023,2.0023,0,0,1-2-2V8A2.0023,2.0023,0,0,1,18,6ZM12,26H11a7.0047,7.0047,0,0,1-6.92-6H6V18H4V14H7a3.0033,3.0033,0,0,0,3-3V9H8v2a1.0009,1.0009,0,0,1-1,1H4.08A7.0047,7.0047,0,0,1,11,6h1a2.0023,2.0023,0,0,1,2,2v4H12v2h2v4H12a3.0033,3.0033,0,0,0-3,3v2h2V21a1.0009,1.0009,0,0,1,1-1h2v4A2.0023,2.0023,0,0,1,12,26Z'%3E%3C/path%3E%20%3Crect id='_Transparent_Rectangle_' data-name='&lt;Transparent Rectangle&gt;' class='cls-1' width='32' height='32'%3E%3C/rect%3E%20%3C/g%3E%3C/svg%3E" alt="Databricks" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=DB'"/>
+<div>Databricks</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=DK'"/>
+<div>Docker</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=K8s'"/>
+<div>Kubernetes</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://logo.svgcdn.com/l/dbt-icon.png" alt="dbt" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=dbt'"/>
+<div>dbt</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://www.vectorlogo.zone/logos/snowflake/snowflake-icon.svg" alt="Snowflake" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=SF'"/>
+<div>Snowflake</div>
+</div>
+<div class="glass p-3 rounded-lg flex flex-col items-center justify-center text-sm cascade-item individual">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-10 h-10 mb-2" onerror="this.onerror=null;this.src='https://placehold.co/40x40/111827/e5e7eb?text=GIT'"/>
+<div>Git</div>
+</div>
+</div>
+</section>
+
+<section id="contact" class="reveal py-12">
+<h2 class="text-3xl font-extrabold mb-4 cascade-item">Contact</h2>
+<div class="glass p-6 rounded-xl cascade-item">
+<p class="text-gray-300">Interested in hiring me? I am actively seeking new opportunities and would love to hear from you.</p>
+<form id="contactForm" class="mt-4 space-y-3">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<input id="nameField" name="name" required placeholder="Your name" class="p-3 rounded-md bg-white/5 w-full" />
+<input id="emailField" name="email" type="email" required placeholder="Your email" class="p-3 rounded-md bg-white/5 w-full" />
+</div>
+<textarea id="messageField" name="message" required placeholder="Message" class="p-3 rounded-md bg-white/5 w-full h-32"></textarea>
+<div class="flex items-center gap-4">
+<button id="sendBtn" type="submit" class="px-5 py-3 rounded-md" style="background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff">Send Message</button>
+<div>
+<div id="formSuccess" class="form-msg success" role="status" aria-live="polite">Message sent — thank you!</div>
+<div id="formError" class="form-msg error" role="alert" aria-live="assertive">Failed to send — try again or email directly at <a class="underline" href="mailto:dassubhranil1998@gmail.com">dassubhranil1998@gmail.com</a></div>
+</div>
+</div>
+</form>
+</div>
+</section>
+
+<div style="height:40px"></div>
+
+<footer class="reveal py-6">
+<div class="card cascade-item p-6 rounded-xl flex flex-col items-center gap-8">
+<div class="mt-2 flex items-center justify-center gap-4">
+<a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
+LinkedIn
+</a>
+<a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
+GitHub
+</a>
+</div>
+<div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
+</div>
+</footer>
+
+</main>
+</div>
+
 <script>
-  (function () {
-    const openBtn = document.getElementById('mobileOpenBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const hamburger = document.getElementById('hamburger');
-    const closeIcon = document.getElementById('closeIcon');
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('-translate-x-full');
+    }
+}
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    if (!openBtn || !mobileMenu) return;
+// Smooth scroll for nav links (account for sticky header)
+const header = document.querySelector('header');
+function smoothScrollTo(id){
+const el = document.getElementById(id); if(!el) return; const offset = header ? header.offsetHeight + 12 : 80; const top = el.getBoundingClientRect().top + window.scrollY - offset; window.scrollTo({top, behavior: 'smooth'});
+}
+document.querySelectorAll('.nav-link').forEach(a=>{ a.addEventListener('click', e=>{ e.preventDefault(); const href=a.getAttribute('href')||''; if(href.startsWith('#')) smoothScrollTo(href.slice(1)); }); });
 
-    openBtn.addEventListener('click', () => {
-      const isHidden = mobileMenu.classList.toggle('hidden');
-      // toggle icons (hamburger vs close)
-      hamburger.classList.toggle('hidden', !isHidden); // show hamburger when hidden==true
-      closeIcon.classList.toggle('hidden', isHidden);
-      // update aria
-      const expanded = openBtn.getAttribute('aria-expanded') === 'true';
-      openBtn.setAttribute('aria-expanded', (!expanded).toString());
-    });
+// Contact form handling (EmailJS or mailto fallback)
+const form = document.getElementById('contactForm');
+const sendBtn = document.getElementById('sendBtn');
+const successMsg = document.getElementById('formSuccess');
+const errorMsg = document.getElementById('formError');
+function hideMsgs(){ successMsg.classList.remove('show'); errorMsg.classList.remove('show'); }
+hideMsgs();
+function isEmail(s){ return /\S+@\S+\.\S+/.test(s); }
+if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); hideMsgs(); const name=document.getElementById('nameField').value.trim(); const email=document.getElementById('emailField').value.trim(); const message=document.getElementById('messageField').value.trim(); if(!name||!email||!message||!isEmail(email)){ errorMsg.textContent='Please provide a valid name, email and message.'; errorMsg.classList.add('show'); return; } if(window.emailjs && typeof emailjs.send==='function'){ sendBtn.disabled=true; sendBtn.textContent='Sending...'; const params={from_name:name, from_email:email, message:message}; emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',params).then(()=>{ successMsg.classList.add('show'); form.reset(); }).catch(err=>{ console.error(err); errorMsg.classList.add('show'); }).finally(()=>{ sendBtn.disabled=false; sendBtn.textContent='Send Message'; }); } else { const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '\\n\\nFrom: ' + name + ' <' + email + '>')}`; window.location.href = mailto; } }); }
 
-    // close mobile menu when clicking any link inside it
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        if (!mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-          hamburger.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
-          openBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-  })();
+// ===== Reveal behavior for sections and cascade items =====
+// Change: Now targets both sections and the footer
+const revealSections = document.querySelectorAll('section.reveal,footer.reveal');
+const revealObserver = new IntersectionObserver((entries, obs) => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+const section = entry.target;
+section.classList.add('show');
+
+// reveal immediate cascade children with stagger
+const children = section.querySelectorAll('.cascade-item');
+children.forEach((child, idx) => {
+child.style.transitionDelay = (idx * 150) + 'ms';
+requestAnimationFrame(() => child.classList.add('show'));
+});
+
+// stop observing section so it stays visible
+obs.unobserve(section);
+}
+});
+}, { threshold: 0.12 });
+revealSections.forEach((sec, i) => { sec.style.transitionDelay = (i * 80) + 'ms'; revealObserver.observe(sec); });
+
+// Individual items inside sections (skills/projects/cards) reveal independently
+const individualItems = document.querySelectorAll('.cascade-item.individual');
+const individualObserver = new IntersectionObserver((entries, obs2) => {
+entries.forEach((entry, idx) => {
+if(entry.isIntersecting){
+entry.target.style.transitionDelay = (idx * 150) + 'ms';
+entry.target.classList.add('show');
+obs2.unobserve(entry.target);
+}
+});
+}, { threshold: 0.12 });
+individualItems.forEach(it => individualObserver.observe(it));
 </script>
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      // ===== Reveal logic for this page =====
-      const revealSections = document.querySelectorAll('.reveal');
-      const revealObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            const sec = entry.target;
-            sec.classList.add('show');
-            const children = sec.querySelectorAll('.cascade-item');
-            children.forEach((c, idx) => {
-              c.style.transitionDelay = (idx * 80) + 'ms';
-              requestAnimationFrame(() => c.classList.add('show'));
-            });
-            obs.unobserve(sec);
-          }
-        });
-      }, { threshold: 0.12 });
-      revealSections.forEach((s,i) => { s.style.transitionDelay = (i * 80) + 'ms'; revealObserver.observe(s); });
-    </script>
-    <script>
-  // Compute header height and set CSS variable so scroll offset matches actual header size.
-  function updateHeaderOffset() {
-    const header = document.querySelector('header');
-    if (!header) return;
-    // add a small extra gap (12px) so title isn't flush against header
-    const offset = Math.ceil(header.getBoundingClientRect().height) + 12;
-    document.documentElement.style.setProperty('--header-offset', offset + 'px');
-  }
-
-  window.addEventListener('load', updateHeaderOffset);
-  window.addEventListener('resize', updateHeaderOffset);
-  // run once in case DOM already loaded
-  updateHeaderOffset();
-</script>
-</body>
-</html>
 </body>
 </html>
