@@ -76,41 +76,68 @@
   .gradient-fill { fill: url(#pinkgrad); }
 </style>
 <body>
-   <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
-  <div class="container flex items-center justify-center py-4">
-    
-    <!-- Left nav -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="index.html#about">About</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
-        </div>
-      </div>
-      <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
+ <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
+    <div class="container flex items-center justify-between py-4">
+        <a href="index.html#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
+
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="index.html#about">About</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+                </div>
+            </div>
+            <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
             <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
-
-    </nav>
-
-    <!-- Centered brand -->
-    <a href="index.html#hero" class="text-xl font-extrabold gradient-text mx-8">Subhranil Das</a>
-
-    <!-- Right nav -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
-      <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
-      <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
-      
-      <!-- New Social dropdown -->
-      <div class="relative group py-2">
-        <a class="nav-link px-3" href="#">Social</a>
-        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
-          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
-          <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
-        </div>
-      </div>
-    </nav>
-  </div>
+            <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
+            <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
+            
+            <div class="relative group py-2">
+                <a class="nav-link px-3" href="#">Social</a>
+                <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+                    <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
+                    <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
+                </div>
+            </div>
+        </nav>
+    </div>
 </header>
+
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#050816]/90 backdrop-blur-md transform -translate-x-full transition-transform duration-300 z-50 p-6 md:hidden">
+    <div class="flex justify-end">
+        <button id="close-menu-btn" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <nav class="flex flex-col gap-4 text-xl mt-8">
+        <div class="relative">
+            <a class="nav-link text-white" href="index.html#about" onclick="toggleMobileMenu()">About</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="about.html" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Learn more about me</a>
+            </div>
+        </div>
+        <a class="nav-link text-white" href="index.html#projects" onclick="toggleMobileMenu()">Projects</a>
+        <a class="nav-link text-white" href="index.html#skills" onclick="toggleMobileMenu()">Skills</a>
+        <a class="nav-link text-white" href="index.html#tools" onclick="toggleMobileMenu()">Tools</a>
+        <a class="nav-link text-white" href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
+        
+        <div class="relative">
+            <a class="nav-link text-white" href="#" onclick="toggleMobileMenu()">Social</a>
+            <div class="flex flex-col gap-2 pl-4 mt-2">
+                <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">LinkedIn</a>
+                <a href="https://github.com/dassubhranil" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">GitHub</a>
+            </div>
+        </div>
+    </nav>
+</div>
 
   <main class="container max-w-screen-lg mx-auto">
     <section id="bio" class="reveal">
@@ -205,6 +232,12 @@
   </main>
 
   <script>
+    function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('-translate-x-full');
+    }
+}
     // ===== reveal logic for this page (same behavior as index) =====
 const revealSections = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries, obs) => {
