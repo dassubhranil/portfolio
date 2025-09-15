@@ -143,7 +143,7 @@ img { max-width:100%; display:block; }
 
 <main class="container px-4 max-w-screen-lg mx-auto">
 <section id="hero" class="py-16 text-center">
-<img src="https://placehold.co/200x200/2c3a4f/e5e7eb?text=Profile" alt="Profile" class="w-40 h-40 mx-auto rounded-full border-4 border-indigo-500 shadow-2xl mb-6" />
+<img src="profile_pic.jpeg" alt="Profile" class="w-40 h-40 mx-auto rounded-full border-4 border-indigo-500 shadow-2xl mb-6" />
 <h1 class="text-4xl md:text-5xl font-extrabold mb-3">Hi, I'm <span class="gradient-text">Subhranil Das</span></h1>
 <p class="text-gray-300 max-w-2xl mx-auto">Data Scientist & Engineer with 3+ years building scalable ETL pipelines, cloud architectures (Azure, AWS, GCP), and ML models.</p>
 </section>
@@ -408,6 +408,9 @@ const el = document.getElementById(id); if(!el) return; const offset = header ? 
 document.querySelectorAll('.nav-link').forEach(a=>{ a.addEventListener('click', e=>{ e.preventDefault(); const href=a.getAttribute('href')||''; if(href.startsWith('#')) smoothScrollTo(href.slice(1)); }); });
 
 // Contact form handling (EmailJS or mailto fallback)
+if (window.emailjs && typeof emailjs.init === 'function') {
+  emailjs.init('3lrGHiYIW44WmcNaU'); // <-- replace with your actual public key
+}
 const form = document.getElementById('contactForm');
 const sendBtn = document.getElementById('sendBtn');
 const successMsg = document.getElementById('formSuccess');
@@ -415,7 +418,7 @@ const errorMsg = document.getElementById('formError');
 function hideMsgs(){ successMsg.classList.remove('show'); errorMsg.classList.remove('show'); }
 hideMsgs();
 function isEmail(s){ return /\S+@\S+\.\S+/.test(s); }
-if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); hideMsgs(); const name=document.getElementById('nameField').value.trim(); const email=document.getElementById('emailField').value.trim(); const message=document.getElementById('messageField').value.trim(); if(!name||!email||!message||!isEmail(email)){ errorMsg.textContent='Please provide a valid name, email and message.'; errorMsg.classList.add('show'); return; } if(window.emailjs && typeof emailjs.send==='function'){ sendBtn.disabled=true; sendBtn.textContent='Sending...'; const params={from_name:name, from_email:email, message:message}; emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',params).then(()=>{ successMsg.classList.add('show'); form.reset(); }).catch(err=>{ console.error(err); errorMsg.classList.add('show'); }).finally(()=>{ sendBtn.disabled=false; sendBtn.textContent='Send Message'; }); } else { const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '\\n\\nFrom: ' + name + ' <' + email + '>')}`; window.location.href = mailto; } }); }
+if(form){ form.addEventListener('submit', function(e){ e.preventDefault(); hideMsgs(); const name=document.getElementById('nameField').value.trim(); const email=document.getElementById('emailField').value.trim(); const message=document.getElementById('messageField').value.trim(); if(!name||!email||!message||!isEmail(email)){ errorMsg.textContent='Please provide a valid name, email and message.'; errorMsg.classList.add('show'); return; } if(window.emailjs && typeof emailjs.send==='function'){ sendBtn.disabled=true; sendBtn.textContent='Sending...'; const params={from_name:name, from_email:email, message:message}; emailjs.send('service_1mlayhg','template_g2njhw7',params).then(()=>{ successMsg.classList.add('show'); form.reset(); }).catch(err=>{ console.error(err); errorMsg.classList.add('show'); }).finally(()=>{ sendBtn.disabled=false; sendBtn.textContent='Send Message'; }); } else { const mailto = `mailto:dassubhranil1998@gmail.com?subject=${encodeURIComponent('Website contact from '+name)}&body=${encodeURIComponent(message + '\\n\\nFrom: ' + name + ' <' + email + '>')}`; window.location.href = mailto; } }); }
 
 // ===== Reveal behavior for sections and cascade items =====
 // Change: Now targets both sections and the footer
