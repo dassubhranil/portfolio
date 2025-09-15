@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Generative AI for Pathology Datasets — Subhranil Das</title>
+    <meta name="description" content="A research project exploring the application of Generative Adversarial Networks (GANs) in medical imaging, specifically focusing on pathology datasets." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        header .nav-link {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        header .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #ec4899);
+            transition: width 0.6s ease-in-out;
+        }
+
+        header .nav-link:hover::after {
+            width: 100%;
+        }
+
+        :root { --bg: #050816; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
+
+        .glass { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.04); }
+        .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+        .btn { background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;display:inline-block}
+
+        .container { max-width:900px; margin:0 auto; padding:28px}
+        img { max-width:100%; display:block; }
+        
+        /* Reveal & cascade */
+        .reveal { opacity: 0; transform: translateX(-48px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); will-change: opacity, transform; }
+        .reveal.show { opacity: 1; transform: translateX(0); }
+        .cascade-item { opacity: 0; transform: translateX(-24px); transition: opacity 480ms ease, transform 480ms ease; }
+        .cascade-item.show { opacity: 1; transform: translateX(0); }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
+      <div class="container flex items-center justify-center py-4">
+        <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+          <div class="relative group py-2">
+            <a class="nav-link px-3" href="#about">About</a>
+            <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+              <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+            </div>
+          </div>
+          <a class="nav-link px-3 py-2" href="index.html#projects">Projects</a>
+        </nav>
+
+        <a href="index.html#hero" class="text-xl font-extrabold gradient-text mx-8">Subhranil Das</a>
+
+        <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+          <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
+          <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
+          <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+        <section class="py-12">
+            <div class="glass p-6 rounded-xl">
+                <h1 class="text-4xl md:text-5xl font-extrabold gradient-text mb-4">Generative AI for Pathology Datasets</h1>
+                <h3 class="text-gray-400 text-lg mb-8">Featured - Research Project | Medical Imaging | GANs</h3>
+                
+                <div class="flex gap-4 mb-8">
+                    <a href="https://github.com/dassubhranil/pathology-gan-project" class="btn" target="_blank">Repo</a>
+                    <a href="#" class="btn" target="_blank">Case Study</a>
+                </div>
+
+                <div class="portfolio-popup-thumbnail mb-8">
+                    <img src="https://placehold.co/1200x600/111827/e5e7eb?text=Generative+AI+for+Pathology" alt="Generative AI for Pathology" class="w-full h-auto rounded-xl">
+                </div>
+
+                <h2 class="text-2xl font-semibold mb-4 mt-8">Situation</h2>
+                <p class="text-gray-300 mb-4">
+                    [cite_start]Access to real patient data for medical imaging research is severely limited by <strong class="gradient-text">HIPAA regulations</strong>[cite: 46]. This data scarcity made it difficult to develop effective nuclear detection models, which are crucial for the detection of cancerous cells.
+                </p>
+
+                <h2 class="text-2xl font-semibold mb-4 mt-8">Task</h2>
+                <p class="text-gray-300 mb-4">
+                    [cite_start]The objective was to leverage <strong class="gradient-text">Generative Adversarial Networks (GANs)</strong> to synthesize nuclear detection datasets[cite: 46]. [cite_start]This approach aimed to overcome the data access challenges imposed by HIPAA and provide high-quality synthetic data to facilitate the training of accurate nuclei detection models[cite: 46].
+                </p>
+
+                <h2 class="text-2xl font-semibold mb-4 mt-8">Action</h2>
+                <p class="text-gray-300 mb-4">
+                    [cite_start]I led a project to develop generative modeling pipelines that utilized advanced GAN architectures such as <strong class="gradient-text">DCGAN, Variational Autoencoders, and StyleGAN3</strong> to create synthetic pathology datasets[cite: 47]. [cite_start]These pipelines produced synthetic data that addressed the data scarcity challenge by retaining <strong class="gradient-text">95% of the critical biological signal</strong> from real samples[cite: 11]. [cite_start]The synthetic datasets were then used to train a <strong class="gradient-text">YOLOv8 architecture</strong> to enhance the development of a nuclei detection model[cite: 47]. This comprehensive approach involved a multi-stage process from data synthesis to model training and validation.
+                </p>
+
+                <h2 class="text-2xl font-semibold mb-4 mt-8">Result</h2>
+                <p class="text-gray-300 mb-4">
+                    [cite_start]The project successfully enhanced the model's performance by <strong class="gradient-text">40%</strong>, with the YOLOv8 architecture achieving an impressive accuracy of <strong class="gradient-text">85%</strong> in nuclei detection[cite: 47]. [cite_start]By utilizing synthetic data, the research successfully addressed privacy concerns while contributing to the development of a more effective tool for <strong class="gradient-text">cancer detection</strong>[cite: 46].
+                </p>
+                
+                <h2 class="text-2xl font-semibold mb-4 mt-8">Project Contributors</h2>
+                <ul class="text-gray-300 list-disc list-inside space-y-1 mb-4">
+                    <li>Aravind Dendukuri (ardend)</li>
+                    <li>Atharva Shah (athshah)</li>
+                    <li>Maharshi Gor (magor)</li>
+                    <li>Subhranil Das (dassubh)</li>
+                </ul>
+                
+                <h2 class="text-2xl font-semibold mb-4 mt-8">Key Technologies & Keywords</h2>
+                <p class="text-gray-300">
+                    <strong>Keywords:</strong> Pathology Datasets, Generative Adversarial Networks (GANs), Medical Imaging, Synthetic Data, Nuclear Detection, Health Insurance Portability and Accountability Act (HIPAA), Cancer Detection, DCGAN, Variational Autoencoders, StyleGAN3, YOLOv8 Architecture
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="reveal py-6">
+      <div class="card cascade-item p-6 rounded-xl flex flex-col items-center gap-8">
+        <div class="mt-2 flex items-center justify-center gap-4">
+          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
+            LinkedIn
+          </a>
+          <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
+            GitHub
+          </a>
+        </div>
+        <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
+      </div>
+    </footer>
+    
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+        
+      // ===== Reveal logic for this page (same behavior as index) =====
+      const revealSections = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const sec = entry.target;
+            sec.classList.add('show');
+            const children = sec.querySelectorAll('.cascade-item');
+            children.forEach((c, idx) => {
+              c.style.transitionDelay = (idx * 80) + 'ms';
+              requestAnimationFrame(() => c.classList.add('show'));
+            });
+            obs.unobserve(sec);
+          }
+        });
+      }, { threshold: 0.15 });
+      revealSections.forEach((s,i) => { s.style.transitionDelay = (i * 80) + 'ms'; revealObserver.observe(s); });
+    </script>
+</body>
+</html>
