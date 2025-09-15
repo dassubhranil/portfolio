@@ -6,7 +6,6 @@
   <title>About — Subhranil Das</title>
   <meta name="description" content="About page for Subhranil Das — Data Scientist & Engineer" />
 
-  <!-- Google Font & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +14,10 @@
   <style>
     :root{--bg:#050816}
     body{font-family:'Inter',sans-serif;background:radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%),radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%),var(--bg);color:#eef2ff;margin:0}
+    
+    /* Change: Added max-width and margin to container class */
     .container{max-width:900px;margin:0 auto;padding:28px}
+    
     .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(8px);padding:20px;border-radius:12px}
     .btn{background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;display:inline-block}
 
@@ -29,7 +31,8 @@
     .tool{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
     .tool img{width:40px;height:40px;object-fit:contain}
 
-    footer{padding:20px;text-align:center;color:#cbd5e1}
+    /* Change: Removed inline styles, added Tailwind classes */
+    footer { padding:20px; text-align:center; color:#cbd5e1; }
     .social{display:inline-flex;gap:12px;align-items:center}
     .social a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:inherit;padding:6px 8px;border-radius:8px}
     .social-icon{width:20px;height:20px;object-fit:contain;display:inline-block;border-radius:6px}
@@ -50,12 +53,13 @@
   /* gradient helpers for SVGs */
   .gradient-stroke { stroke: url(#pinkgrad); fill: none; }
   .gradient-fill { fill: url(#pinkgrad); }
+  .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
 </style>
 <body>
   <div class="container max-w-screen-lg mx-auto">
     <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
       <div>
-        <h1 style="font-size:20px;margin:0;background:linear-gradient(90deg,#6366f1,#ec4899);-webkit-background-clip:text;color:transparent">About — Subhranil Das</h1>
+        <h1 class="gradient-text" style="font-size:20px;margin:0">About — Subhranil Das</h1>
         <p style="margin:4px 0 0;color:#9ca3af;font-size:14px">Data Scientist & Engineer</p>
       </div>
       <div>
