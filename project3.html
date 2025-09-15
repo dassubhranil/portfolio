@@ -8,59 +8,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    footer { position: relative; z-index: 20; }
+
+    /* 🔑 Fix: hidden mobile menu should not overlap content */
+    #mobile-menu.-translate-x-full {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    :root { --header-offset: 72px; }
+
+    section,
+    .section-title {
+      scroll-margin-top: var(--header-offset);
+    }
+
+    @media (max-width: 640px) {
+      :root { --header-offset: 56px; }
+    }
+    html { scroll-behavior: smooth; }
+    :root { --bg: #050816; --muted: #9ca3af; --glass-border: rgba(255,255,255,0.04); }
+    html,body { height:100%; }
+    body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
+
+    header .nav-link { position: relative; display: inline-block; text-decoration: none; }
+    header .nav-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366f1, #ec4899); transition: width 0.35s ease-in-out; }
+    header .nav-link:hover::after { width: 100%; }
+
+    .glass { backdrop-filter: blur(10px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid var(--glass-border); }
+    .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .btn { background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px }
+    .container { max-width:1100px; margin:0 auto; padding:36px }
+    img { max-width:100%; display:block; border-radius:12px; }
+    .kpi { font-weight:700; font-size:1.15rem; }
+    .muted { color:var(--muted); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+    .cascade-item { opacity: 0; transform: translateY(8px); transition: opacity 480ms ease, transform 480ms ease; }
+    .cascade-item.show { opacity: 1; transform: translateY(0); }
+
+    .section-title { font-size:48px; margin:28px 0 16px; font-weight:800; line-height:1.05; }
+    @media (max-width:640px){ .section-title{ font-size:28px; margin:18px 0 12px } .container{ padding:20px } }
+
+    .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass-border); padding:18px; border-radius:12px }
     
-        :root { --header-offset: 72px; }
-
-        /* ensure sections and titles leave room for fixed header when scrolled to */
-        section,
-        .section-title {
-          scroll-margin-top: var(--header-offset);
-        }
-
-        /* smaller offset on small screens (optional) */
-        @media (max-width: 640px) {
-          :root { --header-offset: 56px; }
-        }
-        html { scroll-behavior: smooth; } /* Enable smooth scrolling */
-        :root { --bg: #050816; --muted: #9ca3af; --glass-border: rgba(255,255,255,0.04); }
-        html,body { height:100%; }
-        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
-
-        header .nav-link { position: relative; display: inline-block; text-decoration: none; }
-        header .nav-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366f1, #ec4899); transition: width 0.35s ease-in-out; }
-        header .nav-link:hover::after { width: 100%; }
-
-        .glass { backdrop-filter: blur(10px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid var(--glass-border); }
-        .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
-        .btn { background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px }
-        .container { max-width:1100px; margin:0 auto; padding:36px }
-        img { max-width:100%; display:block; border-radius:12px; }
-        .kpi { font-weight:700; font-size:1.15rem; }
-        .muted { color:var(--muted); }
-
-        /* Reveal & cascade */
-        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); }
-        .reveal.show { opacity: 1; transform: translateY(0); }
-        .cascade-item { opacity: 0; transform: translateY(8px); transition: opacity 480ms ease, transform 480ms ease; }
-        .cascade-item.show { opacity: 1; transform: translateY(0); }
-
-        /* Responsive section title smaller on mobile */
-        .section-title { font-size:48px; margin:28px 0 16px; font-weight:800; line-height:1.05; }
-        @media (max-width:640px){ .section-title{ font-size:28px; margin:18px 0 12px } .container{ padding:20px } }
-
-        /* Card */
-        .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass-border); padding:18px; border-radius:12px }
-
-        /* subtle code block */
-        pre.code { background: rgba(0,0,0,0.25); padding:12px; border-radius:8px; overflow:auto; }
-
-    </style>
+    pre.code { background: rgba(0,0,0,0.25); padding:12px; border-radius:8px; overflow:auto; }
+  footer .cascade-item {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+  </style>
 </head>
-<body>
+<body class="antialiased">
 
   <!-- Header -->
- <!-- Header (desktop + mobile button) -->
-    <body class="antialiased">
   <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
     <div class="container flex items-center justify-between py-4">
         <a href="index.html#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
@@ -78,22 +81,18 @@
                     <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
                 </div>
             </div>
-<div class="relative group py-2">
-  <a class="nav-link px-3 py-2 inline-flex items-center" href="index.html#projects" aria-haspopup="true" aria-expanded="false">
-    Projects
-  </a>
-
-  <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-68 shadow-lg z-10">
-    <a href="project1.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Generative AI for pathology Datasets</a>
-    <a href="project3.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Dynamic Commentary Analytics</a>
-    <a href="project4.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Heart Disease Prediction App</a>
-    <a href="project2.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Turbocharging-Retail-Insights</a>
-  </div>
-</div>
+            <div class="relative group py-2">
+              <a class="nav-link px-3 py-2 inline-flex items-center" href="index.html#projects">Projects</a>
+              <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-68 shadow-lg z-10">
+                <a href="project1.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Generative AI for pathology Datasets</a>
+                <a href="project3.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Dynamic Commentary Analytics</a>
+                <a href="project4.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Heart Disease Prediction App</a>
+                <a href="project2.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Turbocharging-Retail-Insights</a>
+              </div>
+            </div>
             <a class="nav-link px-3 py-2" href="index.html#skills">Skills</a>
             <a class="nav-link px-3 py-2" href="index.html#tools">Tools</a>
             <a class="nav-link px-3 py-2" href="index.html#contact">Contact</a>
-            
             <div class="relative group py-2">
                 <a class="nav-link px-3" href="#">Social</a>
                 <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
@@ -103,98 +102,37 @@
             </div>
         </nav>
     </div>
-</header>
+  </header>
 
-<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#050816]/90 backdrop-blur-md transform -translate-x-full transition-transform duration-300 z-50 p-6 md:hidden">
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#050816]/90 backdrop-blur-md transform -translate-x-full transition-transform duration-300 z-50 p-6 md:hidden">
     <div class="flex justify-end">
-        <button id="close-menu-btn" class="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white/5" onclick="toggleMobileMenu()">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <button id="close-menu-btn" class="p-2 rounded-md" onclick="toggleMobileMenu()">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
     </div>
     <nav class="flex flex-col gap-4 text-xl mt-8">
-        <div class="relative">
-            <a class="nav-link text-white" href="index.html#about" onclick="toggleMobileMenu()">About</a>
-            <div class="flex flex-col gap-2 pl-4 mt-2">
-                <a href="about.html" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Learn more about me</a>
-            </div>
+      <a class="nav-link text-white" href="index.html#about" onclick="toggleMobileMenu()">About</a>
+      <div>
+        <a class="nav-link text-white" href="index.html#projects" onclick="toggleMobileMenu()">Projects</a>
+        <div class="flex flex-col gap-2 mt-2">
+          <a href="project1.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Generative AI for pathology Datasets</a>
+          <a href="project3.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Dynamic Commentary Analytics</a>
+          <a href="project4.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Heart Disease Prediction App</a>
+          <a href="project2.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Turbocharging-Retail-Insights</a>
         </div>
-<div>
-  <a class="nav-link text-white" href="index.html#projects" onclick="toggleMobileMenu(); smoothScrollTo('projects');">
-    Projects
-  </a>
-
-  <div class="flex flex-col gap-2 pl-4 mt-2">
-    <a href="project1.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Generative AI for pathology Datasets</a>
-    <a href="project3.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Dynamic Commentary Analytics</a>
-    <a href="project4.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Heart Disease Prediction App</a>
-    <a href="project2.html" class="block text-gray-400 hover:text-white" onclick="toggleMobileMenu()">Turbocharging-Retail-Insights</a>
-  </div>
-</div>
-<a class="nav-link text-white" href="index.html#skills" onclick="toggleMobileMenu()">Skills</a>
-        <a class="nav-link text-white" href="index.html#tools" onclick="toggleMobileMenu()">Tools</a>
-        <a class="nav-link text-white" href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
-        
-        <div class="relative">
-            <a class="nav-link text-white" href="#" onclick="toggleMobileMenu()">Social</a>
-            <div class="flex flex-col gap-2 pl-4 mt-2">
-                <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">LinkedIn</a>
-                <a href="https://github.com/dassubhranil" target="_blank" class="block px-2 text-gray-400 hover:text-white" onclick="toggleMobileMenu()">GitHub</a>
-            </div>
-        </div>
+      </div>
+      <a class="nav-link text-white" href="index.html#skills" onclick="toggleMobileMenu()">Skills</a>
+      <a class="nav-link text-white" href="index.html#tools" onclick="toggleMobileMenu()">Tools</a>
+      <a class="nav-link text-white" href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
+      <a class="nav-link text-white" href="https://www.linkedin.com/in/subhranil-das" target="_blank" onclick="toggleMobileMenu()">LinkedIn</a>
+      <a class="nav-link text-white" href="https://github.com/dassubhranil" target="_blank" onclick="toggleMobileMenu()">GitHub</a>
     </nav>
-</div>
+  </div>
 
-<!-- Toggle script (your exact function with small accessibility + scroll-lock additions) -->
-<script>
-  function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    const toggleBtn = document.getElementById('mobile-menu-btn');
-
-    if (!mobileMenu) return;
-
-    // toggle translate class (your requested approach)
-    mobileMenu.classList.toggle('-translate-x-full');
-
-    // manage aria-hidden on menu
-    const isHidden = mobileMenu.classList.contains('-translate-x-full');
-    mobileMenu.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
-
-    // update aria-expanded on the toggle button if present
-    if (toggleBtn) {
-      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-      toggleBtn.setAttribute('aria-expanded', String(!expanded));
-    }
-
-    // optional: lock page scroll when menu is open
-    if (!isHidden) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-  }
-
-  // close menu on Escape key for accessibility
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (mobileMenu && !mobileMenu.classList.contains('-translate-x-full')) {
-        toggleMobileMenu();
-      }
-    }
-  });
-
-  // Ensure mobile-menu initial state matches the CSS (hidden)
-  (function initMobileAria() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    const toggleBtn = document.getElementById('mobile-menu-btn');
-    if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
-    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
-  })();
-</script>
-
-  <main class="max-w-6xl mx-auto px-4 py-8" id="top">
+  <main class="max-w-6xl mx-auto px-4 py-8">
 
     <!-- Hero -->
     <section class="glass p-6 mb-6">
@@ -375,43 +313,42 @@ for idx, c in enumerate(chunks):
         </ul>
       </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="card cascade-item p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="flex items-center gap-4">
-            <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
-              LinkedIn
-            </a>
-            <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
-              GitHub
-            </a>
-          </div>
-          <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
-        </div>
-      </div>
-    </footer>
   </main>
 
-  <!-- Scripts -->
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="card cascade-item p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
+                LinkedIn
+              </a>
+              <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
+                GitHub
+              </a>
+        </div>
+        <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
+      </div>
+    </div>
+  </footer>
+
   <script>
-    // year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-
-    // adjust CSS variable for header height (so scroll-margin works)
-    function updateHeaderVar(){
-      const header = document.querySelector('header');
-      if(!header) return;
-      const h = Math.ceil(header.getBoundingClientRect().height);
-      document.documentElement.style.setProperty('--header-h', h + 'px');
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (!mobileMenu) return;
+      mobileMenu.classList.toggle('-translate-x-full');
+      const isHidden = mobileMenu.classList.contains('-translate-x-full');
+      mobileMenu.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+      if (!isHidden) document.body.classList.add('overflow-hidden');
+      else document.body.classList.remove('overflow-hidden');
     }
-    window.addEventListener('load', updateHeaderVar);
-    window.addEventListener('resize', updateHeaderVar);
-    updateHeaderVar();
+
+    // Year
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
   </script>
 </body>
 </html>
