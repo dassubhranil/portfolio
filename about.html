@@ -38,6 +38,19 @@
     @media (max-width:640px){.container{padding:18px}}
   </style>
 </head>
+  <svg width="0" height="0" style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="pinkgrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+  </defs>
+</svg>
+  <style>
+  /* gradient helpers for SVGs */
+  .gradient-stroke { stroke: url(#pinkgrad); fill: none; }
+  .gradient-fill { fill: url(#pinkgrad); }
+</style>
 <body>
   <div class="container max-w-screen-lg mx-auto">
     <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
