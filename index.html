@@ -80,10 +80,9 @@ header .nav-link:hover::after {
 <body class="antialiased">
   <div id="app">
     <header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
-  <div class="container flex items-center justify-center py-4">
-    
-    <!-- Left nav -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+  <div class="container flex items-center justify-center py-3 relative">
+    <!-- Desktop left nav (hidden on mobile) -->
+    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute left-4">
       <div class="relative group py-2">
         <a class="nav-link px-3" href="#about">About</a>
         <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
@@ -91,19 +90,29 @@ header .nav-link:hover::after {
         </div>
       </div>
       <a class="nav-link px-3 py-2" href="#projects">Projects</a>
-            <a class="nav-link px-3 py-2" href="#skills">Skills</a>
-
+      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
     </nav>
 
-    <!-- Centered brand -->
-    <a href="#hero" class="text-xl font-extrabold gradient-text mx-8">Subhranil Das</a>
+    <!-- MOBILE: left hamburger button -->
+    <button id="mobileOpenBtn" class="md:hidden absolute left-4 p-2 rounded-md text-gray-300" aria-label="Open menu" aria-expanded="false">
+      <!-- hamburger -->
+      <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+      </svg>
+      <!-- close icon hidden by default -->
+      <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
 
-    <!-- Right nav -->
-    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300">
+    <!-- Centered brand -->
+    <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
+
+    <!-- Desktop right nav (hidden on mobile) -->
+    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute right-4">
       <a class="nav-link px-3 py-2" href="#tools">Tools</a>
       <a class="nav-link px-3 py-2" href="#contact">Contact</a>
-      
-      <!-- New Social dropdown -->
+
       <div class="relative group py-2">
         <a class="nav-link px-3" href="#">Social</a>
         <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
@@ -112,6 +121,29 @@ header .nav-link:hover::after {
         </div>
       </div>
     </nav>
+
+    <!-- MOBILE: right action button (optional) -->
+    <div class="md:hidden absolute right-4">
+      <a href="#contact" class="px-3 py-2 rounded-md nav-link text-gray-300">Contact</a>
+    </div>
+  </div>
+
+  <!-- Mobile menu (collapsible) -->
+  <div id="mobileMenu" class="md:hidden bg-[#050816]/95 border-t border-white/5 hidden">
+    <div class="container py-4 flex flex-col gap-2">
+      <!-- mobile nav links -->
+      <a class="nav-link px-3 py-2" href="#about">About</a>
+      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
+      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
+      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
+      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
+
+      <div class="border-t border-white/5 mt-2 pt-2">
+        <div class="text-sm text-gray-300 px-3 pb-2">Social</div>
+        <a class="nav-link block px-3 py-2" href="https://www.linkedin.com/in/subhranil-das" target="_blank">LinkedIn</a>
+        <a class="nav-link block px-3 py-2" href="https://github.com/dassubhranil" target="_blank">GitHub</a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -422,5 +454,387 @@ header .nav-link:hover::after {
     }, { threshold: 0.12 });
     individualItems.forEach(it => individualObserver.observe(it));
   </script>
+  <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Generative AI for Pathology Datasets — Subhranil Das</title>
+    <meta name="description" content="A research project exploring GANs in medical imaging, focusing on synthesizing pathology datasets for nuclei detection and model training." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root { --header-offset: 72px; }
+
+/* ensure sections and titles leave room for fixed header when scrolled to */
+section,
+.section-title {
+  scroll-margin-top: var(--header-offset);
+}
+
+/* smaller offset on small screens (optional) */
+@media (max-width: 640px) {
+  :root { --header-offset: 56px; }
+}
+        html { scroll-behavior: smooth; } /* Enable smooth scrolling */
+        :root { --bg: #050816; --muted: #9ca3af; --glass-border: rgba(255,255,255,0.04); }
+        html,body { height:100%; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at 20% 20%, rgba(79,70,229,0.12), transparent 40%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.10), transparent 40%), var(--bg); color: #eef2ff; margin:0 }
+
+        header .nav-link { position: relative; display: inline-block; text-decoration: none; }
+        header .nav-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366f1, #ec4899); transition: width 0.35s ease-in-out; }
+        header .nav-link:hover::after { width: 100%; }
+
+        .glass { backdrop-filter: blur(10px); background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border: 1px solid var(--glass-border); }
+        .gradient-text { background: linear-gradient(90deg,#6366f1,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .btn { background:linear-gradient(90deg,#6366f1,#ec4899);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px }
+        .container { max-width:1100px; margin:0 auto; padding:36px }
+        img { max-width:100%; display:block; border-radius:12px; }
+        .kpi { font-weight:700; font-size:1.15rem; }
+        .muted { color:var(--muted); }
+
+        /* Reveal & cascade */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); }
+        .reveal.show { opacity: 1; transform: translateY(0); }
+        .cascade-item { opacity: 0; transform: translateY(8px); transition: opacity 480ms ease, transform 480ms ease; }
+        .cascade-item.show { opacity: 1; transform: translateY(0); }
+
+        /* Responsive section title smaller on mobile */
+        .section-title { font-size:48px; margin:28px 0 16px; font-weight:800; line-height:1.05; }
+        @media (max-width:640px){ .section-title{ font-size:28px; margin:18px 0 12px } .container{ padding:20px } }
+
+        /* Card */
+        .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass-border); padding:18px; border-radius:12px }
+
+        /* subtle code block */
+        pre.code { background: rgba(0,0,0,0.25); padding:12px; border-radius:8px; overflow:auto; }
+
+    </style>
+</head>
+<body class="antialiased">
+<!-- ===== Replace your existing header with this block ===== -->
+<header class="sticky top-0 z-50 bg-[#050816]/80 backdrop-blur-md border-b border-white/5">
+  <div class="container flex items-center justify-center py-3 relative">
+    <!-- Desktop left nav (hidden on mobile) -->
+    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute left-4">
+      <div class="relative group py-2">
+        <a class="nav-link px-3" href="#about">About</a>
+        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+          <a href="about.html" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">Learn more about me</a>
+        </div>
+      </div>
+      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
+      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
+    </nav>
+
+    <!-- MOBILE: left hamburger button -->
+    <button id="mobileOpenBtn" class="md:hidden absolute left-4 p-2 rounded-md text-gray-300" aria-label="Open menu" aria-expanded="false">
+      <!-- hamburger -->
+      <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
+      </svg>
+      <!-- close icon hidden by default -->
+      <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Centered brand -->
+    <a href="#hero" class="text-xl font-extrabold gradient-text">Subhranil Das</a>
+
+    <!-- Desktop right nav (hidden on mobile) -->
+    <nav class="hidden md:flex flex-row items-center gap-6 text-sm text-gray-300 absolute right-4">
+      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
+      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
+
+      <div class="relative group py-2">
+        <a class="nav-link px-3" href="#">Social</a>
+        <div class="absolute hidden group-hover:block bg-[#050816]/90 backdrop-blur-md border border-white/5 rounded-md mt-2 w-max shadow-lg z-10">
+          <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">LinkedIn</a>
+          <a href="https://github.com/dassubhranil" target="_blank" class="block px-4 py-2 text-gray-300 hover:bg-white/10 rounded-md whitespace-nowrap">GitHub</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MOBILE: right action button (optional) -->
+    <div class="md:hidden absolute right-4">
+      <a href="#contact" class="px-3 py-2 rounded-md nav-link text-gray-300">Contact</a>
+    </div>
+  </div>
+
+  <!-- Mobile menu (collapsible) -->
+  <div id="mobileMenu" class="md:hidden bg-[#050816]/95 border-t border-white/5 hidden">
+    <div class="container py-4 flex flex-col gap-2">
+      <!-- mobile nav links -->
+      <a class="nav-link px-3 py-2" href="#about">About</a>
+      <a class="nav-link px-3 py-2" href="#projects">Projects</a>
+      <a class="nav-link px-3 py-2" href="#skills">Skills</a>
+      <a class="nav-link px-3 py-2" href="#tools">Tools</a>
+      <a class="nav-link px-3 py-2" href="#contact">Contact</a>
+
+      <div class="border-t border-white/5 mt-2 pt-2">
+        <div class="text-sm text-gray-300 px-3 pb-2">Social</div>
+        <a class="nav-link block px-3 py-2" href="https://www.linkedin.com/in/subhranil-das" target="_blank">LinkedIn</a>
+        <a class="nav-link block px-3 py-2" href="https://github.com/dassubhranil" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+    <main class="container pt-28">
+        <section id="hero" class="reveal glass p-8 rounded-xl">
+            <div class="flex flex-col md:flex-row md:items-center gap-8">
+                <div class="flex-1">
+                    <h1 class="section-title gradient-text cascade-item">Generative AI for Pathology Datasets</h1>
+                    <p class="muted mb-4 cascade-item">Research project exploring the use of generative models to synthesize pathology image data and improve nuclei detection models while preserving patient privacy.</p>
+
+                    <div class="flex gap-3 items-center mb-6 cascade-item">
+                        <div class="card p-4">
+                            <div class="muted">Project type</div>
+                            <div class="kpi">Research • Medical Imaging</div>
+                        </div>
+                        <div class="card p-4">
+                            <div class="muted">Technologies</div>
+                            <div class="kpi">GANs • StyleGAN3 • YOLOv8 • PyTorch</div>
+                        </div>
+                        <div class="card p-4">
+                            <div class="muted">Impact</div>
+                            <div class="kpi">Model +40% • Accuracy 85%</div>
+                        </div>
+                    </div>
+
+                    <p class="cascade-item">This page documents the problem, approach, experiments, and results. It is intended for technical readers who want reproducible details and for hiring managers who want an accessible summary.</p>
+                </div>
+
+                <div class="w-full md:w-5/12 cascade-item">
+                    <img src="Real.png" alt="Pathology sample" class="rounded-xl shadow-lg">
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="py-8">
+            <div class="glass p-6 rounded-xl reveal">
+                <h2 class="text-2xl font-semibold mb-3">Project Overview</h2>
+                <p class="text-gray-300 mb-3">Medical imaging datasets—especially histopathology slides—are sensitive and hard to share. This project investigates whether state-of-the-art generative models can produce synthetic datasets that retain biological signal and are useful for downstream tasks like nuclei detection.</p>
+
+                <h3 class="mt-4 text-lg font-semibold">Goals</h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
+                    <li>Create high-fidelity synthetic pathology images that preserve key biological features.</li>
+                    <li>Train detection models on synthetic data and measure transfer performance to real data.</li>
+                    <li>Open-source tooling and reproducible pipelines for research and clinical collaboration.</li>
+                </ul>
+
+                <h3 class="mt-4 text-lg font-semibold">Challenges</h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Balancing realism with privacy—avoid leaking patient-identifiable artifacts.</li>
+                    <li>Mode collapse and training instability common in GANs.</li>
+                    <li>Quantitatively evaluating synthetic data quality for biological tasks.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="methods" class="py-8">
+            <div class="glass p-6 rounded-xl reveal">
+                <h2 class="text-2xl font-semibold mb-4">Methods</h2>
+
+                <h3 class="text-lg font-semibold mb-2">Data Preparation</h3>
+                <p class="text-gray-300 mb-3">Clinical samples were preprocessed to standardize staining and tile sizes. Annotation masks for nuclei were created using a combination of semi-automated segmentation and expert correction. Data augmentation included color normalization, rotation, and elastic transforms to improve robustness.</p>
+
+                <h3 class="text-lg font-semibold mb-2">Generative Models</h3>
+                <p class="text-gray-300 mb-3">We experimented with multiple generative families:</p>
+                <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
+                    <li><strong>DCGAN</strong> — baseline generative model for image synthesis.</li>
+                    <li><strong>Variational Autoencoders (VAE)</strong> — for controllable latent-space sampling.</li>
+                    <li><strong>StyleGAN3</strong> — produced the highest-fidelity patches; enabled style mixing for staining variations.</li>
+                </ul>
+
+                <h3 class="text-lg font-semibold mb-2">Downstream Model</h3>
+                <p class="text-gray-300 mb-3">We trained a <strong class="gradient-text">YOLOv8</strong>-based nuclei detector on synthetic datasets and evaluated it on held-out real-world test sets. Training leveraged mixed precision and staged curriculum learning (from small to larger tiles).</p>
+
+                <h3 class="text-lg font-semibold mb-2">Evaluation Metrics</h3>
+                <p class="text-gray-300 mb-2">We used multiple quantitative and qualitative measures:</p>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li><strong>Detection mAP</strong> on real test sets (primary metric).</li>
+                    <li><strong>Fréchet Inception Distance (FID)</strong> to assess visual fidelity of synthetic images.</li>
+                    <li><strong>Biological feature agreement</strong> — distribution of nucleus sizes, intensities, and texture features compared between real and synthetic sets.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="results" class="py-8">
+            <div class="glass p-6 rounded-xl reveal">
+                <h2 class="text-2xl font-semibold mb-4">Results</h2>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                  <div class="card">
+                    <div class="muted">Model improvement</div>
+                    <div class="kpi">+40% (relative)</div>
+                    <div class="text-sm muted mt-2">Measured as relative increase in mAP when training with synthetic+real vs real-only (controlled experiment).</div>
+                  </div>
+                  <div class="card">
+                    <div class="muted">Detection accuracy</div>
+                    <div class="kpi">85% (YOLOv8 on real test set)</div>
+                    <div class="text-sm muted mt-2">Best model trained on synthetic data then fine-tuned on a small real set.</div>
+                  </div>
+                  <div class="card">
+                    <div class="muted">FID (StyleGAN3)</div>
+                    <div class="kpi">~18 (lower is better)</div>
+                    <div class="text-sm muted mt-2">Indicative of high visual fidelity for microscopy patches.</div>
+                  </div>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-2">Visual Examples</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <img src="Real.png" alt="Real sample 1">
+                    <img src="Synthetic.png" alt="Synthetic sample 1">
+                </div>
+
+                <h3 class="text-lg font-semibold mb-2">Ablation & Sensitivity</h3>
+                <p class="text-gray-300 mb-3">We ablated components such as: style augmentation, GAN loss variants, and progressive training schedule. Removing style mixing reduced downstream mAP by ~9% in our experiments.</p>
+
+                <h3 class="text-lg font-semibold mb-2">Privacy Considerations</h3>
+                <p class="text-gray-300 mb-3">We applied privacy checks to ensure the generator does not memorize or reproduce real patient patches. Techniques included nearest-neighbor tests in feature space and manual inspection by domain experts.</p>
+            </div>
+        </section>
+
+        <section id="repro" class="py-8">
+            <div class="glass p-6 rounded-xl reveal">
+                <h2 class="text-2xl font-semibold mb-4">Reproducibility & Code</h2>
+                <p class="text-gray-300 mb-3">All code, data-processing notebooks, and model checkpoints are available in the public repository. Below are quick pointers to reproduce core experiments locally or on a GPU cloud instance.</p>
+
+                <h3 class="text-lg font-semibold mb-2">Quick start (local)</h3>
+                <pre class="code"># clone repo
+git clone https://github.com/dassubhranil/pathology-gan-project.git
+cd pathology-gan-project
+# create environment
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+# run training (example)
+python train_stylegan3.py --config=configs/tiles.yaml --gpus=1
+                </pre>
+
+                <h3 class="text-lg font-semibold mb-2">Notebooks & checkpoints</h3>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Notebooks for preprocessing, augmentation, and evaluation.</li>
+                    <li>Pretrained checkpoints (StyleGAN3) for quick sampling and evaluation.</li>
+                </ul>
+
+                <h3 class="text-lg font-semibold mb-2">Environment & Hardware</h3>
+                <p class="text-gray-300 mb-3">Recommended: NVIDIA GPUs (A100/3090/2080Ti), 16–64GB VRAM depending on tile size. We used mixed precision training & distributed sampling for larger models.</p>
+            </div>
+        </section>
+
+        <section id="contrib" class="py-8">
+            <div class="glass p-6 rounded-xl reveal">
+                <h2 class="text-2xl font-semibold mb-4">Project Contributors</h2>
+                <ul class="text-gray-300 list-disc list-inside space-y-1 mb-4">
+                    <li><strong>Aravind Dendukuri</strong> — data preprocessing & annotation pipeline</li>
+                    <li><strong>Atharva Shah</strong> — GAN model experiments & infrastructure</li>
+                    <li><strong>Maharshi Gor</strong> — evaluation, biological feature analysis</li>
+                    <li><strong>Subhranil Das</strong> — project lead, model integration, and reporting</li>
+                </ul>
+
+                <h3 class="text-lg font-semibold mb-2">Acknowledgements</h3>
+                <p class="text-gray-300">Thanks to domain experts for manual validation and to open-source libraries used across the project.</p>
+            </div>
+        </section>
+
+    
+    <footer class="reveal py-8">
+      <div class="container">
+        <div class="card cascade-item p-6 rounded-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <a href="https://www.linkedin.com/in/subhranil-das" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=IN'"/>
+              LinkedIn
+            </a>
+            <a href="https://github.com/dassubhranil" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white inline-flex items-center gap-2">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="social-icon" style="width:20px;height:20px;" onerror="this.onerror=null;this.src='https://placehold.co/20x20/111827/e5e7eb?text=GH'"/>
+              GitHub
+            </a>
+          </div>
+          <div style="color:#9ca3af;font-size:13px">© <span id="year"></span> Subhranil Das • Built with passion.</div>
+        </div>
+      </div>
+    </footer>
+        </main>
+
+<!-- ===== Add this small JS near the end of <body> (once) ===== -->
+<!-- ===== Add this JS once (near end of <body>) ===== -->
+<script>
+  (function () {
+    const openBtn = document.getElementById('mobileOpenBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    const closeIcon = document.getElementById('closeIcon');
+
+    if (!openBtn || !mobileMenu) return;
+
+    openBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      // toggle icons (hamburger vs close)
+      hamburger.classList.toggle('hidden', !isHidden); // show hamburger when hidden==true
+      closeIcon.classList.toggle('hidden', isHidden);
+      // update aria
+      const expanded = openBtn.getAttribute('aria-expanded') === 'true';
+      openBtn.setAttribute('aria-expanded', (!expanded).toString());
+    });
+
+    // close mobile menu when clicking any link inside it
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.add('hidden');
+          hamburger.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          openBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  })();
+</script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // ===== Reveal logic for this page =====
+      const revealSections = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            const sec = entry.target;
+            sec.classList.add('show');
+            const children = sec.querySelectorAll('.cascade-item');
+            children.forEach((c, idx) => {
+              c.style.transitionDelay = (idx * 80) + 'ms';
+              requestAnimationFrame(() => c.classList.add('show'));
+            });
+            obs.unobserve(sec);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealSections.forEach((s,i) => { s.style.transitionDelay = (i * 80) + 'ms'; revealObserver.observe(s); });
+    </script>
+    <script>
+  // Compute header height and set CSS variable so scroll offset matches actual header size.
+  function updateHeaderOffset() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    // add a small extra gap (12px) so title isn't flush against header
+    const offset = Math.ceil(header.getBoundingClientRect().height) + 12;
+    document.documentElement.style.setProperty('--header-offset', offset + 'px');
+  }
+
+  window.addEventListener('load', updateHeaderOffset);
+  window.addEventListener('resize', updateHeaderOffset);
+  // run once in case DOM already loaded
+  updateHeaderOffset();
+</script>
+</body>
+</html>
 </body>
 </html>
