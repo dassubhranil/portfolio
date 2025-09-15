@@ -12,6 +12,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
+        :root { --header-offset: 72px; }
+
+/* ensure sections and titles leave room for fixed header when scrolled to */
+section,
+.section-title {
+  scroll-margin-top: var(--header-offset);
+}
+
+/* smaller offset on small screens (optional) */
+@media (max-width: 640px) {
+  :root { --header-offset: 56px; }
+}
         html { scroll-behavior: smooth; } /* Enable smooth scrolling */
         :root { --bg: #050816; --muted: #9ca3af; --glass-border: rgba(255,255,255,0.04); }
         html,body { height:100%; }
@@ -266,5 +278,20 @@ python train_stylegan3.py --config=configs/tiles.yaml --gpus=1
       }, { threshold: 0.12 });
       revealSections.forEach((s,i) => { s.style.transitionDelay = (i * 80) + 'ms'; revealObserver.observe(s); });
     </script>
+    <script>
+  // Compute header height and set CSS variable so scroll offset matches actual header size.
+  function updateHeaderOffset() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    // add a small extra gap (12px) so title isn't flush against header
+    const offset = Math.ceil(header.getBoundingClientRect().height) + 12;
+    document.documentElement.style.setProperty('--header-offset', offset + 'px');
+  }
+
+  window.addEventListener('load', updateHeaderOffset);
+  window.addEventListener('resize', updateHeaderOffset);
+  // run once in case DOM already loaded
+  updateHeaderOffset();
+</script>
 </body>
 </html>
