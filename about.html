@@ -279,5 +279,32 @@ const revealSections = document.querySelectorAll('.reveal');
     }, { threshold: 0.15 });
     revealSections.forEach((s,i) => { s.style.transitionDelay = (i * 80) + 'ms'; revealObserver.observe(s); });
   </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+   <!-- Vercel Speed Insights (static/HTML sites) -->
+<script>
+  // Ensure the queue function exists
+  window.__vercel_speed_insights = window.__vercel_speed_insights || function () {
+    (window.__vercel_speed_insights_q = window.__vercel_speed_insights_q || []).push(arguments);
+  };
+</script>
+
+<!-- Runtime script served by Vercel after Speed Insights is enabled in project settings -->
+<script defer src="/_vercel/speed-insights/script.js"></script>
+
+<script>
+  // Hook into your contact form submit to flush vitals right after sending a message
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', () => {
+      try {
+        // Force a Speed Insights flush (like on blur/unload)
+        window.__vercel_speed_insights &&
+          window.__vercel_speed_insights('flush', { reason: 'contactFormSubmit' });
+      } catch (e) {
+        console.warn('Speed Insights flush failed', e);
+      }
+    });
+  }
+</script>
 </body>
 </html>
