@@ -1,0 +1,65 @@
+Subhranil Das
+Kolkata, WB|+91 8013008509|dassubhranil1998@gmail.com|LinkedIn|Github|Portfolio
+Summary
+Data Engineer with3+ yearsof experience buildingscalable, production-grade data pipelines and analytics platforms across
+cloud environments. Strong background inAzure,Microsoft F abricandA WS, with hands-on experience supportingBI,SaaS
+integrations, and data platforms forAI/ML-enabled products.
+Experiences
+Software Development Engineer II (Data Engineer) 12/2025 - Present
+Gruve AI Pune, Maharashtra
+• Designed and maintained end-to-end data pipelines onMicrosoft Fabric, enabling reliable ingestion, transformation, and delivery of
+analytics- and BI-ready datasets.
+• Built and maintainedBI dashboardsto track platform usage,operational metrics, and key businessKPIs, supporting data-driven
+decisions for stakeholders.
+• Enabled operational visibility and cost optimization by identifying inactive users with enterprise licenses viaautomated reporting
+pipelines.
+• Implemented scalable ingestion and transformation workflows to integrate externalSaaS platforms, includingGleanandOffice 365,
+into centralized analytics datasets via API-based pipelines.
+• Architected anautomated migration frameworkto orchestrate extraction and transfer of complete data fromSalesforce to
+Dynamics 365, reducing manual overhead while ensuring 100% data integrity through automated schema mapping.
+• Modeled, optimized, and queried analytical datasets inSnowflake, improving query performance and supporting downstream reporting
+and analytics workloads.
+Data Engineer 01/2024 - 07/2025
+School of Public Health, Indiana University Remote, USA
+• Migrated large datasets (20+ Excel and R files) from on-premise systems tocloud storage, leveraging efficient transfer methods and
+API integrations, which improved accessibility and collaboration across data engineering and data science teams.
+• Designed, built, and automated scalableETL pipelinesusingGoogle Cloud Composer (Airflow)andAWS Lambda, engineered
+for performance optimization, achieving a24% reduction in ingestion latencyand improved throughput.
+• Engineered a robust end-to-end data validation framework withAWS GlueandGitLab CI/CD, enabling automated schema and
+quality checks that reduced critical production data errors by15%.
+• Architected and implemented scalable storage solutions withAmazon RDSandS3, applying intelligent partitioning and compression
+strategies that handled a30% data volume increasewhile lowering monthly storage costs by15%.
+• Developed secure and compliant data pipelines and models adhering toHIPAAandGDPR, incorporatingAES-256 encryptionand
+privacy-preserving techniques to strengthen governance and reduce vulnerabilities by 25%.
+• Delivered interactiveTableau dashboardspowered by optimized SQL and statistical analyses, translating stakeholder needs into
+actionable insights that improved decision-making speed and accuracy by23%.
+Data Engineer 06/2021 - 07/2022
+eGain Corporation Pune, India
+• Engineered high-performance SQL and Python ETL pipelines usingAzure Data FactoryandAzure SQL Database, improving data
+flow reliability by30%across large-scale healthcare and finance datasets.
+• Conceptualized scalable data models and architectures inAzure SQLandDatabricks, enabling advanced analytics and efficient
+support for enterprise-scale reporting and workloads.
+• Implemented monitoring and alerting withAzure Monitorand custom SQL triggers, reducing critical incident resolution times by over
+25%and improving pipeline reliability.
+• Devised CI/CD-enabled data pipelines usingAzure DevOps, automating deployment, validation, and testing of ETL workflows to
+accelerate delivery speed and ensure production readiness.
+• Optimized end-to-end data pipelines by tuningSpark jobsinAzure Databricks, refining indexing strategies and partitioning
+schemas, achieving a15% improvementin query performance and dashboard responsiveness.
+• Produced interactivePower BI dashboardswith advancedDAXcalculations, integratingAzure Data Lakeand SQL sources to
+deliver actionable insights while reducing reporting lag by35%.
+Skills
+Programming: Python, SQL, PySpark
+Databases & Warehouses: PostgreSQL, MySQL, AWS Redshift
+Data Engineering: Apache Airflow, dbt, ETL/ELT, Data Modeling, Data Quality
+Cloud: Microsoft Fabric, Azure (Data Factory, Data Lake), Snowflake, AWS (S3, Glue)
+CI/CD and DevOps: Git, GitLab, Docker
+BI & Analytics: Power BI, Tableau
+Projects
+Dynamic-Commentary|Python, YouTube API, Pydub, ChatGPT API, NLTK, Data VisualizationLink
+• Directed a project on tonal shifts and narrative strategies in esports commentary, enhancing stakeholder insights, and improving
+sentiment analysis accuracy by20%usingChatGPT APIandNLTK’s VADER.
+• Created interactivePythonvisualizations to map sentiment plots, identifying key tonal shift moments of the commentators
+accompanied with that of the live audience chat with90%precision.
+Education
+Indiana University, Bloomington 08/2022 - 05/2024
+Master of Science in Data Science
