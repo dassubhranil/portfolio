@@ -195,7 +195,7 @@ export default function Home() {
                 <div className="flex items-start justify-between gap-4">
                   <p className="font-mono text-xs text-accent">{job.period}</p>
                   {job.logo && (
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-elevate p-2">
+                    <div className={`flex h-11 min-w-11 max-w-28 shrink-0 items-center justify-center rounded-xl border border-line px-2.5 py-2 ${job.logoBg === 'light' ? 'bg-gray-100' : 'bg-elevate'}`}>
                       <img src={job.logo} alt={`${job.company} logo`} className="max-h-full max-w-full object-contain" />
                     </div>
                   )}

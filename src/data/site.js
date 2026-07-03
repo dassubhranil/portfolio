@@ -153,6 +153,7 @@ export const experience = [
     role: 'Data Engineer',
     company: 'eGain Corporation',
     logo: '/logos/egain.png',
+    logoBg: 'light', // dark wordmark — needs a light backdrop
     period: '06/2021 — 07/2022',
     location: 'Pune, India',
     bullets: [

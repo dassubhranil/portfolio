@@ -61,7 +61,7 @@ export default function About() {
                       <p className="mt-1 text-sm font-medium text-muted">{job.company}</p>
                     </div>
                     {job.logo && (
-                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-line bg-elevate p-2.5">
+                      <div className={`flex h-14 min-w-14 max-w-32 shrink-0 items-center justify-center rounded-xl border border-line px-3 py-2.5 ${job.logoBg === 'light' ? 'bg-gray-100' : 'bg-elevate'}`}>
                         <img src={job.logo} alt={`${job.company} logo`} className="max-h-full max-w-full object-contain" />
                       </div>
                     )}
