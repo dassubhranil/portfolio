@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/project1.html", "destination": "/projects/generative-ai-pathology" },
+    { "source": "/project2.html", "destination": "/projects/retail-insights" },
+    { "source": "/project3.html", "destination": "/projects/commentary-analytics" },
+    { "source": "/project4.html", "destination": "/projects/heart-disease-prediction" },
+    { "source": "/about.html", "destination": "/about" }
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

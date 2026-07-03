@@ -1,0 +1,141 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import 'tailwindcss';
+
+@theme {
+  --color-base: #0a0a0f;
+  --color-surface: #111118;
+  --color-elevate: #16161f;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-ink: #fafafa;
+  --color-muted: #9ca3af;
+  --color-faint: #6b7280;
+  --color-accent: #3b82f6;
+  --color-accent-2: #22d3ee;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+}
+
+/* Animated gradient for the hero name / key accents */
+.gradient-text {
+  background: linear-gradient(110deg, #3b82f6, #22d3ee, #818cf8, #3b82f6);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 8s ease-in-out infinite;
+}
+
+@keyframes gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Faint dot grid used behind the hero */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 0%, black 30%, transparent 75%);
+}
+
+/* Top-of-page radial glow */
+.hero-glow {
+  background: radial-gradient(ellipse 60% 45% at 50% -5%, rgba(59, 130, 246, 0.18), transparent 70%);
+}
+
+/* Cards */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  border-color: rgba(59, 130, 246, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(59, 130, 246, 0.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card:hover { transform: none; }
+}
+
+/* Primary button with hover sheen */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(110deg, #3b82f6, #2563eb);
+  color: white;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.25) 50%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+.btn-primary:hover::after {
+  transform: translateX(120%);
+}
+
+.btn-ghost {
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+.btn-ghost:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.08);
+}
+
+/* Mono eyebrow labels */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Timeline spine */
+.timeline-spine {
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0.6), rgba(34, 211, 238, 0.15));
+}
+
+/* Prose styling for case-study bodies */
+.prose-dark p { color: var(--color-muted); line-height: 1.75; }
+.prose-dark strong { color: var(--color-ink); font-weight: 600; }
+.prose-dark li { color: var(--color-muted); line-height: 1.7; }
