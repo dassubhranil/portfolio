@@ -1,10 +1,11 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import Landing from './components/Landing'
 import Home from './pages/Home'
 import About from './pages/About'
 import CaseStudy from './pages/CaseStudy'
@@ -25,6 +26,20 @@ function Page({ children }) {
 
 export default function App() {
   const location = useLocation()
+  // Landing gate: shown once per browser session, only when arriving at the root
+  const [showLanding, setShowLanding] = useState(
+    () => location.pathname === '/' && !sessionStorage.getItem('entered'),
+  )
+  const enterSite = () => {
+    sessionStorage.setItem('entered', '1')
+    setShowLanding(false)
+  }
+
+  // Lock page scroll while the landing gate is open
+  useEffect(() => {
+    document.body.style.overflow = showLanding ? 'hidden' : ''
+    return () => (document.body.style.overflow = '')
+  }, [showLanding])
 
   // Scroll to top on route change (unless navigating to an anchor)
   useEffect(() => {
@@ -46,6 +61,7 @@ export default function App() {
 
   return (
     <>
+      <AnimatePresence>{showLanding && <Landing onEnter={enterSite} />}</AnimatePresence>
       <Nav />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
