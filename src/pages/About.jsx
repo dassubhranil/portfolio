@@ -52,11 +52,20 @@ export default function About() {
               <div className="relative">
                 <span className="absolute -left-[37px] top-2 h-3.5 w-3.5 rounded-full bg-accent shadow-[0_0_12px_rgba(59,130,246,0.8)] ring-4 ring-base md:-left-[45px]" />
                 <article className="card rounded-2xl p-8">
-                  <p className="font-mono text-xs text-accent">
-                    {job.period} · {job.location}
-                  </p>
-                  <h3 className="mt-2 font-display text-xl font-semibold text-ink">{job.role}</h3>
-                  <p className="mt-1 text-sm font-medium text-muted">{job.company}</p>
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="font-mono text-xs text-accent">
+                        {job.period} · {job.location}
+                      </p>
+                      <h3 className="mt-2 font-display text-xl font-semibold text-ink">{job.role}</h3>
+                      <p className="mt-1 text-sm font-medium text-muted">{job.company}</p>
+                    </div>
+                    {job.logo && (
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-line bg-elevate p-2.5">
+                        <img src={job.logo} alt={`${job.company} logo`} className="max-h-full max-w-full object-contain" />
+                      </div>
+                    )}
+                  </div>
                   <ul className="prose-dark mt-5 list-disc space-y-2.5 pl-5 text-sm">
                     {job.bullets.map((b, bi) => (
                       <li key={bi}>{b}</li>

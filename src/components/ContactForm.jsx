@@ -12,8 +12,15 @@ export default function ContactForm() {
   const onSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
+    const data = new FormData(e.target)
+    // Param names must match the EmailJS template variables (from_name / from_email / message)
+    const templateParams = {
+      from_name: data.get('name'),
+      from_email: data.get('email'),
+      message: data.get('message'),
+    }
     try {
-      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, { publicKey: PUBLIC_KEY })
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, { publicKey: PUBLIC_KEY })
       setStatus('sent')
       e.target.reset()
     } catch {

@@ -5,7 +5,7 @@ import GradientBanner from './GradientBanner'
 export default function ProjectCard({ project, delay = 0 }) {
   return (
     <Reveal delay={delay}>
-      <article className="card group flex h-full flex-col overflow-hidden rounded-2xl">
+      <article className={`card group flex h-full flex-col overflow-hidden rounded-2xl ${project.proprietary ? 'flagship' : ''}`}>
         <Link to={`/projects/${project.slug}`} className="block">
           {project.banner ? (
             <GradientBanner variant={project.banner} className="h-44 w-full" />

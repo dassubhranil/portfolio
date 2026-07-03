@@ -30,6 +30,8 @@ export default function CaseStudy() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="hero-glow absolute inset-0" />
+        <div className="aurora right-[10%] top-[5%] h-64 w-80" style={{ background: '#8b5cf6' }} />
+        <div className="aurora left-[5%] top-[30%] h-56 w-64" style={{ background: '#3b82f6', animationDelay: '-8s' }} />
         <div className="relative mx-auto max-w-4xl px-6 pb-16 pt-20">
           <Reveal>
             <nav className="font-mono text-xs text-faint">

@@ -9,6 +9,7 @@ export default function Section({ id, index, eyebrow, title, children, className
           {index} — {eyebrow}
         </p>
         <h2 className="font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">{title}</h2>
+        <div className="mt-4 h-px w-24 bg-gradient-to-r from-accent via-[#8b5cf6] to-accent-2" />
       </Reveal>
       <div className="mt-12">{children}</div>
     </section>

@@ -31,6 +31,19 @@ export default function App() {
     if (!location.hash) window.scrollTo(0, 0)
   }, [location.pathname, location.hash])
 
+  // Mouse-follow spotlight: set --mx/--my on any hovered .card (see index.css)
+  useEffect(() => {
+    const onMove = (e) => {
+      const card = e.target.closest?.('.card')
+      if (!card) return
+      const rect = card.getBoundingClientRect()
+      card.style.setProperty('--mx', `${e.clientX - rect.left}px`)
+      card.style.setProperty('--my', `${e.clientY - rect.top}px`)
+    }
+    document.addEventListener('mousemove', onMove, { passive: true })
+    return () => document.removeEventListener('mousemove', onMove)
+  }, [])
+
   return (
     <>
       <Nav />

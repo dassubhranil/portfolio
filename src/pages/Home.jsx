@@ -10,6 +10,8 @@ import ContactForm from '../components/ContactForm'
 import { projects } from '../data/projects'
 import { heroStats, skills, toolGroups, certifications, experience, resumeUrl } from '../data/site'
 
+const allTools = toolGroups.flatMap((g) => g.tools)
+
 const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
@@ -36,6 +38,10 @@ export default function Home() {
       <section className="relative overflow-hidden pt-16">
         <div className="hero-glow absolute inset-0" />
         <div className="dot-grid absolute inset-0" />
+        {/* Aurora color fields */}
+        <div className="aurora left-[8%] top-[12%] h-72 w-72" style={{ background: '#3b82f6' }} />
+        <div className="aurora right-[12%] top-[8%] h-80 w-96" style={{ background: '#8b5cf6', animationDelay: '-6s' }} />
+        <div className="aurora bottom-[15%] left-[35%] h-64 w-80" style={{ background: '#0ea5e9', animationDelay: '-11s' }} />
         <motion.div
           variants={reduce ? undefined : stagger}
           initial={reduce ? false : 'hidden'}
@@ -73,6 +79,15 @@ export default function Home() {
               </div>
             ))}
           </motion.div>
+          {/* Scroll hint */}
+          <motion.button
+            variants={rise}
+            onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })}
+            className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block"
+            aria-label="Scroll to work"
+          >
+            <span className="float-y block text-2xl text-faint transition-colors hover:text-accent">↓</span>
+          </motion.button>
         </motion.div>
       </section>
 
@@ -101,30 +116,39 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Tools */}
-        <div className="mt-16 space-y-10">
-          {toolGroups.map((group, gi) => (
-            <Reveal key={group.label} delay={gi * 0.05}>
-              <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-faint">{group.label}</p>
-              <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
-                {group.tools.map((tool) => (
-                  <div key={tool.name} className="card flex flex-col items-center gap-2 rounded-xl px-3 py-4">
-                    <img
-                      src={tool.icon}
-                      alt=""
-                      loading="lazy"
-                      className="h-8 w-8"
-                      onError={(e) => {
-                        e.currentTarget.onerror = null
-                        e.currentTarget.src = `https://placehold.co/32x32/16161f/9ca3af?text=${encodeURIComponent(tool.fallback || tool.name.slice(0, 3))}`
-                      }}
-                    />
-                    <span className="text-center text-xs text-muted">{tool.name}</span>
+        {/* Tools — dual infinite marquee (pauses on hover) */}
+        <div className="mt-16 space-y-4">
+          <Reveal>
+            <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-faint">Tools & platforms</p>
+          </Reveal>
+          {[allTools.slice(0, Math.ceil(allTools.length / 2)), allTools.slice(Math.ceil(allTools.length / 2))].map(
+            (row, ri) => (
+              <Reveal key={ri} delay={ri * 0.08}>
+                <div className="marquee py-1">
+                  <div className={`marquee-track ${ri === 1 ? 'reverse' : ''}`}>
+                    {[...row, ...row].map((tool, ti) => (
+                      <div
+                        key={`${tool.name}-${ti}`}
+                        className="flex shrink-0 items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2.5 transition-colors hover:border-accent/50"
+                      >
+                        <img
+                          src={tool.icon}
+                          alt=""
+                          loading="lazy"
+                          className="h-5 w-5"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null
+                            e.currentTarget.src = `https://placehold.co/20x20/16161f/9ca3af?text=${encodeURIComponent(tool.fallback || tool.name.slice(0, 2))}`
+                          }}
+                        />
+                        <span className="whitespace-nowrap text-sm text-muted">{tool.name}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </Reveal>
-          ))}
+                </div>
+              </Reveal>
+            ),
+          )}
         </div>
       </Section>
 
@@ -168,7 +192,14 @@ export default function Home() {
           {experience.map((job, i) => (
             <Reveal key={job.company} delay={i * 0.08}>
               <article className="card h-full rounded-2xl p-7">
-                <p className="font-mono text-xs text-accent">{job.period}</p>
+                <div className="flex items-start justify-between gap-4">
+                  <p className="font-mono text-xs text-accent">{job.period}</p>
+                  {job.logo && (
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-elevate p-2">
+                      <img src={job.logo} alt={`${job.company} logo`} className="max-h-full max-w-full object-contain" />
+                    </div>
+                  )}
+                </div>
                 <h3 className="mt-3 font-display text-lg font-semibold text-ink">{job.company}</h3>
                 <p className="mt-1 text-sm text-muted">{job.role}</p>
                 <p className="mt-3 font-mono text-xs text-faint">{job.location}</p>

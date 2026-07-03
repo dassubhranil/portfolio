@@ -126,6 +126,7 @@ export const experience = [
   {
     role: 'Software Development Engineer II (Data Engineer)',
     company: 'Gruve AI',
+    logo: '/logos/gruve.png',
     period: '12/2025 — Present',
     location: 'Pune, India',
     bullets: [
@@ -140,6 +141,7 @@ export const experience = [
   {
     role: 'Data Engineer',
     company: 'School of Public Health, Indiana University',
+    logo: '/logos/iu.svg',
     period: '01/2024 — 07/2025',
     location: 'Remote, USA',
     bullets: [
@@ -150,6 +152,7 @@ export const experience = [
   {
     role: 'Data Engineer',
     company: 'eGain Corporation',
+    logo: '/logos/egain.png',
     period: '06/2021 — 07/2022',
     location: 'Pune, India',
     bullets: [
