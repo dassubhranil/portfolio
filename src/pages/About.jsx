@@ -1,12 +1,21 @@
 import Section from '../components/Section'
 import Reveal from '../components/Reveal'
+import ScrollRail from '../components/ScrollRail'
 import { experience, education, certifications } from '../data/site'
+
+const railSections = [
+  { id: 'bio', label: 'About' },
+  { id: 'career', label: 'Experience' },
+  { id: 'education', label: 'Education' },
+]
 
 export default function About() {
   return (
     <div className="pt-16">
+      <ScrollRail sections={railSections} />
+
       {/* Bio */}
-      <Section index="01" eyebrow="About" title="The data architect">
+      <Section id="bio" index="01" eyebrow="About" title="The data architect">
         <div className="grid items-start gap-12 md:grid-cols-5">
           <Reveal className="md:col-span-2">
             <img
@@ -44,7 +53,7 @@ export default function About() {
       </Section>
 
       {/* Experience timeline */}
-      <Section index="02" eyebrow="Experience" title="Career so far">
+      <Section id="career" index="02" eyebrow="Experience" title="Career so far">
         <div className="relative ml-2 space-y-10 border-none pl-8 md:pl-10">
           <div className="timeline-spine absolute bottom-2 left-0 top-2 w-px" />
           {experience.map((job, i) => (
@@ -79,7 +88,7 @@ export default function About() {
       </Section>
 
       {/* Education + certification */}
-      <Section index="03" eyebrow="Background" title="Education & credentials">
+      <Section id="education" index="03" eyebrow="Background" title="Education & credentials">
         <div className="grid gap-5 md:grid-cols-3">
           {education.map((ed, i) => (
             <Reveal key={ed.school} delay={i * 0.08}>

@@ -7,10 +7,20 @@ import CountUp from '../components/CountUp'
 import ProjectCard from '../components/ProjectCard'
 import SkillIcon from '../components/SkillIcon'
 import ContactForm from '../components/ContactForm'
+import ScrollRail from '../components/ScrollRail'
 import { projects } from '../data/projects'
 import { heroStats, skills, toolGroups, certifications, experience, resumeUrl } from '../data/site'
 
 const allTools = toolGroups.flatMap((g) => g.tools)
+
+const railSections = [
+  { id: 'intro', label: 'Intro' },
+  { id: 'work', label: 'Work' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'certifications', label: 'Certifications' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'contact', label: 'Contact' },
+]
 
 const stagger = {
   hidden: {},
@@ -34,8 +44,10 @@ export default function Home() {
 
   return (
     <>
+      <ScrollRail sections={railSections} />
+
       {/* ---------- Hero ---------- */}
-      <section className="relative overflow-hidden pt-16">
+      <section id="intro" className="relative overflow-hidden pt-16">
         <div className="hero-glow absolute inset-0" />
         <div className="dot-grid absolute inset-0" />
         {/* Aurora color fields */}

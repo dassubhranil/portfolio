@@ -1,8 +1,31 @@
 import { Link, useParams, Navigate } from 'react-router-dom'
+import { useRef } from 'react'
+import { useInView } from 'motion/react'
 import Reveal from '../components/Reveal'
 import CountUp from '../components/CountUp'
 import GradientBanner from '../components/GradientBanner'
+import ScrollRail from '../components/ScrollRail'
 import { projects, getProject } from '../data/projects'
+
+const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+
+// Case-study section heading that lights up while its section is in view
+function SectionHeading({ index, children }) {
+  const ref = useRef(null)
+  const active = useInView(ref, { margin: '-40% 0px -50% 0px' })
+  return (
+    <div ref={ref}>
+      <p className={`eyebrow mb-2 transition-colors duration-500 ${active ? 'text-accent-2' : ''}`}>{index}</p>
+      <h2
+        className={`font-display text-2xl font-bold tracking-tight transition-colors duration-500 md:text-3xl ${
+          active ? 'gradient-text' : 'text-ink'
+        }`}
+      >
+        {children}
+      </h2>
+    </div>
+  )
+}
 
 // Render **bold** spans inside data-driven copy.
 function Rich({ text }) {
@@ -25,10 +48,16 @@ export default function CaseStudy() {
   const prev = projects[(idx - 1 + projects.length) % projects.length]
   const next = projects[(idx + 1) % projects.length]
 
+  const railSections = [
+    { id: 'cs-top', label: 'Overview' },
+    ...project.sections.slice(1).map((s) => ({ id: `cs-${slugify(s.heading)}`, label: s.heading })),
+  ]
+
   return (
     <div className="pt-16">
+      <ScrollRail sections={railSections} />
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section id="cs-top" className="relative overflow-hidden">
         <div className="hero-glow absolute inset-0" />
         <div className="aurora right-[10%] top-[5%] h-64 w-80" style={{ background: '#8b5cf6' }} />
         <div className="aurora left-[5%] top-[30%] h-56 w-64" style={{ background: '#3b82f6', animationDelay: '-8s' }} />
@@ -116,9 +145,8 @@ export default function CaseStudy() {
       <div className="mx-auto max-w-4xl space-y-16 px-6 py-20">
         {project.sections.map((section, si) => (
           <Reveal key={section.heading}>
-            <section>
-              <p className="eyebrow mb-2">{String(si + 1).padStart(2, '0')}</p>
-              <h2 className="font-display text-2xl font-bold tracking-tight text-ink md:text-3xl">{section.heading}</h2>
+            <section id={`cs-${slugify(section.heading)}`}>
+              <SectionHeading index={String(si + 1).padStart(2, '0')}>{section.heading}</SectionHeading>
               <div className="prose-dark mt-6 space-y-4">
                 {section.body?.map((p, pi) => (
                   <p key={pi}>
