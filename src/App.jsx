@@ -9,11 +9,13 @@ import Landing from './components/Landing'
 import Home from './pages/Home'
 import About from './pages/About'
 import CaseStudy from './pages/CaseStudy'
+import NotFound from './pages/NotFound'
 
 function Page({ children }) {
   const reduce = useReducedMotion()
   return (
     <motion.main
+      id="main"
       initial={reduce ? false : { opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
       exit={reduce ? undefined : { opacity: 0, y: -10 }}
@@ -26,9 +28,13 @@ function Page({ children }) {
 
 export default function App() {
   const location = useLocation()
-  // Landing gate: shown once per browser session, only when arriving at the root
+  // Landing gate: shown once per browser session, only when arriving at the
+  // root. Reduced-motion users skip it entirely — it's a motion moment.
   const [showLanding, setShowLanding] = useState(
-    () => location.pathname === '/' && !sessionStorage.getItem('entered'),
+    () =>
+      location.pathname === '/' &&
+      !sessionStorage.getItem('entered') &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   )
   const enterSite = () => {
     sessionStorage.setItem('entered', '1')
@@ -61,6 +67,9 @@ export default function App() {
 
   return (
     <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
       <AnimatePresence>{showLanding && <Landing onEnter={enterSite} />}</AnimatePresence>
       <Nav />
       <AnimatePresence mode="wait">
@@ -68,7 +77,7 @@ export default function App() {
           <Route path="/" element={<Page><Home /></Page>} />
           <Route path="/about" element={<Page><About /></Page>} />
           <Route path="/projects/:slug" element={<Page><CaseStudy /></Page>} />
-          <Route path="*" element={<Page><Home /></Page>} />
+          <Route path="*" element={<Page><NotFound /></Page>} />
         </Routes>
       </AnimatePresence>
       <Footer />

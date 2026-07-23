@@ -10,7 +10,7 @@ export default function Section({ id, index, eyebrow, title, children, className
   const active = useInView(ref, { margin: '-40% 0px -50% 0px' })
 
   return (
-    <section ref={ref} id={id} className={`mx-auto max-w-6xl px-6 py-24 md:py-32 ${className}`}>
+    <section ref={ref} id={id} className={`mx-auto max-w-6xl px-6 py-20 md:py-24 ${className}`}>
       <Reveal>
         <p className={`eyebrow mb-3 transition-colors duration-500 ${active ? 'text-accent-2' : ''}`}>
           {index} — {eyebrow}

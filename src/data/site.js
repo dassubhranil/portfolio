@@ -1,3 +1,5 @@
+import { projects } from './projects'
+
 export const socials = {
   linkedin: 'https://www.linkedin.com/in/subhranil-das',
   github: 'https://github.com/dassubhranil',
@@ -6,9 +8,11 @@ export const socials = {
 
 export const resumeUrl = '/Subhranil_Das_Data.pdf'
 
+export const siteUrl = 'https://subhranildas.vercel.app'
+
 export const heroStats = [
   { value: 3, suffix: '+', label: 'Years of experience' },
-  { value: 6, suffix: '', label: 'Featured projects' },
+  { value: projects.length, suffix: '', label: 'Featured projects' },
   { value: 4, suffix: '+', label: 'Cloud & data platforms' },
 ]
 
@@ -51,62 +55,62 @@ export const skills = [
   },
 ]
 
-const devicon = (name, variant = 'original') =>
-  `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${name}/${name}-${variant}.svg`
+// All icons are vendored into /public/icons (no third-party CDNs at runtime).
+const icon = (name) => `/icons/${name}.svg`
 
 export const toolGroups = [
   {
     label: 'Languages & Query',
     tools: [
-      { name: 'Python', icon: devicon('python') },
-      { name: 'SQL', icon: devicon('azuresqldatabase') },
-      { name: 'PySpark', icon: devicon('apachespark') },
-      { name: 'Bash', icon: devicon('bash') },
-      { name: 'R', icon: devicon('r') },
+      { name: 'Python', icon: icon('python') },
+      { name: 'SQL', icon: icon('sql') },
+      { name: 'PySpark', icon: icon('pyspark') },
+      { name: 'Bash', icon: icon('bash') },
+      { name: 'R', icon: icon('r') },
     ],
   },
   {
     label: 'Cloud & Data Platforms',
     tools: [
-      { name: 'Microsoft Fabric', icon: 'https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg', fallback: 'Fabric' },
-      { name: 'Azure', icon: devicon('azure') },
-      { name: 'AWS', icon: devicon('amazonwebservices', 'plain-wordmark') },
-      { name: 'GCP', icon: devicon('googlecloud') },
-      { name: 'Databricks', icon: 'https://www.vectorlogo.zone/logos/databricks/databricks-icon.svg', fallback: 'DBx' },
-      { name: 'Snowflake', icon: 'https://www.vectorlogo.zone/logos/snowflake/snowflake-icon.svg', fallback: 'SF' },
+      { name: 'Microsoft Fabric', icon: icon('microsoft'), fallback: 'Fabric' },
+      { name: 'Azure', icon: icon('azure') },
+      { name: 'AWS', icon: icon('aws') },
+      { name: 'GCP', icon: icon('gcp') },
+      { name: 'Databricks', icon: icon('databricks'), fallback: 'DBx' },
+      { name: 'Snowflake', icon: icon('snowflake'), fallback: 'SF' },
     ],
   },
   {
     label: 'Engineering & Orchestration',
     tools: [
-      { name: 'Airflow', icon: devicon('apacheairflow') },
-      { name: 'dbt', icon: devicon('dbt') },
-      { name: 'PostgreSQL', icon: devicon('postgresql') },
-      { name: 'MySQL', icon: devicon('mysql') },
-      { name: 'FastAPI', icon: devicon('fastapi') },
-      { name: 'React', icon: devicon('react') },
+      { name: 'Airflow', icon: icon('airflow') },
+      { name: 'dbt', icon: icon('dbt') },
+      { name: 'PostgreSQL', icon: icon('postgresql') },
+      { name: 'MySQL', icon: icon('mysql') },
+      { name: 'FastAPI', icon: icon('fastapi') },
+      { name: 'React', icon: icon('react') },
     ],
   },
   {
     label: 'BI, CRM & AI',
     tools: [
-      { name: 'Power BI', icon: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg', fallback: 'PBI' },
-      { name: 'Tableau', icon: 'https://cdn.worldvectorlogo.com/logos/tableau-software.svg', fallback: 'Tab' },
-      { name: 'Salesforce', icon: 'https://www.vectorlogo.zone/logos/salesforce/salesforce-icon.svg', fallback: 'SFDC' },
-      { name: 'Dynamics 365', icon: 'https://www.vectorlogo.zone/logos/microsoft/microsoft-icon.svg', fallback: 'D365' },
-      { name: 'OpenAI', icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg', fallback: 'AI' },
-      { name: 'Pandas', icon: devicon('pandas') },
+      { name: 'Power BI', icon: icon('powerbi'), fallback: 'PBI' },
+      { name: 'Tableau', icon: icon('tableau'), fallback: 'Tab' },
+      { name: 'Salesforce', icon: icon('salesforce'), fallback: 'SFDC' },
+      { name: 'Dynamics 365', icon: icon('microsoft'), fallback: 'D365' },
+      { name: 'OpenAI', icon: icon('openai'), fallback: 'AI' },
+      { name: 'Pandas', icon: icon('pandas') },
     ],
   },
   {
     label: 'DevOps & Infra',
     tools: [
-      { name: 'Git', icon: devicon('git') },
-      { name: 'Docker', icon: devicon('docker') },
-      { name: 'nginx', icon: devicon('nginx') },
-      { name: 'Azure DevOps', icon: devicon('azuredevops') },
-      { name: 'GitLab CI/CD', icon: devicon('gitlab') },
-      { name: 'Jupyter', icon: devicon('jupyter') },
+      { name: 'Git', icon: icon('git') },
+      { name: 'Docker', icon: icon('docker') },
+      { name: 'nginx', icon: icon('nginx') },
+      { name: 'Azure DevOps', icon: icon('azuredevops') },
+      { name: 'GitLab CI/CD', icon: icon('gitlab') },
+      { name: 'Jupyter', icon: icon('jupyter') },
     ],
   },
 ]

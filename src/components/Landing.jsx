@@ -1,16 +1,20 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import Leaf from './Leaf'
 
-// Full-screen landing gate shown on first visit of a session. Floating leaves
-// drift down the screen; "Enter" reveals the site with a smooth exit.
+// Full-screen landing gate shown on first visit of a session. It's a brand
+// moment, not a toll booth: content paints immediately, the site auto-enters
+// after AUTO_ENTER_MS (countdown ring around the leaf), and any input —
+// click, scroll, touch, or key — skips straight in.
+const AUTO_ENTER_MS = 2400
+
 const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.16, delayChildren: 0.3 } },
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
 }
 const rise = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.21, 0.6, 0.35, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.21, 0.6, 0.35, 1] } },
 }
 
 // Deterministic pseudo-random leaf placements
@@ -22,14 +26,34 @@ const LEAVES = Array.from({ length: 9 }, (_, i) => ({
   sway: 30 + ((i * 17) % 50),
 }))
 
+// Countdown ring geometry (r=33 → circumference ≈ 207.3)
+const RING_R = 33
+const RING_C = 2 * Math.PI * RING_R
+
 export default function Landing({ onEnter }) {
   const reduce = useReducedMotion()
+  const entered = useRef(false)
 
-  // Enter key also opens the site
+  // Auto-enter after the countdown; any input skips immediately
   useEffect(() => {
-    const onKey = (e) => e.key === 'Enter' && onEnter()
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    const enter = () => {
+      if (entered.current) return
+      entered.current = true
+      onEnter()
+    }
+    const timer = setTimeout(enter, AUTO_ENTER_MS)
+    const opts = { passive: true }
+    window.addEventListener('keydown', enter)
+    window.addEventListener('wheel', enter, opts)
+    window.addEventListener('touchmove', enter, opts)
+    window.addEventListener('pointerdown', enter, opts)
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('keydown', enter)
+      window.removeEventListener('wheel', enter)
+      window.removeEventListener('touchmove', enter)
+      window.removeEventListener('pointerdown', enter)
+    }
   }, [onEnter])
 
   return (
@@ -71,8 +95,31 @@ export default function Landing({ onEnter }) {
         animate="show"
         className="relative z-10 flex flex-col items-center px-6 text-center"
       >
-        <motion.div variants={rise} className="mb-8">
-          <Leaf id="land-mark" className="h-14 w-14 drop-shadow-[0_0_20px_rgba(139,92,246,0.8)]" />
+        <motion.div variants={rise} className="relative mb-8 flex h-20 w-20 items-center justify-center">
+          {/* Countdown ring — fills over AUTO_ENTER_MS, then the site enters */}
+          <svg className="absolute inset-0 -rotate-90" viewBox="0 0 80 80" aria-hidden="true">
+            <circle cx="40" cy="40" r={RING_R} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1.5" />
+            <circle
+              cx="40"
+              cy="40"
+              r={RING_R}
+              fill="none"
+              stroke="url(#gate-ring-grad)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeDasharray={RING_C}
+              strokeDashoffset={RING_C}
+              style={{ animation: `gate-ring ${AUTO_ENTER_MS}ms linear forwards` }}
+            />
+            <defs>
+              <linearGradient id="gate-ring-grad" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#3b82f6" />
+                <stop offset="0.55" stopColor="#8b5cf6" />
+                <stop offset="1" stopColor="#22d3ee" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <Leaf id="land-mark" className="h-12 w-12 drop-shadow-[0_0_20px_rgba(139,92,246,0.8)]" />
         </motion.div>
         <motion.p variants={rise} className="eyebrow mb-5">
           Portfolio — Data Engineer
@@ -92,7 +139,7 @@ export default function Landing({ onEnter }) {
           <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1.5">→</span>
         </motion.button>
         <motion.p variants={rise} className="mt-6 font-mono text-xs text-faint">
-          press enter ↵
+          entering automatically — scroll, click, or press any key
         </motion.p>
       </motion.div>
     </motion.div>

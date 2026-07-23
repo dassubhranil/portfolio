@@ -10,13 +10,21 @@ export default function ProjectCard({ project, delay = 0 }) {
           {project.banner ? (
             <GradientBanner variant={project.banner} className="h-44 w-full" />
           ) : (
-            <div className="h-44 w-full overflow-hidden bg-elevate">
-              <img
-                src={project.image}
-                alt={project.title}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-              />
+            <div className="art-frame h-44 w-full overflow-hidden">
+              <div className="art-window">
+                <div className="art-window-bar" aria-hidden="true">
+                  <i /><i /><i />
+                </div>
+                <div className="art-window-shot">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    width={project.imageSize?.[0]}
+                    height={project.imageSize?.[1]}
+                  />
+                </div>
+              </div>
             </div>
           )}
         </Link>

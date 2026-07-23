@@ -1,6 +1,7 @@
 import Section from '../components/Section'
 import Reveal from '../components/Reveal'
 import ScrollRail from '../components/ScrollRail'
+import usePageMeta from '../hooks/usePageMeta'
 import { experience, education, certifications } from '../data/site'
 
 const railSections = [
@@ -10,6 +11,11 @@ const railSections = [
 ]
 
 export default function About() {
+  usePageMeta({
+    title: 'About — Subhranil Das',
+    description:
+      'Data Engineer with 3+ years building governed, production-grade data systems — pipelines on Microsoft Fabric, Azure, and AWS, analytics in Snowflake, and the apps on top.',
+  })
   return (
     <div className="pt-16">
       <ScrollRail sections={railSections} />
@@ -18,11 +24,15 @@ export default function About() {
       <Section id="bio" index="01" eyebrow="About" title="The data architect">
         <div className="grid items-start gap-12 md:grid-cols-5">
           <Reveal className="md:col-span-2">
-            <img
-              src="/profile_pic.jpeg"
-              alt="Subhranil Das"
-              className="w-full max-w-sm rounded-2xl border border-line object-cover"
-            />
+            <div className="w-fit max-w-sm rounded-2xl bg-gradient-to-br from-accent via-[#8b5cf6] to-accent-2 p-[3px] shadow-[0_0_35px_rgba(139,92,246,0.25)]">
+              <img
+                src="/profile_pic.jpeg"
+                alt="Subhranil Das"
+                width="601"
+                height="605"
+                className="w-full rounded-[13px] object-cover"
+              />
+            </div>
           </Reveal>
           <div className="prose-dark space-y-5 md:col-span-3">
             <Reveal>

@@ -1,10 +1,12 @@
-import { Link, useParams, Navigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useRef } from 'react'
 import { useInView } from 'motion/react'
 import Reveal from '../components/Reveal'
 import CountUp from '../components/CountUp'
 import GradientBanner from '../components/GradientBanner'
 import ScrollRail from '../components/ScrollRail'
+import usePageMeta from '../hooks/usePageMeta'
+import NotFound from './NotFound'
 import { projects, getProject } from '../data/projects'
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
@@ -42,7 +44,11 @@ function Rich({ text }) {
 export default function CaseStudy() {
   const { slug } = useParams()
   const project = getProject(slug)
-  if (!project) return <Navigate to="/" replace />
+  usePageMeta({
+    title: project ? `${project.title} — Subhranil Das` : 'Page not found — Subhranil Das',
+    description: project?.blurb,
+  })
+  if (!project) return <NotFound />
 
   const idx = projects.indexOf(project)
   const prev = projects[(idx - 1 + projects.length) % projects.length]
@@ -133,9 +139,33 @@ export default function CaseStudy() {
         <Reveal>
           {project.banner ? (
             <GradientBanner variant={project.banner} className="h-56 w-full rounded-2xl border border-line md:h-72" />
+          ) : project.coverFrame ? (
+            <div className="cover-frame w-full rounded-2xl border border-line">
+              <div className="dot-grid absolute inset-0" />
+              <div className="art-window">
+                <div className="art-window-bar" aria-hidden="true">
+                  <i /><i /><i />
+                </div>
+                <div className="art-window-shot">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    width={project.imageSize?.[0]}
+                    height={project.imageSize?.[1]}
+                    className="w-full"
+                  />
+                </div>
+              </div>
+            </div>
           ) : (
             project.image && (
-              <img src={project.image} alt={project.title} className="max-h-[420px] w-full rounded-2xl border border-line object-cover" />
+              <img
+                src={project.image}
+                alt={project.title}
+                width={project.imageSize?.[0]}
+                height={project.imageSize?.[1]}
+                className="max-h-[420px] w-full rounded-2xl border border-line object-cover"
+              />
             )
           )}
         </Reveal>
@@ -178,7 +208,14 @@ export default function CaseStudy() {
                   <div className="grid gap-4 pt-2 sm:grid-cols-2">
                     {section.images.map((img) => (
                       <figure key={img.src}>
-                        <img src={img.src} alt={img.caption} loading="lazy" className="w-full rounded-xl border border-line" />
+                        <img
+                          src={img.src}
+                          alt={img.caption}
+                          loading="lazy"
+                          width={img.size?.[0]}
+                          height={img.size?.[1]}
+                          className="w-full rounded-xl border border-line"
+                        />
                         <figcaption className="mt-2 text-center font-mono text-xs text-faint">{img.caption}</figcaption>
                       </figure>
                     ))}
@@ -205,13 +242,19 @@ export default function CaseStudy() {
         <Reveal>
           <div className="grid gap-4 border-t border-line pt-10 sm:grid-cols-2">
             <Link to={`/projects/${prev.slug}`} className="card group rounded-2xl p-6">
-              <p className="font-mono text-xs text-faint">← Previous</p>
+              <p className="font-mono text-xs text-faint">
+                <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1 motion-reduce:transition-none">←</span>{' '}
+                Previous
+              </p>
               <p className="mt-2 font-display font-semibold text-ink transition-colors group-hover:text-accent">
                 {prev.title}
               </p>
             </Link>
             <Link to={`/projects/${next.slug}`} className="card group rounded-2xl p-6 text-right">
-              <p className="font-mono text-xs text-faint">Next →</p>
+              <p className="font-mono text-xs text-faint">
+                Next{' '}
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none">→</span>
+              </p>
               <p className="mt-2 font-display font-semibold text-ink transition-colors group-hover:text-accent">
                 {next.title}
               </p>

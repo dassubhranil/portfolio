@@ -100,7 +100,8 @@ export const projects = [
     slug: 'generative-ai-pathology',
     title: 'Generative AI for Pathology Datasets',
     banner: null,
-    image: '/Real.png',
+    image: '/Real.jpg',
+    imageSize: [900, 900],
     blurb:
       'Synthesizing privacy-preserving pathology image data with StyleGAN3 and boosting nuclei-detection models — +40% relative mAP improvement at 85% detection accuracy.',
     tags: ['StyleGAN3', 'YOLOv8', 'PyTorch', 'Medical Imaging'],
@@ -140,8 +141,8 @@ export const projects = [
           'Privacy checks: nearest-neighbor searches in deep feature space and pathologist review ensured no memorized patient patches.',
         ],
         images: [
-          { src: '/Real.png', caption: 'Real pathology patches' },
-          { src: '/Synthetic.png', caption: 'StyleGAN3 synthetic patches' },
+          { src: '/Real.jpg', size: [900, 900], caption: 'Real pathology patches' },
+          { src: '/Synthetic.jpg', size: [900, 900], caption: 'StyleGAN3 synthetic patches' },
         ],
       },
     ],
@@ -150,7 +151,9 @@ export const projects = [
     slug: 'retail-insights',
     title: 'Turbocharging Retail Insights',
     banner: null,
-    image: '/dBT.png',
+    image: '/dBT.jpg',
+    imageSize: [1024, 427],
+    coverFrame: true,
     blurb:
       'End-to-end e-commerce data pipeline on Apache Airflow and GCP — automated ingestion into BigQuery, Soda data-quality gates, dbt transformations, and Metabase dashboards.',
     tags: ['Airflow', 'BigQuery', 'dbt', 'Soda', 'Metabase'],
@@ -189,7 +192,9 @@ export const projects = [
     slug: 'commentary-analytics',
     title: 'Dynamic Commentary Analytics',
     banner: null,
-    image: '/output.png',
+    image: '/output.jpg',
+    imageSize: [1400, 743],
+    coverFrame: true,
     blurb:
       'NLP analysis of esports commentary — audio processing, AI transcription, and VADER sentiment timelines revealing how commentators craft narratives around in-game events.',
     tags: ['YouTube API', 'Pydub', 'OpenAI', 'NLTK', 'Plotly'],
@@ -230,7 +235,9 @@ export const projects = [
     slug: 'heart-disease-prediction',
     title: 'Heart Disease Prediction App',
     banner: null,
-    image: '/hda.png',
+    image: '/hda.jpg',
+    imageSize: [1400, 625],
+    coverFrame: true,
     blurb:
       'Interactive Streamlit app predicting heart-disease risk with XGBoost and explaining every prediction through SHAP waterfalls — deployed live.',
     tags: ['Streamlit', 'XGBoost', 'SHAP'],

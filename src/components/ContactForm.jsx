@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { socials } from '../data/site'
 
@@ -6,13 +6,25 @@ const SERVICE_ID = 'service_1mlayhg'
 const TEMPLATE_ID = 'template_g2njhw7'
 const PUBLIC_KEY = '3lrGHiYIW44WmcNaU'
 
+// Bots fill hidden fields and submit instantly; humans do neither.
+const MIN_FILL_MS = 3000
+
 export default function ContactForm() {
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const openedAt = useRef(Date.now())
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    setStatus('sending')
     const data = new FormData(e.target)
+
+    // Spam guard: honeypot filled or submitted inhumanly fast → quietly "succeed"
+    if (data.get('company') || Date.now() - openedAt.current < MIN_FILL_MS) {
+      setStatus('sent')
+      e.target.reset()
+      return
+    }
+
+    setStatus('sending')
     // Param names must match the EmailJS template variables (from_name / from_email / message)
     const templateParams = {
       from_name: data.get('name'),
@@ -47,6 +59,11 @@ export default function ContactForm() {
           <input id="email" name="email" type="email" required placeholder="you@example.com" className={inputCls} />
         </div>
       </div>
+      {/* Honeypot — invisible to people, irresistible to bots */}
+      <div className="absolute -left-[9999px] top-auto" aria-hidden="true">
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" tabIndex="-1" autoComplete="off" />
+      </div>
       <div className="mt-5">
         <label htmlFor="message" className="mb-2 block text-sm font-medium text-muted">
           Message
@@ -61,15 +78,17 @@ export default function ContactForm() {
         >
           {status === 'sending' ? 'Sending…' : 'Send message'}
         </button>
-        {status === 'sent' && <p className="text-sm text-accent-2">Message sent — thank you! I’ll get back to you soon.</p>}
-        {status === 'error' && (
-          <p className="text-sm text-red-400">
-            Something went wrong. Email me directly at{' '}
-            <a href={`mailto:${socials.email}`} className="underline">
-              {socials.email}
-            </a>
-          </p>
-        )}
+        <p aria-live="polite" className="text-sm">
+          {status === 'sent' && <span className="text-accent-2">Message sent — thank you! I’ll get back to you soon.</span>}
+          {status === 'error' && (
+            <span className="text-red-400">
+              Something went wrong. Email me directly at{' '}
+              <a href={`mailto:${socials.email}`} className="underline">
+                {socials.email}
+              </a>
+            </span>
+          )}
+        </p>
       </div>
     </form>
   )

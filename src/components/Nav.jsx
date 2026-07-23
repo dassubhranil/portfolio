@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence, useScroll, useSpring, useReducedMotion } from 'motion/react'
+import Leaf from './Leaf'
 import { resumeUrl } from '../data/site'
 
 const links = [
@@ -22,10 +23,12 @@ export default function Nav() {
 
   const isHome = location.pathname === '/'
 
-  // Scrollspy: highlight the section currently in view (home page only)
+  // Scrollspy: highlight the section currently in view (home page only).
+  // Sections without a nav link (e.g. experience) are still observed so the
+  // previous link's highlight clears instead of going stale.
   useEffect(() => {
     if (!isHome) return
-    const ids = links.filter((l) => l.anchor).map((l) => l.anchor)
+    const ids = ['intro', 'work', 'skills', 'certifications', 'experience', 'contact']
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => e.isIntersecting && setActive(e.target.id))
@@ -67,10 +70,13 @@ export default function Nav() {
           <Link
             to="/"
             onClick={() => setOpen(false)}
-            className="font-display text-lg font-bold tracking-tight"
+            className="group flex items-center gap-2.5 font-display text-lg font-bold tracking-tight"
             aria-label="Home"
           >
-            <span className="gradient-text">S</span>ubhranil <span className="gradient-text">D</span>as
+            <Leaf id="nav-leaf" className="h-5 w-5 transition-transform duration-700 ease-out group-hover:rotate-[360deg] motion-reduce:transition-none" />
+            <span>
+              <span className="gradient-text">S</span>ubhranil <span className="gradient-text">D</span>as
+            </span>
           </Link>
 
           {/* Desktop links */}
