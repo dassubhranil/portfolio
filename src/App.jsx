@@ -28,18 +28,10 @@ function Page({ children }) {
 
 export default function App() {
   const location = useLocation()
-  // Landing gate: shown once per browser session, only when arriving at the
-  // root. Reduced-motion users skip it entirely — it's a motion moment.
-  const [showLanding, setShowLanding] = useState(
-    () =>
-      location.pathname === '/' &&
-      !sessionStorage.getItem('entered') &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
-  const enterSite = () => {
-    sessionStorage.setItem('entered', '1')
-    setShowLanding(false)
-  }
+  // Landing gate: a ~2.4s auto-dismissing brand moment, shown on every full
+  // page load that arrives at the root (client-side navigation never re-opens it).
+  const [showLanding, setShowLanding] = useState(() => location.pathname === '/')
+  const enterSite = () => setShowLanding(false)
 
   // Lock page scroll while the landing gate is open
   useEffect(() => {

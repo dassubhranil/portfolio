@@ -86,6 +86,20 @@ html {
   border-radius: 4px;
 }
 
+/* Ambient color wash — fixed behind all content so no page ever reads as
+   flat black below the fold; the hero's own auroras still dominate up top */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 42% at 88% 10%, rgba(139, 92, 246, 0.13), transparent 62%),
+    radial-gradient(46% 40% at 5% 38%, rgba(59, 130, 246, 0.11), transparent 62%),
+    radial-gradient(52% 44% at 78% 96%, rgba(14, 165, 233, 0.10), transparent 62%);
+}
+
 /* Film grain — a single static noise tile over the whole viewport. Kills
    gradient banding and gives the dark fields printed depth. Not motion. */
 body::after {
