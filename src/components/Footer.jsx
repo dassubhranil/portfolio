@@ -4,19 +4,20 @@ import Leaf from './Leaf'
 import { socials } from '../data/site'
 
 // Sign-off block: visitors who reach the bottom are the warmest leads — close
-// with an ask, not just a copyright line. The home page already ends with the
-// full contact section, so there the footer collapses to the slim base bar.
+// with an ask, not just a copyright line. Pages that already end with the full
+// contact section (Home and the standalone /contact page) collapse the footer
+// to the slim base bar instead.
 export default function Footer() {
   const reduce = useReducedMotion()
   const { pathname } = useLocation()
-  const isHome = pathname === '/'
+  const slim = pathname === '/' || pathname === '/contact'
   const backToTop = () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
 
   return (
     <footer className="relative overflow-hidden border-t border-line">
-      {!isHome && <div className="footer-glow absolute inset-0" />}
-      <div className={`relative mx-auto max-w-6xl px-6 pb-8 ${isHome ? 'pt-8' : 'pt-16 text-center'}`}>
-        {!isHome && (
+      {!slim && <div className="footer-glow absolute inset-0" />}
+      <div className={`relative mx-auto max-w-6xl px-6 pb-8 ${slim ? 'pt-8' : 'pt-16 text-center'}`}>
+        {!slim && (
           <>
             <Leaf id="footer-leaf" className="mx-auto h-9 w-9" />
             <h2 className="mt-5 font-display text-2xl font-bold tracking-tight md:text-3xl">
@@ -50,7 +51,7 @@ export default function Footer() {
         )}
         <div
           className={`flex flex-col items-center justify-between gap-3 font-mono text-xs text-faint sm:flex-row ${
-            isHome ? '' : 'mt-14 border-t border-line pt-6'
+            slim ? '' : 'mt-14 border-t border-line pt-6'
           }`}
         >
           <p>© {new Date().getFullYear()} Subhranil Das · Pune, India</p>

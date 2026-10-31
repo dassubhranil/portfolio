@@ -7,7 +7,7 @@ export default function NotFound() {
   const reduce = useReducedMotion()
   usePageMeta({
     title: 'Page not found — Subhranil Das',
-    description: 'This page drifted off. Head back to the work.',
+    description: 'This page drifted off. Head back to the projects.',
   })
 
   return (
@@ -33,7 +33,7 @@ export default function NotFound() {
             Back home
           </Link>
           <Link to="/#work" className="btn-ghost rounded-lg px-6 py-3 text-sm font-medium">
-            View work
+            View projects
           </Link>
         </div>
       </motion.div>

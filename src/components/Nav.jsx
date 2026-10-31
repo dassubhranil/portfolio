@@ -5,42 +5,19 @@ import Leaf from './Leaf'
 import { resumeUrl } from '../data/site'
 
 const links = [
-  { label: 'Work', anchor: 'work' },
-  { label: 'Skills', anchor: 'skills' },
-  { label: 'Certifications', anchor: 'certifications' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', anchor: 'contact' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Skills', to: '/skills' },
+  { label: 'Background', to: '/background' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState('')
   const location = useLocation()
   const navigate = useNavigate()
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 40 })
-
-  const isHome = location.pathname === '/'
-
-  // Scrollspy: highlight the section currently in view (home page only).
-  // Sections without a nav link (e.g. experience) are still observed so the
-  // previous link's highlight clears instead of going stale.
-  useEffect(() => {
-    if (!isHome) return
-    const ids = ['intro', 'work', 'skills', 'certifications', 'experience', 'contact']
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => e.isIntersecting && setActive(e.target.id))
-      },
-      { rootMargin: '-30% 0px -60% 0px' },
-    )
-    ids.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
-    return () => observer.disconnect()
-  }, [isHome, location.key])
 
   // Lock body scroll while the mobile menu is open
   useEffect(() => {
@@ -50,12 +27,7 @@ export default function Nav() {
 
   const goTo = (link) => {
     setOpen(false)
-    if (link.to) return navigate(link.to)
-    if (isHome) {
-      document.getElementById(link.anchor)?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })
-    } else {
-      navigate(`/#${link.anchor}`)
-    }
+    navigate(link.to)
   }
 
   return (
@@ -82,7 +54,7 @@ export default function Nav() {
           {/* Desktop links */}
           <div className="hidden items-center gap-1 md:flex">
             {links.map((link) => {
-              const isActive = link.to ? location.pathname === link.to : isHome && active === link.anchor
+              const isActive = location.pathname === link.to
               return (
                 <button
                   key={link.label}

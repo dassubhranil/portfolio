@@ -97,6 +97,88 @@ export const projects = [
     confidential: true,
   },
   {
+    slug: 'llm-router',
+    title: 'LLM Router & FinOps Gateway',
+    proprietary: true,
+    banner: 'gateway',
+    article: 'https://medium.com/@dassubhranil1998/one-endpoint-every-model-73be318984b6',
+    blurb:
+      'A single endpoint every app calls instead of a specific model: it reads each request’s intent and routes it to the right-sized model, enforces per-team and per-key budgets, and turns opaque monthly AI bills into live, per-team spend you can see and shape.',
+    tags: ['LLM Gateway', 'Model Routing', 'FinOps', 'FastAPI', 'React'],
+    kpis: [
+      { label: 'Interface', value: 'One endpoint' },
+      { label: 'Routing', value: 'Intent-based, in-line' },
+      { label: 'Governance', value: 'Per-team & per-key budgets' },
+    ],
+    sections: [
+      {
+        heading: 'Overview',
+        body: [
+          'Every company’s AI journey starts the same way: someone drops an API key into a service and ships a feature. Six months later nobody can answer three questions — what are we spending on AI, who’s spending it, and are we using the right model for each job, or paying premium rates to answer “hello”? The bill arrives as one big number with no story attached.',
+          'This gateway closes that gap with one design principle: **applications talk to one endpoint, and everything smart happens behind it.** A developer just asks for “the best model for this,” and the platform decides — so right-sizing, governance, and observability become the path of least resistance instead of an extra chore.',
+        ],
+      },
+      {
+        heading: 'What it does',
+        bullets: [
+          '**It routes.** The gateway reads the intent of each request and sends it to the right tier — a fast, cheap model for easy work, a heavyweight only when the task needs one. Classification happens **in-line with negligible latency**, and the policy is **tunable by the people who run the platform**, adapting as real traffic teaches it what “easy” and “hard” look like in a given domain.',
+          '**It governs.** Every team and key gets its own budget, limits, and allowed-model list. When a key hits its ceiling it **stops automatically — before the overspend**, not after the invoice. Access is tied to real identities, so permissions follow people rather than shared secrets.',
+          '**It remembers.** Every request leaves a trace — which tier handled it, what it cost, who made it — turning the monthly mystery into a **live, queryable picture of spend by team, key, and user**, available the moment it happens.',
+        ],
+      },
+      {
+        heading: 'Impact',
+        bullets: [
+          'The important shift was in **default behavior**: calling the one endpoint quietly became the right-sized thing, so trivial work stopped landing on expensive models without anyone having to police it.',
+          'Adding or swapping a model stopped being a cross-codebase migration and became a **configuration change** nobody downstream even noticed.',
+          'With spend finally attributable to the teams creating it, the conversation moved from “AI is scary and expensive” to “here’s our budget, here’s our usage, here’s where we optimize.”',
+        ],
+      },
+    ],
+    confidential: true,
+  },
+  {
+    slug: 'agent-studio',
+    title: 'Agent Studio — Multi-Agent Platform',
+    proprietary: true,
+    banner: 'agents',
+    blurb:
+      'A governed platform for building and running teams of AI agents: a coordinating agent routes work to specialists, every sensitive action waits for human approval, agents act with each user’s own credentials, and every run is traced with its cost.',
+    tags: ['Multi-Agent', 'Agent Governance', 'RBAC', 'FastAPI', 'React'],
+    kpis: [
+      { label: 'Pattern', value: 'Coordinator → specialists' },
+      { label: 'Writes', value: 'Human-approved' },
+      { label: 'Runtimes', value: 'Framework-agnostic' },
+    ],
+    sections: [
+      {
+        heading: 'Overview',
+        body: [
+          'A studio where people assemble **teams of AI agents** and watch them work, without writing code. A task goes to a coordinating agent that routes it to the right specialist; specialists hand finished work back, and the person stays in control throughout.',
+          'The platform is **governed by default** — every tool call is permission-checked, every sensitive action waits for a human, and every run is recorded — so teams can adopt agents without giving up oversight.',
+        ],
+      },
+      {
+        heading: 'Capabilities',
+        bullets: [
+          '**Delegation** — a coordinating agent breaks a task down and hands pieces to specialist agents, running several in parallel and composing their answers.',
+          '**Framework-agnostic runtime** — the same agent definition runs on multiple underlying agent frameworks behind one common contract, so the platform isn’t locked to a single vendor.',
+          '**Personal credentials** — an agent acts on the **acting user’s own connections**, never a shared key, so access follows the person.',
+          '**Scheduling & versioning** — agents can run on a schedule, and every change to an agent is a numbered version with one-click rollback.',
+        ],
+      },
+      {
+        heading: 'Governance & trust',
+        bullets: [
+          '**Approval-gated writes** — anything that changes the outside world is queued and only runs after a person approves it, pinned to who approved it and what they saw.',
+          '**Access controls** — agents and skills are private, shared, or public, and an agent can only hand work to agents the person running it is allowed to use.',
+          '**Full observability** — every run is captured step by step with its model spend, so there’s always an audit trail of what an agent did and what it cost.',
+        ],
+      },
+    ],
+    confidential: true,
+  },
+  {
     slug: 'generative-ai-pathology',
     title: 'Generative AI for Pathology Datasets',
     banner: null,

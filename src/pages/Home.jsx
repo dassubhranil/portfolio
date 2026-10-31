@@ -1,31 +1,20 @@
-import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
-import Section from '../components/Section'
-import Reveal from '../components/Reveal'
 import CountUp from '../components/CountUp'
-import ProjectCard from '../components/ProjectCard'
-import SkillIcon from '../components/SkillIcon'
-import ContactForm from '../components/ContactForm'
 import PipelineCard from '../components/PipelineCard'
 import ScrollRail from '../components/ScrollRail'
+import WorkSection from '../components/sections/WorkSection'
+import SkillsSection from '../components/sections/SkillsSection'
+import ExperienceSection from '../components/sections/ExperienceSection'
+import ContactSection from '../components/sections/ContactSection'
 import usePageMeta from '../hooks/usePageMeta'
-import { projects } from '../data/projects'
-import { heroStats, skills, toolGroups, certifications, experience, resumeUrl, socials } from '../data/site'
-
-const allTools = toolGroups.flatMap((g) => g.tools)
-
-// Local text-initials fallback for tool icons — no external placeholder service
-const initialsIcon = (text) =>
-  `data:image/svg+xml;utf8,${encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><rect width="20" height="20" rx="5" fill="#16161f"/><text x="10" y="14" text-anchor="middle" font-family="monospace" font-size="9" fill="#9ca3af">${text}</text></svg>`,
-  )}`
+import { heroStats, resumeUrl, socials } from '../data/site'
 
 const railSections = [
   { id: 'intro', label: 'Intro' },
-  { id: 'work', label: 'Work' },
+  { id: 'work', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
-  { id: 'certifications', label: 'Certifications' },
   { id: 'experience', label: 'Experience' },
   { id: 'contact', label: 'Contact' },
 ]
@@ -42,17 +31,7 @@ const rise = {
 export default function Home() {
   const reduce = useReducedMotion()
   const { hash } = useLocation()
-  const [copied, setCopied] = useState(false)
 
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(socials.email)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      window.location.href = `mailto:${socials.email}`
-    }
-  }
   usePageMeta({
     title: 'Subhranil Das — Data Engineer',
     description:
@@ -100,7 +79,7 @@ export default function Home() {
               onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })}
               className="btn-primary rounded-lg px-6 py-3 text-sm font-medium"
             >
-              View work
+              View projects
             </button>
             <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-ghost rounded-lg px-6 py-3 text-sm font-medium">
               Download resume
@@ -145,195 +124,17 @@ export default function Home() {
             variants={rise}
             onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })}
             className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block"
-            aria-label="Scroll to work"
+            aria-label="Scroll to projects"
           >
             <span className="float-y block text-2xl text-faint transition-colors hover:text-accent">↓</span>
           </motion.button>
         </motion.div>
       </section>
 
-      {/* ---------- Work ---------- */}
-      <Section id="work" index="01" eyebrow="Work" title="Featured projects">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p, i) => (
-            <ProjectCard key={p.slug} project={p} delay={(i % 3) * 0.08} />
-          ))}
-        </div>
-      </Section>
-
-      {/* ---------- Skills ---------- */}
-      <Section id="skills" index="02" eyebrow="Skills" title="What I do">
-        <div className="grid gap-5 md:grid-cols-3">
-          {skills.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 3) * 0.08} className={s.span === 2 ? 'md:col-span-2' : ''}>
-              <article className="card h-full rounded-2xl p-7">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-accent/20 bg-accent/10">
-                  <SkillIcon name={s.icon} />
-                </div>
-                <h3 className="font-display text-lg font-semibold text-ink">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{s.body}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-
-        {/* Tools — dual infinite marquee (pauses on hover) */}
-        <div className="mt-16 space-y-4">
-          <Reveal>
-            <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-faint">Tools & platforms</p>
-          </Reveal>
-          {[allTools.slice(0, Math.ceil(allTools.length / 2)), allTools.slice(Math.ceil(allTools.length / 2))].map(
-            (row, ri) => (
-              <Reveal key={ri} delay={ri * 0.08}>
-                <div className="marquee py-1">
-                  <div className={`marquee-track ${ri === 1 ? 'reverse' : ''}`}>
-                    {[...row, ...row].map((tool, ti) => (
-                      <div
-                        key={`${tool.name}-${ti}`}
-                        className="flex shrink-0 items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2.5 transition-colors hover:border-accent/50"
-                      >
-                        <img
-                          src={tool.icon}
-                          alt=""
-                          loading="lazy"
-                          width="20"
-                          height="20"
-                          className="h-5 w-5"
-                          onError={(e) => {
-                            e.currentTarget.onerror = null
-                            e.currentTarget.src = initialsIcon(tool.fallback || tool.name.slice(0, 2))
-                          }}
-                        />
-                        <span className="whitespace-nowrap text-sm text-muted">{tool.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            ),
-          )}
-        </div>
-      </Section>
-
-      {/* ---------- Certifications ---------- */}
-      <Section id="certifications" index="03" eyebrow="Credentials" title="Certifications">
-        <div className="space-y-5">
-          {certifications.map((cert) => (
-            <Reveal key={cert.credentialId}>
-              {/* Full-width ribbon — reads as curated with any number of certs */}
-              <article
-                className="card flex flex-col gap-5 rounded-2xl p-6 sm:flex-row sm:items-center sm:gap-6 sm:p-7"
-                style={{ background: 'linear-gradient(100deg, rgba(41, 181, 232, 0.08), transparent 45%), var(--color-surface)' }}
-              >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-accent-2/25 bg-accent-2/10">
-                  <img
-                    src="/icons/snowflake.svg"
-                    alt="Snowflake"
-                    width="32"
-                    height="32"
-                    className="h-8 w-8"
-                    onError={(e) => {
-                      e.currentTarget.onerror = null
-                      e.currentTarget.src = initialsIcon('SF')
-                    }}
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-display text-lg font-semibold text-ink">{cert.name}</h3>
-                  <p className="mt-1.5 font-mono text-xs leading-relaxed text-faint">
-                    {cert.issuer} · Issued {cert.issued} · Expires {cert.expires} · ID {cert.credentialId}
-                  </p>
-                </div>
-                <a href={cert.pdf} target="_blank" rel="noreferrer" className="btn-ghost w-fit shrink-0 rounded-lg px-4 py-2 text-sm">
-                  View certificate
-                </a>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* ---------- Experience preview ---------- */}
-      <Section id="experience" index="04" eyebrow="Experience" title="Where I’ve worked">
-        <div className="grid gap-5 md:grid-cols-3">
-          {experience.map((job, i) => (
-            <Reveal key={job.company} delay={i * 0.08}>
-              <article className="card h-full rounded-2xl p-7">
-                <div className="flex items-start justify-between gap-4">
-                  <p className="font-mono text-xs text-accent">{job.period}</p>
-                  {job.logo && (
-                    <div className={`flex h-11 min-w-11 max-w-28 shrink-0 items-center justify-center rounded-xl border border-line px-2.5 py-2 ${job.logoBg === 'light' ? 'bg-gray-100' : 'bg-elevate'}`}>
-                      <img src={job.logo} alt={`${job.company} logo`} className="max-h-full max-w-full object-contain" />
-                    </div>
-                  )}
-                </div>
-                <h3 className="mt-3 font-display text-lg font-semibold text-ink">{job.company}</h3>
-                <p className="mt-1 text-sm text-muted">{job.role}</p>
-                <p className="mt-3 font-mono text-xs text-faint">{job.location}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={0.2}>
-          <Link to="/about" className="mt-8 inline-block font-medium text-accent transition-colors hover:text-accent-2">
-            Full story — experience & education →
-          </Link>
-        </Reveal>
-      </Section>
-
-      {/* ---------- Contact ---------- */}
-      <Section id="contact" index="05" eyebrow="Contact" title="Let’s talk">
-        <div className="grid items-start gap-10 md:grid-cols-5">
-          <Reveal className="md:col-span-2">
-            <div className="flex flex-col gap-5">
-              <p className="leading-relaxed text-muted">
-                Whether it’s a data-platform build, a gnarly migration, or a full-stack analytics product — I’m happy
-                to chat. The fastest way to reach me is this form or LinkedIn.
-              </p>
-              <p className="flex items-center gap-2.5 text-sm text-muted">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" aria-hidden="true" />
-                Open to interesting problems
-              </p>
-              <div className="flex flex-wrap items-center gap-3">
-                <button
-                  onClick={copyEmail}
-                  className="btn-ghost flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm"
-                  aria-label={`Copy email address ${socials.email}`}
-                >
-                  <span className="text-ink">{socials.email}</span>
-                  <span aria-live="polite" className="font-mono text-xs text-accent">
-                    {copied ? 'Copied ✓' : 'Copy'}
-                  </span>
-                </button>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={socials.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-ghost flex items-center gap-2.5 rounded-lg px-4 py-2.5 text-sm text-ink"
-                >
-                  <img src="/icons/linkedin.svg" alt="" width="15" height="15" className="opacity-80" />
-                  LinkedIn
-                </a>
-                <a
-                  href={socials.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-ghost flex items-center gap-2.5 rounded-lg px-4 py-2.5 text-sm text-ink"
-                >
-                  <img src="/icons/github.svg" alt="" width="15" height="15" className="opacity-80" />
-                  GitHub
-                </a>
-              </div>
-              <p className="font-mono text-xs text-faint">Usually replies within a day · IST (UTC+5:30)</p>
-            </div>
-          </Reveal>
-          <Reveal delay={0.1} className="md:col-span-3">
-            <ContactForm />
-          </Reveal>
-        </div>
-      </Section>
+      <WorkSection index="01" />
+      <SkillsSection index="02" />
+      <ExperienceSection index="03" />
+      <ContactSection index="04" />
     </>
   )
 }

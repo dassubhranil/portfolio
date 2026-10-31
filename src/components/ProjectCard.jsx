@@ -32,7 +32,7 @@ export default function ProjectCard({ project, delay = 0 }) {
           <div className="flex flex-wrap items-center gap-2">
             {project.proprietary && (
               <span className="rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-mono text-[11px] tracking-wide text-accent">
-                Proprietary — built at Gruve
+                {project.proprietaryLabel || 'Proprietary — built at Gruve'}
               </span>
             )}
           </div>
@@ -61,6 +61,11 @@ export default function ProjectCard({ project, delay = 0 }) {
             {project.demo && (
               <a href={project.demo} target="_blank" rel="noreferrer" className="text-muted transition-colors hover:text-ink">
                 Live demo
+              </a>
+            )}
+            {project.article && (
+              <a href={project.article} target="_blank" rel="noreferrer" className="text-muted transition-colors hover:text-ink">
+                Article
               </a>
             )}
           </div>

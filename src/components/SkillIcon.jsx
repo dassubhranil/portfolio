@@ -40,6 +40,23 @@ const paths = {
       <path d="M9 12l2 2 4-4" />
     </>
   ),
+  gateway: (
+    <>
+      <circle cx="5" cy="12" r="2" />
+      <circle cx="19" cy="6" r="2" />
+      <circle cx="19" cy="12" r="2" />
+      <circle cx="19" cy="18" r="2" />
+      <path d="M7 12h4M11 12l6-5.5M11 12h6M11 12l6 5.5" />
+    </>
+  ),
+  agents: (
+    <>
+      <circle cx="12" cy="5" r="2" />
+      <circle cx="6" cy="18" r="2" />
+      <circle cx="18" cy="18" r="2" />
+      <path d="M12 7v3.5M12 10.5l-5 5.5M12 10.5l5 5.5" />
+    </>
+  ),
 }
 
 export default function SkillIcon({ name, className = 'h-6 w-6' }) {

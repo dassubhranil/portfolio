@@ -42,6 +42,18 @@ export const skills = [
     span: 2,
   },
   {
+    title: 'LLM Gateways & AI FinOps',
+    body: 'A single endpoint in front of every model provider — intent-based routing that right-sizes each request, per-team and per-key budgets with automatic stops, and opaque AI bills turned into live, attributable spend.',
+    icon: 'gateway',
+    span: 2,
+  },
+  {
+    title: 'Agentic Systems',
+    body: 'Designing and governing teams of AI agents — coordinator-to-specialist delegation, approval-gated actions, per-user credentials, and fully traced runs.',
+    icon: 'agents',
+    span: 1,
+  },
+  {
     title: 'Cloud & Multi-Tenant Architecture',
     body: 'Azure, AWS, and GCP. Config-driven, multi-tenant systems where every tenant org and user carries independent configuration — no per-engagement rewrites.',
     icon: 'cloud',
@@ -136,6 +148,8 @@ export const experience = [
     bullets: [
       'Built a complete Salesforce → Dynamics 365 migration framework on Microsoft Fabric data pipelines — the entire migration is controlled from a UI, with multi-tenant and user-specific configurations so different tenant orgs and users run with independent setups, achieving 100% data integrity through automated schema mapping.',
       'Built Keka Analytics, a full-stack executive analytics platform (React 19 + FastAPI on Microsoft Fabric Lakehouse / OneLake) with Microsoft Entra SSO, custom page-level RBAC, a user-management console, and audit logging — 29 pages, 11 API routers, 26 backend services, Dockerized and deployed via Azure Container Registry behind nginx.',
+      'Built an internal LLM gateway and FinOps layer — one endpoint every application calls instead of a specific model — that reads each request’s intent and routes it to the right-sized model, enforces per-team and per-key budgets with automatic hard stops, and turns opaque monthly AI bills into live spend attributable by team, key, and user.',
+      'Built a governed multi-agent platform for assembling and running teams of AI agents: a coordinating agent delegates to specialist agents, every sensitive action is permission-checked and human-approved, agents act with each user’s own credentials, and every run is traced with its model spend.',
       'Integrated production AI capabilities: an NL-to-SQL agent whose schema exposure is permission-scoped to each user’s RBAC (least-privilege LLM data access) and AI-generated narrative executive reports via OpenAI.',
       'Designed and maintained end-to-end data pipelines on Microsoft Fabric powering BI dashboards for platform usage, operational metrics, and KPIs; built a configurable sales-commission engine and scheduled background jobs with APScheduler.',
       'Drove cost optimization by identifying inactive enterprise-license users through automated reporting; integrated external SaaS platforms (Glean, Office 365) via API pipelines.',

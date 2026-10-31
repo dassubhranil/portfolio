@@ -5,14 +5,14 @@ import usePageMeta from '../hooks/usePageMeta'
 import { experience, education, certifications } from '../data/site'
 
 const railSections = [
-  { id: 'bio', label: 'About' },
+  { id: 'bio', label: 'Bio' },
   { id: 'career', label: 'Experience' },
   { id: 'education', label: 'Education' },
 ]
 
 export default function About() {
   usePageMeta({
-    title: 'About — Subhranil Das',
+    title: 'Background — Subhranil Das',
     description:
       'Data Engineer with 3+ years building governed, production-grade data systems — pipelines on Microsoft Fabric, Azure, and AWS, analytics in Snowflake, and the apps on top.',
   })
@@ -21,7 +21,7 @@ export default function About() {
       <ScrollRail sections={railSections} />
 
       {/* Bio */}
-      <Section id="bio" index="01" eyebrow="About" title="The data architect">
+      <Section id="bio" index="01" eyebrow="Background" title="The data architect">
         <div className="grid items-start gap-12 md:grid-cols-5">
           <Reveal className="md:col-span-2">
             <div className="w-fit max-w-sm rounded-2xl bg-gradient-to-br from-accent via-[#8b5cf6] to-accent-2 p-[3px] shadow-[0_0_35px_rgba(139,92,246,0.25)]">
@@ -53,6 +53,14 @@ export default function About() {
               </p>
             </Reveal>
             <Reveal delay={0.16}>
+              <p>
+                More recently I’ve focused on the <strong>AI-platform layer</strong>: an <strong>LLM gateway</strong> that
+                puts one endpoint in front of every model — routing each request to the right-sized model and making AI
+                spend accountable per team — and a <strong>governed multi-agent platform</strong> for building and running
+                teams of AI agents, where every sensitive action is permission-checked and human-approved.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
               <p>
                 I care about systems that are <strong>governed, repeatable, and self-service</strong> — the kind you
                 can hand to a delivery team or an executive and trust to just work.

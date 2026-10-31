@@ -8,6 +8,9 @@ import Footer from './components/Footer'
 import Landing from './components/Landing'
 import Home from './pages/Home'
 import About from './pages/About'
+import Work from './pages/Work'
+import Skills from './pages/Skills'
+import Contact from './pages/Contact'
 import CaseStudy from './pages/CaseStudy'
 import NotFound from './pages/NotFound'
 
@@ -67,7 +70,10 @@ export default function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Page><Home /></Page>} />
-          <Route path="/about" element={<Page><About /></Page>} />
+          <Route path="/background" element={<Page><About /></Page>} />
+          <Route path="/projects" element={<Page><Work /></Page>} />
+          <Route path="/skills" element={<Page><Skills /></Page>} />
+          <Route path="/contact" element={<Page><Contact /></Page>} />
           <Route path="/projects/:slug" element={<Page><CaseStudy /></Page>} />
           <Route path="*" element={<Page><NotFound /></Page>} />
         </Routes>

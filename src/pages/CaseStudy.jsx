@@ -75,7 +75,7 @@ export default function CaseStudy() {
               </Link>
               {' / '}
               <Link to="/#work" className="transition-colors hover:text-ink">
-                Work
+                Projects
               </Link>
               {' / '}
               <span className="text-muted">{project.title}</span>
@@ -85,7 +85,7 @@ export default function CaseStudy() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               {project.proprietary && (
                 <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-xs tracking-wide text-accent">
-                  Proprietary — built at Gruve
+                  {project.proprietaryLabel || 'Proprietary — built at Gruve'}
                 </span>
               )}
               {project.tags.map((tag) => (
@@ -109,6 +109,11 @@ export default function CaseStudy() {
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noreferrer" className="btn-ghost rounded-lg px-5 py-2.5 text-sm font-medium">
                   Live demo
+                </a>
+              )}
+              {project.article && (
+                <a href={project.article} target="_blank" rel="noreferrer" className="btn-ghost rounded-lg px-5 py-2.5 text-sm font-medium">
+                  Read the article →
                 </a>
               )}
             </div>
@@ -231,8 +236,8 @@ export default function CaseStudy() {
             <div className="card rounded-2xl border-accent/20 p-6">
               <p className="font-mono text-xs uppercase tracking-[0.15em] text-accent">Confidentiality</p>
               <p className="mt-2 text-sm leading-relaxed text-muted">
-                This product was built for Gruve and its clients. Source code, screenshots, and client-specific details
-                are proprietary — this case study describes the architecture and capabilities at a general level.
+                {project.confidentialNote ||
+                  'This product was built for Gruve and its clients. Source code, screenshots, and client-specific details are proprietary — this case study describes the architecture and capabilities at a general level.'}
               </p>
             </div>
           </Reveal>
