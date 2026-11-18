@@ -1,18 +1,31 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Landing from './components/Landing'
+import CommandPalette from './components/CommandPalette'
 import Home from './pages/Home'
-import About from './pages/About'
-import Work from './pages/Work'
-import Skills from './pages/Skills'
-import Contact from './pages/Contact'
-import CaseStudy from './pages/CaseStudy'
-import NotFound from './pages/NotFound'
+
+// Secondary routes are split out of the initial bundle — only Home (the common
+// entry, masked by the landing gate) ships eagerly; the rest load on navigation.
+const About = lazy(() => import('./pages/About'))
+const Work = lazy(() => import('./pages/Work'))
+const Skills = lazy(() => import('./pages/Skills'))
+const Contact = lazy(() => import('./pages/Contact'))
+const CaseStudy = lazy(() => import('./pages/CaseStudy'))
+const NotFound = lazy(() => import('./pages/NotFound'))
+
+// Lightweight fallback while a split route loads — a quiet brand-tinted pulse.
+function RouteFallback() {
+  return (
+    <div className="flex min-h-[60vh] items-center justify-center" role="status" aria-label="Loading">
+      <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-accent motion-reduce:animate-none" />
+    </div>
+  )
+}
 
 function Page({ children }) {
   const reduce = useReducedMotion()
@@ -67,16 +80,19 @@ export default function App() {
       </a>
       <AnimatePresence>{showLanding && <Landing onEnter={enterSite} />}</AnimatePresence>
       <Nav />
+      <CommandPalette />
       <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Page><Home /></Page>} />
-          <Route path="/background" element={<Page><About /></Page>} />
-          <Route path="/projects" element={<Page><Work /></Page>} />
-          <Route path="/skills" element={<Page><Skills /></Page>} />
-          <Route path="/contact" element={<Page><Contact /></Page>} />
-          <Route path="/projects/:slug" element={<Page><CaseStudy /></Page>} />
-          <Route path="*" element={<Page><NotFound /></Page>} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Page><Home /></Page>} />
+            <Route path="/background" element={<Page><About /></Page>} />
+            <Route path="/projects" element={<Page><Work /></Page>} />
+            <Route path="/skills" element={<Page><Skills /></Page>} />
+            <Route path="/contact" element={<Page><Contact /></Page>} />
+            <Route path="/projects/:slug" element={<Page><CaseStudy /></Page>} />
+            <Route path="*" element={<Page><NotFound /></Page>} />
+          </Routes>
+        </Suspense>
       </AnimatePresence>
       <Footer />
       <Analytics />

@@ -73,20 +73,43 @@ export default function Nav() {
                 </button>
               )
             })}
+            <button
+              onClick={() => window.dispatchEvent(new Event('cmdk:open'))}
+              className="btn-ghost ml-2 flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:text-ink"
+              aria-label="Open command palette"
+              title="Search (⌘K)"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+                <path d="m20 20-3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+              <kbd className="font-mono text-[11px]">⌘K</kbd>
+            </button>
             <a
               href={resumeUrl}
               target="_blank"
               rel="noreferrer"
-              className="btn-primary ml-3 rounded-lg px-4 py-2 text-sm font-medium"
+              className="btn-primary ml-1 rounded-lg px-4 py-2 text-sm font-medium"
             >
               Resume
             </a>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* Mobile controls: palette + hamburger */}
+          <div className="flex items-center gap-1 md:hidden">
+          <button
+            onClick={() => window.dispatchEvent(new Event('cmdk:open'))}
+            className="flex h-10 w-10 items-center justify-center text-muted"
+            aria-label="Open command palette"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
+              <path d="m20 20-3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
           <button
             onClick={() => setOpen(!open)}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
@@ -94,6 +117,7 @@ export default function Nav() {
             <motion.span animate={open ? { opacity: 0 } : { opacity: 1 }} className="h-px w-6 bg-ink" />
             <motion.span animate={open ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }} className="h-px w-6 bg-ink" />
           </button>
+          </div>
         </nav>
       </header>
 

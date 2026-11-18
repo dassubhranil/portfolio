@@ -119,17 +119,30 @@ export default function About() {
             </Reveal>
           ))}
           {certifications.map((cert) => (
-            <Reveal key={cert.credentialId} delay={0.16}>
+            <Reveal key={cert.credentialId || cert.name} delay={0.16}>
               <article className="card h-full rounded-2xl p-7">
                 <p className="font-mono text-xs text-accent">Certification</p>
                 <h3 className="mt-3 font-display text-lg font-semibold text-ink">{cert.name}</h3>
                 <p className="mt-1 text-sm text-muted">{cert.issuer}</p>
-                <p className="mt-3 font-mono text-xs text-faint">
-                  Issued {cert.issued} · ID {cert.credentialId}
-                </p>
-                <a href={cert.pdf} target="_blank" rel="noreferrer" className="mt-4 inline-block text-sm font-medium text-accent transition-colors hover:text-accent-2">
-                  View certificate →
-                </a>
+                {(cert.issued || cert.credentialId) && (
+                  <p className="mt-3 font-mono text-xs text-faint">
+                    {[cert.issued && `Issued ${cert.issued}`, cert.credentialId && `ID ${cert.credentialId}`]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
+                )}
+                <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium">
+                  {cert.verifyUrl && (
+                    <a href={cert.verifyUrl} target="_blank" rel="noreferrer" className="inline-block text-accent transition-colors hover:text-accent-2">
+                      Verify →
+                    </a>
+                  )}
+                  {cert.pdf && (
+                    <a href={cert.pdf} target="_blank" rel="noreferrer" className="inline-block text-accent transition-colors hover:text-accent-2">
+                      View certificate →
+                    </a>
+                  )}
+                </div>
               </article>
             </Reveal>
           ))}

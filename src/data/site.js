@@ -129,6 +129,14 @@ export const toolGroups = [
 
 export const certifications = [
   {
+    name: 'Microsoft Certified: Fabric Data Engineer Associate',
+    issuer: 'Microsoft · Exam DP-700',
+    issued: 'November 2026',
+    verifyUrl:
+      'https://learn.microsoft.com/api/credentials/share/en-gb/SubhranilDas-6543/9ED8571FE2E02056?sharingId=187B90031EC61904',
+    pdf: '/dp700-fabric-data-engineer.pdf',
+  },
+  {
     name: 'SnowPro Associate: Platform',
     issuer: 'Snowflake',
     issued: 'February 28, 2026',

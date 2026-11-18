@@ -8,6 +8,7 @@ import ScrollRail from '../components/ScrollRail'
 import usePageMeta from '../hooks/usePageMeta'
 import NotFound from './NotFound'
 import { projects, getProject } from '../data/projects'
+import { siteUrl } from '../data/site'
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 
@@ -44,9 +45,34 @@ function Rich({ text }) {
 export default function CaseStudy() {
   const { slug } = useParams()
   const project = getProject(slug)
+  const url = `${siteUrl}/projects/${slug}`
   usePageMeta({
     title: project ? `${project.title} — Subhranil Das` : 'Page not found — Subhranil Das',
     description: project?.blurb,
+    image: project?.image,
+    type: 'article',
+    jsonLd: project && {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+            { '@type': 'ListItem', position: 2, name: 'Projects', item: `${siteUrl}/projects` },
+            { '@type': 'ListItem', position: 3, name: project.title, item: url },
+          ],
+        },
+        {
+          '@type': 'CreativeWork',
+          name: project.title,
+          abstract: project.blurb,
+          url,
+          keywords: project.tags.join(', '),
+          author: { '@type': 'Person', name: 'Subhranil Das' },
+          ...(project.image ? { image: `${siteUrl}${project.image}` } : {}),
+        },
+      ],
+    },
   })
   if (!project) return <NotFound />
 
