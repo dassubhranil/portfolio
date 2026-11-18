@@ -1,0 +1,260 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[colorlinks = true,
+            linkcolor = red,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+\hypersetup{pdfborder = 0 0 0}
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-7pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\usepackage[margin=0.25in, top=0.1in, bottom=0.1in]{geometry}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
+
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Subhranil Das} \\ \vspace{1pt}
+    \small
+    \raisebox{-0.1\height}\ Kolkata, WB~$|$ +91 8013008509~$|$\href{mailto:dassubhranil1998@gmail.com}{\ dassubhranil1998@gmail.com}~$|$\href{https://linkedin.com/in/subhranil-das/}{\ LinkedIn}~$| $\href{https://github.com/dassubhranil/}{\ Github}~$| $\href{https://subhranildas.vercel.app/}{\ Portfolio}
+    \vspace{-15pt}
+\end{center}
+%-----------Summary-----------
+\section{Summary}
+\resumeSubHeadingListStart
+\item{Data Engineer with \textbf{3+ years} building \textbf{scalable}, production-grade data systems and the applications on top of them. Deep experience across \textbf{Microsoft Fabric}, \textbf{Azure}, \textbf{AWS}, and \textbf{Snowflake}, plus full-stack delivery (\textbf{React + FastAPI}) and an \textbf{AI-platform} layer --- LLM gateways, governed \textbf{multi-agent} systems, and permission-scoped \textbf{NL-to-SQL}.
+}
+\resumeSubHeadingListEnd
+\vspace{-20pt}
+
+
+%-----------EXPERIENCE-----------
+\section{Experiences}
+\vspace{-1pt}
+  \resumeSubHeadingListStart
+  \resumeSubheading
+      {\vspace{-1pt} \small Software Development Engineer II (Data Engineer) }{Dec 2025 -- Present}
+      {Gruve AI}{Pune, Maharashtra}
+\resumeItemListStart
+\resumeItem{Architected a \textbf{multi-tenant Salesforce $\rightarrow$ Dynamics 365} migration framework on \textbf{Microsoft Fabric}, run end-to-end from a \textbf{UI} with per-tenant/per-user config and \textbf{100\% data integrity} via automated schema mapping to \textbf{Dataverse}.}
+\resumeItem{Built a \textbf{full-stack executive analytics platform} (\textbf{React 19 + FastAPI} on \textbf{Fabric Lakehouse}) with \textbf{Entra SSO}, page-level \textbf{RBAC}, and audit logging --- \textbf{29 pages}, \textbf{11 API routers}, and \textbf{26 backend services}, Dockerized and deployed via \textbf{Azure Container Registry} behind \textbf{nginx}.}
+\resumeItem{Shipped an internal \textbf{LLM gateway and AI FinOps} layer fronting every \textbf{OpenAI} and \textbf{Anthropic} model behind one endpoint, serving \textbf{10 apps} / \textbf{100+ users} at nearly \textbf{40K requests/month} --- right-sizing each call and capping per-team spend for \textbf{67\% lower} AI costs.}
+\resumeItem{Launched a \textbf{governed multi-agent platform} running \textbf{7+ fully automated production flows}, where a coordinator delegates to specialist agents composable from any tool over \textbf{MCP}, sensitive actions are gated behind human approval, and each agent runs under the requesting user's permissions.}
+\resumeItem{Designed \textbf{10+} end-to-end \textbf{Fabric} pipelines powering \textbf{15+ custom BI dashboards} for usage, operational metrics, and \textbf{KPIs}, and shipped an \textbf{NL-to-SQL} agent with permission-scoped, least-privilege schema access.}
+\resumeItemListEnd
+
+ \resumeSubheading
+      {\vspace{-1pt} \small Data Engineer}{Jan 2024 -- Jul 2025}
+      {School of Public Health, Indiana University}{Remote, USA}
+     \resumeItemListStart
+  \resumeItem{Streamlined scalable \textbf{ETL pipelines} on \textbf{Google Cloud Composer (Airflow)} and \textbf{AWS Lambda}, hardening them for a \textbf{24\% reduction in ingestion latency} and higher throughput.}
+  \resumeItem{Engineered an end-to-end data validation framework with \textbf{AWS Glue} and \textbf{GitLab CI/CD}, with continuous schema and quality checks that cut critical production errors by \textbf{15\%}.}
+  \resumeItem{Scaled storage on \textbf{Amazon RDS} and \textbf{S3} with partitioning and compression that absorbed a \textbf{30\% data-volume increase} while lowering monthly storage costs by \textbf{15\%}.}
+  \resumeItem{Developed secure, compliant pipelines adhering to \textbf{HIPAA} and \textbf{GDPR}, applying \textbf{AES-256 encryption} and privacy-preserving techniques to strengthen governance and shrink vulnerabilities by \textbf{25\%}.}
+\resumeItemListEnd
+
+
+%\resumeSubheading
+%      {\vspace{-1pt} \small Data Analyst}{08/2023 - 01/2024}
+%      {Indiana University Dining Services}{Bloomington, USA}
+ %    \resumeItemListStart
+ %   \resumeItem{Built demand forecasting pipelines with \textbf{time-series models (ARIMA, Prophet)}, improving forecast accuracy by \textbf{20\%}, reducing stockouts by \textbf{15\%} and streamlined \textbf{raw material procurement} and finished goods inventory.}
+
+ %   \resumeItem{Devised an inventory and pricing optimization framework in \textbf{Python (SciPy)}, calculating reorder points, safety stock, and price elasticity, cutting holding costs by \textbf{12\%} while sustaining a \textbf{98\% service level}.}
+
+  %  \resumeItem{Designed interactive \textbf{Tableau dashboards} with SQL-driven KPIs, integrating pricing, demand, and margin trends to enable faster and data-driven procurement in both dining and manufacturing contexts.}
+
+   % \resumeItem{Automated reporting pipelines with \textbf{SQL + Python}, detecting supply chain bottlenecks, slow-moving stock, and pricing inefficiencies, improving on-time delivery by \textbf{10\%} and recovering \textbf{\$10,000} in potential losses.}
+%\resumeItemListEnd
+
+
+    \resumeSubheading
+      {\vspace{-3pt} \small Data Engineer}{Jun 2021 -- Jul 2022}      {eGain Corporation}{Pune, India}
+\resumeItemListStart
+\resumeItem{Engineered high-performance SQL and Python ETL pipelines on \textbf{Azure Data Factory} and \textbf{Azure SQL Database}, lifting data-flow reliability by \textbf{30\%} across healthcare and finance datasets.}
+\resumeItem{Tuned end-to-end pipelines by profiling \textbf{Spark jobs} in \textbf{Azure Databricks} and refining indexing and partitioning, yielding a \textbf{15\%} gain in query and dashboard performance.}
+ \resumeItem{Produced interactive \textbf{Power BI dashboards} with advanced \textbf{DAX}, blending \textbf{Azure Data Lake} and SQL sources to trim reporting lag by \textbf{35\%}.}
+\resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+\vspace{-20pt}
+% adjust vscape based on the space you want to leave between each section.
+
+%-----------Technical Skilss-----------
+\section{Skills}
+\vspace{1pt}
+ \begin{itemize}[leftmargin=0.1in, label={}]
+    \small{\item{
+     %\textbf{Programming Languages}{: Java, Python, C/C++, SQL, NoSQL, JavaScript, R.} \\
+     
+     %\textbf{Libraries \& Concepts}{: Machine Learning, ETL, Data Warehousing, Pandas, NumPy, Matplotlib, Seaborn, Scikit Learn, NLTK.}\\
+     
+     %\textbf{Data Platforms}{: PostgreSQL, MySQL, MSSQL, MongoDB, Neo4j, SQLite, Spark, Snowflake.}\\
+
+      %\textbf{Tools}{: Tableau, Power BI, Git, Docker, JIRA, Visual Studio, PyCharm, IntelliJ, Eclipse, REST, PyTorch, TensorFlow, Alteryx, Excel.} \\
+     
+     %\textbf{Cloud Services}{:GCP,  Azure - Data Factory, Data Lake, Synapse Analytics, Stream Analytics; Apache - Spark, Airflow, Hadoop, Kafka.}\\
+     %\textbf{Certifications}{: Getting Started with Python (Coursera), Python Data Structures (Coursera), AWS Cloud Practitioner, Data Management in SQL, Data Analysis in SQL, NoSQL Concepts, Introduction to Snowflake, Implementing a Data Warehouse with SQL Server, SQL for Data Analysis, Implementing a Data Warehouse with Microsoft SQL Server.}\\
+    \textbf{Programming}{: Python, SQL, PySpark, R, Bash}\\
+\textbf{Data Engineering}{: Apache Airflow, dbt, ETL/ELT, Data Modeling, Data Quality, APScheduler}\\
+\textbf{Cloud}{: Microsoft Fabric, Azure (Data Factory, Data Lake, Container Registry), AWS (S3, Glue, Lambda), GCP}\\
+\textbf{Databases \& Warehouses}{: PostgreSQL, MySQL, MSSQL, Snowflake, AWS Redshift}\\
+\textbf{Full-Stack \& APIs}{: FastAPI, React, REST, nginx, Docker}\\
+\textbf{AI \& LLM}{: LLM gateways \& model routing, agentic systems, NL-to-SQL, OpenAI, AI FinOps}\\
+\textbf{Governance \& CRM}{: Entra SSO, RBAC, audit logging, Salesforce, Dynamics 365 / Dataverse}\\
+\textbf{CI/CD \& DevOps / BI}{: Git, GitLab, Azure DevOps; Power BI, Tableau}\\
+
+     %\textbf {Cloud Platforms}{: Microsoft Azure -Blob Storage, Functions, Data Factory, Databricks, Event Hubs, Synapse Analytics, Data Lake, AWS - S3, Glue, Kinesis, EMR, Athena, Lambda, Google Cloud Platform - Bucket, BigQuery}\\
+
+     
+    }}
+
+ \end{itemize}
+ \vspace{-22pt}
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \vspace{-8pt}
+    \resumeSubHeadingListStart
+
+    \resumeProjectHeading
+        {\textbf{\small LLM Router \& FinOps Gateway} $|$ \emph{FastAPI, React, Model Routing, FinOps}}{\href{https://subhranildas.vercel.app/projects/llm-router}{\ Link}}
+          \resumeItemListStart
+            \resumeItem{A \textbf{FastAPI + React} service in front of every provider: a classifier routes each prompt to the cheapest capable model, with per-key budget caps and dashboards attributing spend to each user.}
+          \resumeItemListEnd
+          \vspace{-14pt}
+
+    \resumeProjectHeading
+        {\textbf{\small Agent Studio --- Multi-Agent Platform} $|$ \emph{FastAPI, React, Agent Governance, RBAC}}{\href{https://subhranildas.vercel.app/projects/agent-studio}{\ Link}}
+          \resumeItemListStart
+            \resumeItem{Assemble agent teams in a \textbf{FastAPI + React} app where a coordinator routes subtasks to specialists; every sensitive tool call is permission-checked and human-approved, and each run is traced with its cost.}
+          \resumeItemListEnd
+     \resumeSubHeadingListEnd
+\vspace{-18pt}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\small Indiana University, Bloomington}{Aug 2022 -- May 2024}
+      {\vspace{-2pt} Master of Science in Data Science}{}
+    \resumeSubheading
+      {\small Maulana Abul Kalam Azad University of Technology (MAKAUT)}{Aug 2017 -- Jun 2021}
+      {\vspace{-2pt} B.Tech in Applied Electronics \& Instrumentation}{}
+  \resumeSubHeadingListEnd
+\vspace{-20pt}
+
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeSubHeadingListStart
+    \item
+    \small
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{Microsoft Certified: Fabric Data Engineer Associate (DP-700)} $|$ \emph{Microsoft} & \href{https://learn.microsoft.com/api/credentials/share/en-gb/SubhranilDas-6543/9ED8571FE2E02056?sharingId=187B90031EC61904}{Verify} $\cdot$ Nov 2026 \\[2pt]
+      \textbf{SnowPro Associate: Platform} $|$ \emph{Snowflake} $\cdot$ ID S134094-260228-SOL & Feb 2026 \\
+    \end{tabular*}
+  \resumeSubHeadingListEnd
+\vspace{-12pt}
+
+\end{document}
